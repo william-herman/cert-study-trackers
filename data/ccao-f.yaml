@@ -1,0 +1,348 @@
+# CCAO-F study tracker data. Schema: see SCHEMA.md. Text fields accept light Markdown:
+# **bold**, *italic*, `code`, [link](https://...).
+slug: ccao-f
+code: CCAO-F
+name: Claude Certified Associate – Foundations
+issuer: Anthropic
+category: ai
+kind: exam
+confidence: source-traced
+blueprint:
+  title: CCAO-F Exam Guide
+  version: '1.0'
+  published: July 2026
+last_checked: '2026-10-01'
+summary: >-
+  Study plan for the CCAO-F exam: all 30 objectives across the seven weighted domains, the free prep course
+  lesson for each, hands-on practice in Claude, and the scheduling, retake and renewal rules.
+snapshot:
+  title: Exam snapshot
+  items:
+  - 60 items in 120 minutes (about 135 minutes at your seat)
+  - Multiple-choice and **multiple-response**; each item says how many to pick
+  - Scaled 100–1,000, **720 to pass**, with percent-correct by domain on the score report
+  - $99 USD, proctored by Pearson VUE online or at a test center
+  - No prerequisites and no coding or API experience needed
+  - Valid 12 months; on-time renewal is a **free** online assessment
+lens:
+  title: The lens for every question
+  intro: 'From the reasoning behind the guide''s sample questions:'
+  body:
+  - Claude's confidence is not evidence. Specific details like citations get checked against an authoritative source before they're shared.
+  - Match the model to the task. The most capable model isn't the right answer when speed and cost matter more than deep reasoning.
+  - When policy restricts data, the answer is usually to make the task safe (for example, anonymize first), not to ignore the policy or abandon the work.
+  prompts:
+  - Does this need verification or human review before it goes anywhere?
+  - Which option meets the goal at the right quality, speed and cost?
+  - What's the safe way to still get the work done?
+domains:
+- id: 1
+  name: Prompting and Task Execution
+  short: Prompting & Task Execution
+  weight: 14
+- id: 2
+  name: Output Evaluation and Validation
+  short: Output Evaluation
+  weight: 21
+- id: 3
+  name: Product and Model Selection
+  short: Product & Model Selection
+  weight: 12
+- id: 4
+  name: Workflow Integration and Solution Design
+  short: Workflow Integration
+  weight: 16
+- id: 5
+  name: Configuration and Knowledge Management
+  short: Configuration & Knowledge
+  weight: 12
+- id: 6
+  name: Governance, Risk, and Responsible Use
+  short: Governance & Risk
+  weight: 15
+- id: 7
+  name: Troubleshooting and Optimization
+  short: Troubleshooting
+  weight: 10
+tag_legend:
+- tag: guide
+  style: ex
+  meaning: preparation steps from section 7 of the exam guide
+- tag: added
+  style: added
+  meaning: extra hands-on practice for objectives the guide lists but doesn't give an exercise for
+- tag: optional
+  style: optional
+  meaning: not counted toward progress
+sections:
+- id: s0
+  'no': '0'
+  title: Setup
+  note: Do this first.
+  groups:
+  - items:
+    - id: e-guide
+      text: >-
+        Read the full [CCAO-F Exam Guide v1.0 (PDF)](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542847%2FClaude+Certified+Associate+%E2%80%93+Foundations+Exam+Guide.pdf)
+        cover to cover. Anthropic calls it the authoritative reference.
+    - id: e-policies
+      text: >-
+        Read the [Certification Terms and Conditions](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F34hhd92iyp94a0gtbr15cy5jk%2Fpublic%2F1782870634%2FCertification+Terms+and+Conditions.pdf)
+        and [Exam Policy](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F34hhd92iyp94a0gtbr15cy5jk%2Fpublic%2F1782870704%2FAnthropic+Certification+Exam+Policy.pdf)
+        before registering, as the guide asks.
+    - id: e-account
+      text: Have a Claude account where you can create Projects and try the features named in Domains 3 and 5. Most of this plan is practice, not reading.
+    - id: e-self
+      tag: guide
+      text: Self-assess against every objective below before you start. Mark the ones you couldn't do at work tomorrow; that's your study order.
+- id: s1
+  'no': '1'
+  title: Free Anthropic courses
+  note: The prep course has one lesson per domain. Take each lesson just before its domain section.
+  groups:
+  - title: Recommended before the prep course
+    items:
+    - id: c-101
+      text: '[Claude 101](https://anthropic.skilljar.com/claude-101)'
+    - id: c-fluency
+      text: '[AI Fluency: Framework & Foundations](https://anthropic.skilljar.com/ai-fluency-framework-foundations)'
+    - id: c-limits
+      text: '[AI Capabilities and Limitations](https://anthropic.skilljar.com/ai-capabilities-and-limitations)'
+  - title: The prep course
+    items:
+    - id: c-prep
+      text: >-
+        Register for the free [Claude Certified Associate – Foundations Prep Course](https://anthropic-partners.skilljar.com/path/claude-certified-associate-foundations)
+        (8 lessons, about 6.5 hours). Its first lesson, *Claude Platform & Model Foundations*, supports Domain 3.
+    - id: c-summary
+      text: Finish with the prep course's *Course Summary & Next Steps* lesson, which ties the seven domains together.
+  - title: Optional, for depth
+    items:
+    - id: c-cowork
+      tag: optional
+      text: '[Introduction to Claude Cowork](https://anthropic.skilljar.com/introduction-to-claude-cowork): working alongside Claude on real files and projects.'
+- id: s2
+  'no': '2'
+  title: Prompting and Task Execution
+  short: Prompting
+  domain: 1
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d1-1, ts: '1.1', text: Create effective prompts for business and technical tasks.}
+    - {id: d1-2, ts: '1.2', text: Apply task decomposition to structure complex requests.}
+    - {id: d1-3, ts: '1.3', text: Iterate prompts to improve output quality.}
+    - {id: d1-4, ts: '1.4', text: 'Adapt your prompting to the task type: analysis, research, drafting, brainstorming.'}
+  - title: Practice
+    items:
+    - id: p1-lesson
+      text: Prep course lesson *Prompting & Task Execution*.
+    - id: p1-practice
+      tag: guide
+      text: Practice structuring prompts, decomposing tasks and iterating to improve outputs on a real piece of work.
+    - id: p1-types
+      tag: added
+      text: Take one topic through all four task types (analysis, research, draft, brainstorm) and note how your prompt had to change each time.
+- id: s3
+  'no': '3'
+  title: Output Evaluation and Validation
+  short: Output Evaluation
+  domain: 2
+  note: The highest-weighted domain.
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d2-1, ts: '2.1', text: Evaluate Claude's outputs for accuracy and completeness.}
+    - {id: d2-2, ts: '2.2', text: Identify hallucinations, inconsistencies and biases in responses.}
+    - {id: d2-3, ts: '2.3', text: Apply fact-checking and validation techniques.}
+    - {id: d2-4, ts: '2.4', text: Decide when human review or more verification is required.}
+    - {id: d2-5, ts: '2.5', text: Edit, adapt, refine and compare outputs for the intended audience.}
+    - {id: d2-6, ts: '2.6', text: 'Organize information and pick the right output format: artifact, inline, or structured data.'}
+  - title: Practice
+    items:
+    - id: p2-lesson
+      text: Prep course lesson *Evaluating & Validating Claude's Output*.
+    - id: p2-practice
+      tag: guide
+      text: Evaluate real outputs for accuracy and bias, and write down what you checked and against which source.
+    - id: p2-cite
+      tag: added
+      text: Ask Claude for a summary with specific citations or figures, then verify each one against the original. Note any that didn't hold up.
+    - id: p2-audience
+      tag: added
+      text: Rewrite the same output for two audiences (say, an executive and a specialist) and compare what changed.
+- id: s4
+  'no': '4'
+  title: Product and Model Selection
+  short: Product & Model
+  domain: 3
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d3-1, ts: '3.1', text: 'Select the right Claude feature for the job: Projects, research mode, chat, artifacts.'}
+    - {id: d3-2, ts: '3.2', text: Differentiate the Claude model types (Haiku, Sonnet, Opus).}
+    - {id: d3-3, ts: '3.3', text: 'Align model choice with the task''s needs: cost, speed, quality.'}
+    - {id: d3-4, ts: '3.4', text: 'Manage context limits and memory: when to restart, summarize, or persist.'}
+  - title: Practice
+    items:
+    - id: p3-lesson
+      text: Prep course lesson *Claude Platform & Model Foundations*.
+    - id: p3-docs
+      tag: guide
+      text: Review Anthropic's official documentation and help articles for Projects, Artifacts, Memory, Skills and Code Execution.
+    - id: p3-models
+      tag: added
+      text: Run one simple, high-volume task and one hard reasoning task on two different models. Note where the cheaper, faster model was good enough.
+- id: s5
+  'no': '5'
+  title: Workflow Integration and Solution Design
+  short: Workflow Integration
+  domain: 4
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d4-1, ts: '4.1', text: Apply Claude to analyze requirements and use cases.}
+    - {id: d4-2, ts: '4.2', text: Use Claude for research, planning and process optimization.}
+    - {id: d4-3, ts: '4.3', text: Use Claude to support solution design, development and iteration.}
+    - {id: d4-4, ts: '4.4', text: Integrate Claude into existing workflows to augment or redesign them.}
+    - {id: d4-5, ts: '4.5', text: Communicate Claude's value and limitations to stakeholders.}
+  - title: Practice
+    items:
+    - id: p4-lesson
+      text: Prep course lesson *Workflow Integration & Solution Design*.
+    - id: p4-map
+      tag: added
+      text: Map one recurring workflow step by step. Mark which steps you'd delegate to Claude, which stay with a person, and where the human check sits.
+    - id: p4-pitch
+      tag: added
+      text: Write a one-paragraph explanation of that workflow change for a stakeholder, including one honest limitation.
+- id: s6
+  'no': '6'
+  title: Configuration and Knowledge Management
+  short: Configuration
+  domain: 5
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d5-1, ts: '5.1', text: Configure Claude Projects with instructions and knowledge sources.}
+    - {id: d5-2, ts: '5.2', text: Manage uploaded knowledge and connectors (for example Google Drive or Gmail).}
+    - {id: d5-3, ts: '5.3', text: Write effective system-level instructions.}
+    - {id: d5-4, ts: '5.4', text: Maintain and update configurations, knowledge sources and instructions over time.}
+  - title: Practice
+    items:
+    - id: p5-lesson
+      text: Prep course lesson *Configuration & Knowledge Management*.
+    - id: p5-project
+      tag: guide
+      text: Build a real workflow in a Project with instructions and knowledge sources, then evaluate its outputs for accuracy and bias.
+    - id: p5-update
+      tag: added
+      text: Change one knowledge file in that Project and confirm the next answers reflect it. Note what you had to update besides the file.
+- id: s7
+  'no': '7'
+  title: Governance, Risk, and Responsible Use
+  short: Governance & Risk
+  domain: 6
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d6-1, ts: '6.1', text: Identify appropriate and inappropriate use cases.}
+    - {id: d6-2, ts: '6.2', text: Apply data sensitivity, regulatory and privacy considerations.}
+    - {id: d6-3, ts: '6.3', text: Follow organizational AI policies and governance standards.}
+    - {id: d6-4, ts: '6.4', text: Understand the ethical implications of AI use.}
+  - title: Practice
+    items:
+    - id: p6-lesson
+      text: Prep course lesson *Governance, Risk & Responsible Use*.
+    - id: p6-practice
+      tag: guide
+      text: 'Practice responsible-use judgment: data sensitivity, appropriate use cases, and when to escalate or ask for human review.'
+    - id: p6-policy
+      tag: added
+      text: Read your organization's AI policy (if it has one) and list two tasks it allows, two it doesn't, and one that needs a safeguard first.
+- id: s8
+  'no': '8'
+  title: Troubleshooting and Optimization
+  short: Troubleshooting
+  domain: 7
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d7-1, ts: '7.1', text: Identify, diagnose and resolve underperforming prompts or poor outputs.}
+    - {id: d7-2, ts: '7.2', text: Adjust your approach based on feedback and results.}
+    - {id: d7-3, ts: '7.3', text: Optimize workflows for efficiency and effectiveness.}
+  - title: Practice
+    items:
+    - id: p7-lesson
+      text: Prep course lesson *Troubleshooting & Optimization*.
+    - id: p7-diag
+      tag: added
+      text: Take a prompt that gave a poor result, name the root cause (missing context, vague task, wrong format, wrong model) and fix only that.
+- id: s9
+  'no': '9'
+  title: Readiness
+  short: Readiness
+  callout: >-
+    There is no practice exam. Anthropic retired it in the move to Pearson; the guide's sample questions are the
+    only official practice.
+  groups:
+  - items:
+    - id: r-samples
+      tag: guide
+      text: Work the three sample questions in section 8 of the guide. For each, explain why every wrong option is wrong before reading the rationale.
+    - id: r-teach
+      text: Explain each of the 30 objectives above in a sentence or two, with an example from your own work, without notes.
+    - id: r-gate
+      text: '**Booking gate:** every objective ticked, and the sample-question reasoning comes easily.'
+- id: s10
+  'no': '10'
+  title: Exam logistics
+  short: Logistics
+  groups:
+  - items:
+    - id: l-reg
+      text: Register in the Anthropic Partner Academy, then schedule with Pearson VUE, online or at a test center.
+    - id: l-name
+      text: >-
+        Your registration name must match your government ID **exactly**. To fix it, email
+        certifications-support@anthropic.com before you schedule.
+    - id: l-resched
+      text: >-
+        **Reschedule or cancel at least 48 hours ahead.** The guide says 24 hours, but the newer certification FAQ says
+        48; use the stricter one. Cancelling in Pearson doesn't trigger a refund.
+    - id: l-online
+      text: Online proctoring
+      sub:
+      - Stay in view of the webcam for the whole session.
+      - 'Clear desk: no notes, phone, smart watch, headphones or second monitor.'
+      - Run Pearson's system test first; use a test center if a managed device blocks it.
+    - id: l-retake
+      text: Retakes
+      sub:
+      - Full fee each attempt.
+      - Waits of 14 / 30 / 90 days after the 1st / 2nd / 3rd failure.
+      - At most 4 attempts in a rolling 12 months.
+    - id: l-renew
+      text: >-
+        After passing, renew before 12 months are up with the free, non-proctored assessment. If it lapses, you retake
+        the full exam at full price.
+  out_of_scope:
+  - Building against the Claude API
+  - Designing agentic systems
+  - Enterprise-scale AI architectures or integrations
+  - Machine learning or model training
+  - Advanced AI system design
+sources:
+- title: CCAO-F certification page
+  url: https://anthropic-partners.skilljar.com/claude-certified-associate-foundations-certification
+  note: format, price, domain weights
+- title: CCAO-F Exam Guide v1.0 (PDF)
+  url: https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542847%2FClaude+Certified+Associate+%E2%80%93+Foundations+Exam+Guide.pdf
+- title: CCAO-F Prep Course
+  url: https://anthropic-partners.skilljar.com/path/claude-certified-associate-foundations
+- title: Certification FAQ
+  url: https://anthropic-partners.skilljar.com/page/faq-certifications
+  note: rescheduling, retakes, renewal, practice exam
+- title: Pearson VUE – Anthropic
+  url: https://www.pearsonvue.com/us/en/anthropic.html
+  note: scheduling, system test, support

@@ -16,6 +16,7 @@ body:
   attributes:
     label: Which tracker are you reviewing?
     options:
+    - 'CCAO-F: Claude Certified Associate – Foundations'
     - 'CCAR-F: Claude Certified Architect – Foundations'
     - 'CSM: Certified ScrumMaster'
     - 'PAL-I: Professional Agile Leadership I'

@@ -422,7 +422,7 @@ function renderMeters(){
   });
   const m = document.getElementById("meters");
   m.innerHTML = h;
-  if (DOMAINS.length) m.style.setProperty("--cols", DOMAINS.length);
+  if (DOMAINS.length) m.style.setProperty("--cols", DOMAINS.length > 5 ? Math.ceil(DOMAINS.length / 2) : DOMAINS.length);
 
   const n = required.filter(x=>done[x.id]).length;
   document.getElementById("ovBar").style.width = (required.length ? n/required.length*100 : 0)+"%";
