@@ -19,11 +19,11 @@ Text fields accept light Markdown: `**bold**`, `*italic*`, `` `code` ``, `[link]
 | `summary` | yes | One or two sentences for the index page. |
 | `snapshot` | no | `title` plus `items`: key facts (format, length, passing score, cost, validity). |
 | `lens` | no | `title`, optional `intro` (one line above the bullets), `body` (a list of bullets, or one paragraph), `prompts`: the mindset that helps across questions. |
-| `domains` | no | Exam domains: `id`, `name`, `short` (meter label), optional `weight` (percent). Give every domain a weight (summing to 100) or none, e.g. when the issuer doesn't publish weights. Omit entirely for `path` certs; the progress meters are hidden. |
+| `domains` | no | Exam domains: `id`, `name`, `short` (meter label), optional `weight` (percent), optional `label` (overrides the "Domain N" text, e.g. `Foundations`). Give every domain a weight (summing to 100) or none, e.g. when the issuer doesn't publish weights. Omit entirely for `path` certs; the progress meters are hidden. |
 | `domain_label` | no | What the issuer calls a domain (default `Domain`; e.g. `Focus area`). |
 | `tag_legend` | no | `tag`, `style` (`ex`, `added`, `optional`), `meaning`. Shown in the footer. |
 | `sections` | yes | See below. |
-| `objectives` | no | Coverage grid: `title`, `note`, `items` of `id` (e.g. `1.1`), `name`, `where`. Each objective counts toward the domain matching its leading number. |
+| `objectives` | no | Coverage grid: `title`, `note`, `items` of `id` (e.g. `1.1`), `name`, `where`. Each objective counts toward the domain matching its leading number, or the one named by its optional `domain` field. |
 | `sources` | yes | Official links: `title`, `url`, optional `note`. At least one. |
 
 ## Sections
