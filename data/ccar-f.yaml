@@ -98,23 +98,23 @@ sections:
     - id: c-api
       text: >-
         [Building with the Claude API](https://anthropic.skilljar.com/claude-with-the-anthropic-api):
-        tool use, tool_choice, structured output, agentic loops, batches. *Before §2 and §5.*
+        tool use, tool_choice, structured output, agentic loops, batches. *Before Section 2 and Section 5.*
     - id: c-mcp
       text: >-
         [Introduction to Model Context Protocol](https://anthropic.skilljar.com/introduction-to-model-context-protocol):
-        tools vs. resources vs. prompts. *Before §3.*
+        tools vs. resources vs. prompts. *Before Section 3.*
     - id: c-cc
       text: >-
         [Claude Code in Action](https://anthropic.skilljar.com/claude-code-in-action): configuration,
-        hooks, automation, headless/CI. *Before §4.*
+        hooks, automation, headless/CI. *Before Section 4.*
     - id: c-skills
       text: >-
         [Introduction to Agent Skills](https://anthropic.skilljar.com/introduction-to-agent-skills): SKILL.md
-        and frontmatter (3.2). *Before §4.*
+        and frontmatter (3.2). *Before Section 4.*
     - id: c-sub
       text: >-
         [Introduction to Subagents](https://anthropic.skilljar.com/introduction-to-subagents): context
-        isolation and delegation (1.3, 3.4, 5.4). *Before §2 and §4.*
+        isolation and delegation (1.3, 3.4, 5.4). *Before Section 2 and Section 4.*
   - title: Optional, only if a gap shows up
     items:
     - id: c-p101
@@ -719,94 +719,94 @@ objectives:
   items:
   - id: '1.1'
     name: Agentic loops (stop_reason control flow)
-    where: §2 Ex1
+    where: Section 2 Ex1
   - id: '1.2'
     name: Coordinator–subagent orchestration, iterative refinement
-    where: §2 Ex4
+    where: Section 2 Ex4
   - id: '1.3'
     name: Subagent invocation, context passing, parallel Task calls
-    where: §2 Ex4
+    where: Section 2 Ex4
   - id: '1.4'
     name: Programmatic enforcement & structured handoffs
-    where: §2 Ex1
+    where: Section 2 Ex1
   - id: '1.5'
     name: 'Hooks: PostToolUse normalization, call interception'
-    where: §2 Ex1
+    where: Section 2 Ex1
   - id: '1.6'
     name: 'Decomposition: chaining vs. dynamic'
-    where: §2, §5 multi-pass
+    where: Section 2, Section 5 multi-pass
   - id: '1.7'
     name: Session resume / fork / fresh-with-summary
-    where: §2 added
+    where: Section 2 added
   - id: '2.1'
     name: Tool descriptions & boundaries
-    where: §3
+    where: Section 3
   - id: '2.2'
     name: Structured MCP errors (isError, categories, retryable)
-    where: §2 Ex1, §3
+    where: Section 2 Ex1, Section 3
   - id: '2.3'
     name: Tool distribution & tool_choice
-    where: §3, §5
+    where: Section 3, Section 5
   - id: '2.4'
     name: MCP servers in Claude Code (scopes, env vars, resources)
-    where: §3, §4 Ex2
+    where: Section 3, Section 4 Ex2
   - id: '2.5'
     name: Built-in tools (Grep/Glob/Read/Write/Edit/Bash)
-    where: §3
+    where: Section 3
   - id: '3.1'
     name: CLAUDE.md hierarchy, @import, /memory
-    where: §4 Ex2
+    where: Section 4 Ex2
   - id: '3.2'
     name: Slash commands & skills (frontmatter)
-    where: §4 Ex2
+    where: Section 4 Ex2
   - id: '3.3'
     name: Path-specific rules with globs
-    where: §4 Ex2
+    where: Section 4 Ex2
   - id: '3.4'
     name: Plan mode vs. direct execution, Explore subagent
-    where: §4 Ex2
+    where: Section 4 Ex2
   - id: '3.5'
     name: Iterative refinement techniques
-    where: §4 self-check, §5
+    where: Section 4 self-check, Section 5
   - id: '3.6'
     name: CI/CD integration (-p, JSON schema, no duplicates)
-    where: §4 CI
+    where: Section 4 CI
   - id: '4.1'
     name: Explicit criteria to cut false positives
-    where: §5 review
+    where: Section 5 review
   - id: '4.2'
     name: Few-shot for ambiguous cases
-    where: §5 Ex3, review
+    where: Section 5 Ex3, review
   - id: '4.3'
     name: tool_use + JSON schema structured output
-    where: §5 Ex3
+    where: Section 5 Ex3
   - id: '4.4'
     name: Validation-retry & feedback loops
-    where: §5 Ex3
+    where: Section 5 Ex3
   - id: '4.5'
     name: Batch processing strategy
-    where: §5 Ex3
+    where: Section 5 Ex3
   - id: '4.6'
     name: Multi-instance / multi-pass review
-    where: §5 review
+    where: Section 5 review
   - id: '5.1'
     name: Preserving critical info in long context
-    where: §6 hygiene
+    where: Section 6 hygiene
   - id: '5.2'
     name: Escalation & ambiguity resolution
-    where: §2 Ex1, §6
+    where: Section 2 Ex1, Section 6
   - id: '5.3'
     name: Error propagation across agents
-    where: §6 Ex4
+    where: Section 6 Ex4
   - id: '5.4'
     name: Context in large codebase exploration
-    where: §6 hygiene, Ex4
+    where: Section 6 hygiene, Ex4
   - id: '5.5'
     name: Human review & confidence calibration
-    where: §5 Ex3
+    where: Section 5 Ex3
   - id: '5.6'
     name: Provenance & multi-source uncertainty
-    where: §6 Ex4
+    where: Section 6 Ex4
 sources:
 - title: CCAR-F certification page
   url: https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification

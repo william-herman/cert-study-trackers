@@ -57,9 +57,12 @@ def validate(cert, path):
         if oid in seen:
             errs.append(f"duplicate objective id '{o['id']}'")
         seen.add(oid)
-    if cert.get("domains"):
-        total = sum(d["weight"] for d in cert["domains"])
-        if total != 100:
+    weights = [d.get("weight") for d in cert.get("domains", [])]
+    if any(w is not None for w in weights):
+        if any(w is None for w in weights):
+            errs.append("either every domain has a weight or none do")
+        elif sum(weights) != 100:
+            total = sum(weights)
             errs.append(f"domain weights add to {total}, not 100")
     return errs
 

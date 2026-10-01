@@ -174,3 +174,12 @@ body { margin: 0; }
 .section-h { font-family: var(--f-display); font-size: 20px; margin: 8px 0 10px; }
 @media (max-width: 520px) { .wrap { padding-inline: 16px; } }
 @media (max-width: 600px) { .meta .sep { display: none; } .meta { flex-direction: column; align-items: flex-start; } }
+.meter .w { overflow-wrap: anywhere; }
+
+/* Spacing between headings and checklist items */
+.sec-head { margin-bottom: 12px; }
+.sec-note { margin-top: 10px; }
+.group { margin-top: 24px; }
+.group h4 { margin-bottom: 10px; }
+.cov { margin-top: 16px; }
+#sections section.sec + section.sec { margin-top: 48px; }
