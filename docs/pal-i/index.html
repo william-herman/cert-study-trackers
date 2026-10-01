@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PAL-I Study Tracker</title>
+<meta name="description" content="Study plan for the PAL I assessment: the five Professional Scrum Competency focus areas it draws from, Scrum.org&#x27;s own reading list, the 2020 Scrum Guide and 2024 EBM Guide, and practice-assessment gates.">
+<meta property="og:title" content="PAL-I Study Tracker">
+<meta property="og:description" content="Study plan for the PAL I assessment: the five Professional Scrum Competency focus areas it draws from, Scrum.org&#x27;s own reading list, the 2020 Scrum Guide and 2024 EBM Guide, and practice-assessment gates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky progress header, domain meters strip, then a two-column workbench (section index | checklist) that stacks on phones. */
+:root {
+  --bg: #eef1f0;
+  --surface: #ffffff;
+  --surface-2: #f6f8f7;
+  --fg: #16201d;
+  --muted: #5b6863;
+  --line: #d6dddb;
+  --accent: #1f6b57;
+  --accent-soft: #d8ebe4;
+  --accent-fg: #ffffff;
+  --amber: #a5620a;
+  --amber-soft: #f6e7cf;
+  --ex: #3d4fa3;
+  --ex-soft: #e2e6f6;
+  --done-fg: #8a9692;
+  --focus: #1f6b57;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111715; --surface: #18201d; --surface-2: #1d2623; --fg: #e4ebe8; --muted: #95a39e;
+    --line: #2b3632; --accent: #5cc09f; --accent-soft: #1c3a31; --accent-fg: #0b1512;
+    --amber: #e3a54d; --amber-soft: #3a2c16; --ex: #9fb0f5; --ex-soft: #232a4a; --done-fg: #66736e; --focus: #5cc09f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111715; --surface: #18201d; --surface-2: #1d2623; --fg: #e4ebe8; --muted: #95a39e;
+  --line: #2b3632; --accent: #5cc09f; --accent-soft: #1c3a31; --accent-fg: #0b1512;
+  --amber: #e3a54d; --amber-soft: #3a2c16; --ex: #9fb0f5; --ex-soft: #232a4a; --done-fg: #66736e; --focus: #5cc09f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+a { color: var(--accent); text-underline-offset: 2px; }
+code { font-family: var(--f-mono); font-size: .86em; background: var(--surface-2); border: 1px solid var(--line); border-radius: 4px; padding: 0 .3em; word-break: break-word; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; }
+
+/* Header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding-block: 12px; }
+.brand { display: flex; flex-direction: column; min-width: 0; }
+.brand .code { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+.brand h1 { font-family: var(--f-display); font-weight: 700; font-size: 22px; line-height: 1.15; margin: 0; text-wrap: balance; }
+.overall { flex: 1 1 260px; display: flex; align-items: center; gap: 12px; min-width: 0; }
+.bar { flex: 1; height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width .3s ease; }
+.overall .num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; font-size: 13px; white-space: nowrap; }
+.save { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.save[data-state="local"] { color: var(--amber); }
+
+/* Domain meters */
+.meters { display: grid; grid-template-columns: repeat(var(--cols, 5), minmax(0, 1fr)); gap: 10px; padding-block: 18px 6px; }
+.meter { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; min-width: 0; cursor: pointer; text-align: left; font: inherit; color: inherit; }
+.meter:hover { border-color: var(--accent); }
+.meter .w { font-family: var(--f-display); font-size: 26px; font-weight: 700; line-height: 1; }
+.meter .w small { font-family: var(--f-body); font-size: 12px; color: var(--muted); font-weight: 500; margin-left: 4px; }
+.meter .n { font-size: 13px; line-height: 1.3; min-height: 2.6em; }
+.meter .bar { height: 5px; }
+.meter .c { font-family: var(--f-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+@media (max-width: 860px) { .meters { grid-template-columns: repeat(2, minmax(0, 1fr)); } .meter.d1 { grid-column: span 2; } }
+
+/* Workbench */
+.bench { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 28px; padding-block: 18px 60px; align-items: start; }
+@media (max-width: 860px) { .bench { grid-template-columns: minmax(0, 1fr); } .index { position: static !important; } }
+.index { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 84px); display: flex; flex-direction: column; gap: 14px; }
+.index nav { display: flex; flex-direction: column; gap: 2px; }
+@media (max-width: 860px) { .index nav { flex-direction: row; flex-wrap: wrap; gap: 6px; } .index nav a { border: 1px solid var(--line); } }
+.index nav a { display: flex; justify-content: space-between; gap: 8px; padding: 6px 10px; border-radius: 6px; color: var(--fg); text-decoration: none; font-size: 14px; }
+.index nav a:hover { background: var(--surface); }
+.index nav a .k { font-family: var(--f-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.index nav a.full .k { color: var(--accent); }
+.filters { display: flex; flex-direction: column; gap: 8px; }
+.filters .lbl { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.seg { display: inline-flex; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 2px; }
+.seg button { font: inherit; font-size: 13px; border: 0; background: transparent; color: var(--muted); padding: 4px 10px; border-radius: 6px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); }
+.reset { font: inherit; font-size: 13px; background: transparent; border: 1px solid var(--line); color: var(--muted); padding: 6px 10px; border-radius: 8px; cursor: pointer; align-self: flex-start; }
+.reset:hover { color: var(--fg); border-color: var(--muted); }
+.confirm { font-size: 13px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.confirm button { font: inherit; font-size: 13px; padding: 5px 10px; border-radius: 6px; cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--fg); }
+.confirm .danger { background: var(--amber); color: var(--surface); border-color: var(--amber); }
+
+/* Sections */
+.content { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.intro { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+@media (max-width: 700px) { .intro { grid-template-columns: minmax(0, 1fr); } }
+.intro h3 { margin: 0 0 6px; font-family: var(--f-display); font-size: 16px; font-weight: 700; }
+.intro ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 3px; font-size: 14px; }
+.intro p { margin: 0 0 6px; font-size: 14px; }
+.lens q { display: block; font-family: var(--f-display); font-size: 15px; font-weight: 500; quotes: none; padding-left: 12px; border-left: 3px solid var(--accent); margin-top: 6px; }
+
+section.sec { scroll-margin-top: 96px; }
+.sec-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; border-bottom: 2px solid var(--fg); padding-bottom: 8px; margin-bottom: 4px; }
+.sec-head .no { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+.sec-head h2 { font-family: var(--f-display); font-size: 24px; font-weight: 700; margin: 0; line-height: 1.2; text-wrap: balance; }
+.sec-head .wt { font-family: var(--f-mono); font-size: 12px; background: var(--accent-soft); color: var(--accent); padding: 2px 8px; border-radius: 99px; }
+.sec-head .cnt { margin-left: auto; font-family: var(--f-mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sec-note { color: var(--muted); font-size: 14px; margin: 6px 0 0; }
+.callout { background: var(--amber-soft); color: var(--fg); border-radius: 8px; padding: 10px 14px; font-size: 14px; margin-top: 10px; }
+
+.group { margin-top: 16px; }
+.group h4 { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; font-weight: 600; }
+.items { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.item { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; padding: 11px 14px; border-top: 1px solid var(--line); }
+.item:first-child { border-top: 0; }
+.item input { appearance: none; width: 20px; height: 20px; margin: 2px 0 0; border: 1.5px solid var(--muted); border-radius: 5px; display: grid; place-content: center; cursor: pointer; background: var(--surface); }
+.item input::after { content: ""; width: 10px; height: 6px; border-left: 2px solid var(--accent-fg); border-bottom: 2px solid var(--accent-fg); transform: rotate(-45deg) translate(1px, -1px); opacity: 0; }
+.item input:checked { background: var(--accent); border-color: var(--accent); }
+.item input:checked::after { opacity: 1; }
+.item label { cursor: pointer; min-width: 0; }
+.item .t { display: block; }
+.item.done .t { color: var(--done-fg); text-decoration: line-through; text-decoration-color: var(--line); }
+.item.done .sub, .item.done .when { color: var(--done-fg); }
+.item .sub { margin: 5px 0 0; padding-left: 16px; font-size: 14px; color: var(--muted); display: flex; flex-direction: column; gap: 2px; }
+.item .when { display: block; font-family: var(--f-mono); font-size: 11px; color: var(--muted); margin-top: 4px; }
+.tag { display: inline-block; font-family: var(--f-mono); font-size: 11px; font-weight: 500; padding: 0 6px; border-radius: 4px; margin-right: 6px; vertical-align: 1px; line-height: 18px; }
+.tag.ex { background: var(--ex-soft); color: var(--ex); }
+.tag.added { background: var(--amber-soft); color: var(--amber); }
+.tag.ts { background: var(--accent-soft); color: var(--accent); }
+.tag.opt { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
+.hidden-note { font-size: 13px; color: var(--muted); padding: 10px 14px; }
+
+.skip { margin-top: 12px; background: var(--surface-2); border: 1px dashed var(--line); border-radius: 10px; padding: 12px 16px; font-size: 14px; }
+.skip h4 { margin: 0 0 6px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.skip ul { margin: 0; padding-left: 18px; color: var(--muted); }
+.oos { columns: 2 220px; column-gap: 24px; margin: 0; padding-left: 18px; font-size: 14px; color: var(--muted); }
+
+.cov { margin-top: 12px; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; }
+.cov .item { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 9px 12px; }
+.cov .item .t { font-size: 14px; }
+.cov .where { display: block; font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+
+.res { display: flex; flex-direction: column; gap: 6px; font-size: 14px; padding-left: 18px; margin: 10px 0 0; }
+footer { color: var(--muted); font-size: 12px; padding-block: 0 40px; }
+
+@media (prefers-reduced-motion: reduce) { .bar > i { transition: none; } html { scroll-behavior: auto; } }
+html { scroll-behavior: smooth; }
+
+/* ---- Additions for the shared template ---- */
+body { margin: 0; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 13px; color: var(--muted); padding-top: 16px; }
+.tier { display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-size: 12px; font-weight: 500; padding: 2px 10px; border-radius: 99px; border: 1px solid currentColor; text-decoration: none; }
+.tier::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.tier.field-validated { color: var(--accent); background: var(--accent-soft); }
+.tier.source-traced { color: var(--amber); background: var(--amber-soft); }
+.tier.peer-reviewed { color: var(--ex); background: var(--ex-soft); }
+.meta .sep { color: var(--line); }
+.stale { background: var(--amber-soft); border-radius: 8px; padding: 10px 14px; font-size: 14px; margin-top: 12px; }
+.tier-note { font-size: 14px; color: var(--muted); margin: 8px 0 0; max-width: 72ch; }
+.site-foot { border-top: 1px solid var(--line); margin-top: 8px; padding-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.site-foot p { margin: 0; }
+.meters:empty { display: none; }
+.intro.single { grid-template-columns: minmax(0, 1fr); }
+
+/* Index page */
+.hero { padding-block: 40px 8px; max-width: 760px; }
+.hero h1 { font-family: var(--f-display); font-size: clamp(28px, 6vw, 44px); line-height: 1.05; margin: 0 0 12px; text-wrap: balance; }
+.hero p { color: var(--muted); font-size: 16px; margin: 0 0 10px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; padding-block: 20px 28px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px; color: inherit; text-decoration: none; }
+.card:hover { border-color: var(--accent); }
+.card .code { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+.card h2 { font-family: var(--f-display); font-size: 20px; margin: 0; line-height: 1.2; }
+.card p { margin: 0; font-size: 14px; color: var(--muted); }
+.card .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: auto; font-size: 12px; color: var(--muted); }
+.tiers { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin: 0 0 32px; padding: 0; list-style: none; }
+.tiers li { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 14px; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.section-h { font-family: var(--f-display); font-size: 20px; margin: 8px 0 10px; }
+@media (max-width: 520px) { .wrap { padding-inline: 16px; } }
+@media (max-width: 600px) { .meta .sep { display: none; } .meta { flex-direction: column; align-items: flex-start; } }
+.meter .w { overflow-wrap: anywhere; }
+
+/* Spacing between headings and checklist items */
+.sec-head { margin-bottom: 12px; }
+.sec-note { margin-top: 10px; }
+.group { margin-top: 24px; }
+.group h4 { margin-bottom: 10px; }
+.cov { margin-top: 16px; }
+#sections section.sec + section.sec { margin-top: 48px; }
+
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <span class="code" id="hdrCode"></span>
+      <h1 id="hdrTitle"></h1>
+    </div>
+    <div class="overall" aria-label="Overall progress">
+      <div class="bar"><i id="ovBar"></i></div>
+      <span class="num" id="ovNum">0 / 0</span>
+    </div>
+    <span class="save" id="save" aria-live="polite">Saved on this device</span>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="meta" id="meta"></div>
+  <div id="stale"></div>
+  <div class="meters" id="meters"></div>
+
+  <div class="bench">
+    <aside class="index">
+      <nav id="nav" aria-label="Sections"></nav>
+      <div class="filters">
+        <span class="lbl">Show</span>
+        <div class="seg" role="group" aria-label="Filter items">
+          <button type="button" data-f="all" aria-pressed="true">All</button>
+          <button type="button" data-f="open" aria-pressed="false">To do</button>
+          <button type="button" data-f="done" aria-pressed="false">Done</button>
+        </div>
+        <div id="resetBox"><button type="button" class="reset" id="resetBtn">Reset progress</button></div>
+      </div>
+    </aside>
+
+    <main class="content" id="content">
+      <div id="intro"></div>
+      <div id="sections"></div>
+      <footer id="foot"></footer>
+    </main>
+  </div>
+</div>
+
+<script>
+const CERT = {"slug": "pal-i", "code": "PAL-I", "name": "Professional Agile Leadership I", "issuer": "Scrum.org", "kind": "exam", "confidence": "source-traced", "blueprint": {"title": "PAL I certification page and focus areas", "version": "as of Oct 2026", "published": "Scrum.org"}, "last_checked": "2026-10-01", "summary": "Study plan for the PAL I assessment: the five Professional Scrum Competency focus areas it draws from, Scrum.org's own reading list, the 2020 Scrum Guide and 2024 EBM Guide, and practice-assessment gates.", "domain_label": "Focus area", "snapshot": {"title": "Assessment snapshot", "items": ["36 questions in 60 minutes, about 1 minute 40 seconds each", "Multiple choice, multiple answer and true/false", "**85% to pass**, so you can miss at most 5 questions", "$200 USD per attempt; the password never expires but is good for **one attempt**", "**Lifetime certification**, no renewal fee; free Credly badge", "English only (Scrum.org documents using the Google Translate plugin)", "No question-level feedback; you get a breakdown by competency instead"]}, "lens": {"title": "The lens for every question", "body": "Scrum.org warns that candidates who don't lead from a servant-leadership mindset, or who aren't prepared to place real trust in the people they lead, tend to struggle. Most questions describe a situation and ask what a leader should do.", "prompts": ["Which option helps the team make the decision, instead of making it for them?", "Which option creates the conditions for agility rather than controlling the work?", "What does the Scrum Guide actually say, as opposed to common practice?"]}, "domains": [{"id": 1, "name": "Understanding and Applying the Scrum Framework", "short": "Scrum Framework"}, {"id": 2, "name": "Developing People and Teams", "short": "People & Teams"}, {"id": 3, "name": "Managing Products with Agility", "short": "Managing Products"}, {"id": 4, "name": "Developing and Delivering Products Professionally", "short": "Delivering Professionally"}, {"id": 5, "name": "Evolving the Agile Organization", "short": "Agile Organization"}], "tag_legend": [{"tag": "practice", "style": "added", "meaning": "apply-it-at-work exercises beyond Scrum.org's reading list"}, {"tag": "optional", "style": "optional", "meaning": "not counted toward progress"}], "sections": [{"id": "s0", "no": "0", "title": "Setup", "note": "Do this first.", "groups": [{"items": [{"id": "e-page", "text": "Read the [PAL I certification page](https://www.scrum.org/assessments/professional-agile-leadership-certification) and its [Standard of Conduct](https://www.scrum.org/support/standard-conduct-assessments)."}, {"id": "e-prep", "text": "Read Scrum.org's [PAL I preparation page](https://www.scrum.org/resources/suggested-reading-professional-agile-leadership). Every resource below comes from it or from pages it links to."}, {"id": "e-course", "text": "Decide on training: a live [Professional Agile Leadership Essentials](https://www.scrum.org/courses/professional-agile-leadership-essentials-training) class (highly recommended, not required, and includes a free attempt) or the self-paced [Leading Agile Teams](https://www.scrum.org/courses/self-paced/leading-agile-teams) course."}, {"id": "e-baseline", "text": "Take the [Agile Leadership Open](https://www.scrum.org/open-assessments/agile-leadership-open) once, cold. Note your score and which questions surprised you; that's your baseline."}]}]}, {"id": "s1", "no": "1", "title": "Understanding and Applying the Scrum Framework", "short": "Scrum Framework", "domain": 1, "note": "Scrum.org lists Empiricism, Scrum Values, Scrum Team and Events under this focus area.", "groups": [{"title": "Read", "items": [{"id": "f1-guide", "text": "Read the [Scrum Guide](https://www.scrum.org/resources/scrum-guide) (2020) end to end, twice. It is short; the exam rewards its exact wording."}, {"id": "f1-values-blog", "text": "Read Gunther Verheyen's [blog on the Scrum Values](https://guntherverheyen.com/2013/05/03/theres-value-in-the-scrum-values/), the first item on Scrum.org's prep list."}, {"id": "f1-glossary", "text": "Skim the [Scrum glossary](https://www.scrum.org/scrum-glossary) for terms you'd hesitate to define."}]}, {"title": "Concepts to own", "items": [{"id": "f1-emp", "ts": "1.1", "text": "Empiricism", "sub": ["Knowledge comes from experience and decisions based on what is observed.", "Three pillars: **transparency**, **inspection**, **adaptation**. Inspection without transparency misleads; inspection without adaptation is pointless.", "Why Scrum fits complex work, where predictive planning breaks down."]}, {"id": "f1-val", "ts": "1.2", "text": "Scrum Values", "sub": ["Commitment, Focus, Openness, Respect, Courage.", "How each value shows up in a leader's own behavior, not just the team's."]}, {"id": "f1-team", "ts": "1.3", "text": "The Scrum Team", "sub": ["One Scrum Team, no sub-teams or hierarchies; typically 10 or fewer people.", "Accountabilities: Product Owner, Scrum Master, Developers. They are accountabilities, not job titles.", "Cross-functional and **self-managing**. The team decides who does what, when and how.", "The Scrum Master serves the team, the Product Owner and the organization."]}, {"id": "f1-events", "ts": "1.4", "text": "Events", "sub": ["The Sprint is the container for all other events (one month or less).", "Sprint Planning (why, what, how), Daily Scrum (15 minutes, for the Developers), Sprint Review (a working session, not a demo-only meeting), Sprint Retrospective.", "The purpose of each event as an inspect-and-adapt opportunity, and what a leader should and shouldn't do in each."]}, {"id": "f1-art", "text": "Artifacts and their commitments", "sub": ["Product Backlog → Product Goal; Sprint Backlog → Sprint Goal; Increment → Definition of Done.", "Who owns each artifact, and who can change it."]}]}, {"title": "Apply", "items": [{"id": "f1-but", "tag": "practice", "text": "Read [What is ScrumBut?](https://www.scrum.org/resources/what-scrumbut) and list three ScrumButs in an organization you know. For each, name the Scrum Guide rule it bends and what that costs."}]}]}, {"id": "s2", "no": "2", "title": "Developing People and Teams", "short": "People & Teams", "domain": 2, "note": "Scrum.org lists Self-Managing Teams, Facilitation and Leadership Styles under this focus area.", "groups": [{"title": "Read", "items": [{"id": "f2-leaders", "text": "Work through Scrum.org's [Resources for Agile Leaders](https://www.scrum.org/resources-agile-leaders) page, the second item on its prep list."}, {"id": "f2-styles", "text": "[Leadership Styles](https://www.scrum.org/learning-series/leadership-styles) learning series."}, {"id": "f2-smt", "text": "[Self-Managing Teams](https://www.scrum.org/learning-series/self-managing-teams) learning series."}, {"id": "f2-empower", "text": "[Empower Scrum Teams to make decisions](https://www.scrum.org/resources/empower-scrum-teams-make-decisions) and [Improve cross-functionality within the Scrum Team](https://www.scrum.org/resources/improve-cross-functionality-within-scrum-team)."}, {"id": "f2-book", "tag": "optional", "text": "[The Professional Agile Leader](https://www.scrum.org/resources/the-professional-agile-leader) (book)."}]}, {"title": "Concepts to own", "items": [{"id": "f2-1", "ts": "2.1", "text": "Self-managing teams", "sub": ["What self-management covers (who does what, when and how) and what it doesn't (the Product Goal and priorities stay with the Product Owner).", "A leader's job is to remove obstacles and set boundaries, not to assign tasks."]}, {"id": "f2-2", "ts": "2.2", "text": "Facilitation", "sub": ["Facilitation helps a group reach its own outcome; it isn't running the meeting or making the decision.", "When a leader should step back from an event so the team can own it."]}, {"id": "f2-3", "ts": "2.3", "text": "Leadership styles", "sub": ["Leader vs. manager are different concepts, even when one person does both.", "Command-and-control vs. agile leadership, which helps teams get better at deciding.", "Agile leadership is a learned response, not a job title."]}]}, {"title": "Apply", "items": [{"id": "f2-decide", "tag": "practice", "text": "Write down five decisions you made last month. For each, could the team have made it within clear boundaries? What would have needed to be true?"}]}]}, {"id": "s3", "no": "3", "title": "Managing Products with Agility", "short": "Managing Products", "domain": 3, "note": "Scrum.org lists Forecasting & Release Planning, Product Value, and Stakeholders & Customers under this focus area.", "groups": [{"title": "Read", "items": [{"id": "f3-strategy", "text": "[Business Strategy](https://www.scrum.org/learning-series/business-strategy) learning series."}, {"id": "f3-outcomes", "text": "[Customer Outcomes](https://www.scrum.org/resources/customer-outcomes)."}, {"id": "f3-roadmaps", "text": "[Avoiding Common Mistakes with Product Roadmaps](https://www.scrum.org/resources/avoiding-common-mistakes-product-roadmaps)."}]}, {"title": "Concepts to own", "items": [{"id": "f3-1", "ts": "3.1", "text": "Forecasting and release planning", "sub": ["Forecasts are based on empirical data and change as you learn; they are not commitments.", "A Product Backlog and its ordering, not a fixed plan, drive what gets released."]}, {"id": "f3-2", "ts": "3.2", "text": "Product value", "sub": ["Outcome-oriented goals (what customers experience) over activity or output goals.", "The Product Owner is accountable for maximizing value; leaders support that, not override it."]}, {"id": "f3-3", "ts": "3.3", "text": "Stakeholders and customers", "sub": ["Sprint Review is where stakeholders inspect the Increment and the team adapts.", "How a leader brings stakeholders closer to the team instead of acting as a go-between."]}]}]}, {"id": "s4", "no": "4", "title": "Developing and Delivering Products Professionally", "short": "Delivering Professionally", "domain": 4, "note": "Scrum.org lists Emergent Software Development under this focus area.", "groups": [{"title": "Read", "items": [{"id": "f4-undone", "text": "[What is un-done work and why is it harmful?](https://www.scrum.org/resources/what-un-done-work-and-why-it-harmful) and [Techniques for eliminating un-done work](https://www.scrum.org/resources/techniques-eliminating-un-done-work)."}, {"id": "f4-focus", "text": "[Improve the Scrum Team's ability to focus](https://www.scrum.org/resources/improve-scrum-teams-ability-focus) and [Navigating Impediments](https://www.scrum.org/resources/navigating-impediments)."}, {"id": "f4-hdd", "text": "[Hypothesis-Driven Development](https://www.scrum.org/learning-series/hypothesis-driven-development) learning series."}]}, {"title": "Concepts to own", "items": [{"id": "f4-1", "ts": "4.1", "text": "Emergent software development", "sub": ["Architecture and design emerge as the product is built and learned about; they aren't fixed up front.", "The Definition of Done makes quality transparent; undone work hides risk and builds up as debt.", "Pressure to \"go faster\" by cutting Done is a leadership anti-pattern."]}]}]}, {"id": "s5", "no": "5", "title": "Evolving the Agile Organization", "short": "Agile Organization", "domain": 5, "note": "Scrum.org lists Organizational Design and Culture, and Evidence-Based Management, under this focus area.", "groups": [{"title": "Read", "items": [{"id": "f5-ebm", "text": "Read the [Evidence-Based Management Guide](https://www.scrum.org/resources/evidence-based-management-guide) (2024 English version)."}, {"id": "f5-studio", "text": "[Scrum Studio: A Model for Innovation](https://www.scrum.org/resources/scrum-studio-model-innovation) whitepaper."}, {"id": "f5-ebm-book", "tag": "optional", "text": "[Unlocking Business Agility with Evidence-Based Management](https://www.scrum.org/resources/unlocking-business-agility-with-evidence-based-management) (book)."}]}, {"title": "Concepts to own", "items": [{"id": "f5-1", "ts": "5.1", "text": "Organizational design and culture", "sub": ["Traditional structures (phase gates, detailed up-front plans, part-time team members) work against agility.", "Leaders create a protected space where agile teams can work differently, and spend political capital to keep it.", "Status and hierarchy as hidden obstacles to empowered teams."]}, {"id": "f5-2", "ts": "5.2", "text": "Evidence-Based Management", "sub": ["The four Key Value Areas: Current Value, Unrealized Value, Ability to Innovate, Time to Market.", "Strategic, Intermediate and Immediate Tactical Goals, and how small experiments move between them.", "Measure outcomes and capability, not activity or utilization."]}]}, {"title": "Apply", "items": [{"id": "f5-kva", "tag": "practice", "text": "Pick one product you know. Write one measure for each Key Value Area, and say which you'd improve first and why."}]}]}, {"id": "s6", "no": "6", "title": "Practice and readiness", "short": "Practice & readiness", "groups": [{"items": [{"id": "r-alo", "text": "Take the [Agile Leadership Open](https://www.scrum.org/open-assessments/agile-leadership-open) repeatedly until you're comfortable with the content. Its feedback is your main signal, since the real assessment gives none."}, {"id": "r-so", "text": "Take the [Scrum Open](https://www.scrum.org/open-assessments/scrum-open) until you're comfortable with the content."}, {"id": "r-poo", "tag": "optional", "text": "[Product Owner Open](https://www.scrum.org/open-assessments/product-owner-open) if you're accountable for product value; [Scrum Developer Open](https://www.scrum.org/open-assessments/scrum-developer-open) if you're a developer."}, {"id": "r-why", "tag": "practice", "text": "For every Open question you miss, write why the right answer is right *using the Scrum Guide or EBM Guide wording*, not intuition."}, {"id": "r-forum", "tag": "optional", "text": "Read [Scrum.org Forum](https://www.scrum.org/forum) threads on agile leadership to see how practitioners reason through edge cases."}, {"id": "r-gate", "text": "**Booking gate:** every coverage item below ticked, and you can explain each Scrum event, accountability and EBM Key Value Area without notes."}]}]}, {"id": "s7", "no": "7", "title": "Assessment day", "groups": [{"items": [{"id": "l-buy", "text": "Buy the attempt and keep the password safe. It has no expiry and works once."}, {"id": "l-env", "text": "Block 60 uninterrupted minutes on a reliable connection. If you'll use Google Translate, follow [Scrum.org's instructions](https://www.scrum.org/support/using-google-translate-chrome-take-assessments) exactly."}, {"id": "l-pace", "text": "Pace at roughly 15 questions per 25 minutes, leaving time to revisit flagged questions."}, {"id": "l-after", "text": "Afterwards, use the competency breakdown to see where you were weakest, even if you passed. Scrum.org won't share which questions you got wrong."}]}]}], "objectives": {"title": "Focus area coverage", "short": "Coverage", "note": "Tick one only when you can explain it in your own words and give an example from real work.", "items": [{"id": "1.1", "name": "Empiricism", "where": "Section 1"}, {"id": "1.2", "name": "Scrum Values", "where": "Section 1"}, {"id": "1.3", "name": "Scrum Team", "where": "Section 1"}, {"id": "1.4", "name": "Events", "where": "Section 1"}, {"id": "2.1", "name": "Self-Managing Teams", "where": "Section 2"}, {"id": "2.2", "name": "Facilitation", "where": "Section 2"}, {"id": "2.3", "name": "Leadership Styles", "where": "Section 2"}, {"id": "3.1", "name": "Forecasting & Release Planning", "where": "Section 3"}, {"id": "3.2", "name": "Product Value", "where": "Section 3"}, {"id": "3.3", "name": "Stakeholders & Customers", "where": "Section 3"}, {"id": "4.1", "name": "Emergent Software Development", "where": "Section 4"}, {"id": "5.1", "name": "Organizational Design and Culture", "where": "Section 5"}, {"id": "5.2", "name": "Evidence-Based Management", "where": "Section 5"}]}, "sources": [{"title": "Professional Agile Leadership certification page", "url": "https://www.scrum.org/assessments/professional-agile-leadership-certification", "note": "format, price, passing score, focus areas"}, {"title": "Suggested Reading for Professional Agile Leadership", "url": "https://www.scrum.org/resources/suggested-reading-professional-agile-leadership", "note": "Scrum.org's official prep list"}, {"title": "Resources for Agile Leaders", "url": "https://www.scrum.org/resources-agile-leaders"}, {"title": "Professional Scrum Competencies", "url": "https://www.scrum.org/professional-scrum-competencies", "note": "the source of the focus areas"}, {"title": "The Scrum Guide (2020)", "url": "https://www.scrum.org/resources/scrum-guide"}, {"title": "Evidence-Based Management Guide (2024)", "url": "https://www.scrum.org/resources/evidence-based-management-guide"}]};
+const REPO = "https://github.com/william-herman/cert-study-trackers";
+
+// ---------- Helpers ----------
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+function md(s){
+  const codes = [];
+  let out = esc(s).replace(/`([^`]+)`/g, (_,c)=>{ codes.push(c); return "\u0000"+(codes.length-1)+"\u0000"; });
+  out = out.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, (_,t,u)=>'<a href="'+u+'" target="_blank" rel="noopener">'+t+'</a>');
+  out = out.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");
+  out = out.replace(/\*([^*]+)\*/g,"<em>$1</em>");
+  return out.replace(/\u0000(\d+)\u0000/g, (_,i)=>"<code>"+codes[+i]+"</code>");
+}
+const TAG_STYLE = {added:"added", optional:"opt"};
+(CERT.tag_legend||[]).forEach(l => { const st = {added:"added", optional:"opt", ex:"ex"}[l.style]; if (st && !String(l.tag).includes("–")) TAG_STYLE[l.tag] = st; });
+const tagHtml = t => !t ? "" : '<span class="tag '+(TAG_STYLE[t]||"ex")+'">'+esc(t)+'</span>';
+const fmtDate = iso => { try { return new Date(iso).toLocaleDateString(undefined,{month:"short",day:"numeric"}); } catch(e){ return ""; } };
+const fmtLong = ymd => { try { const [y,m,d]=ymd.split("-").map(Number); return new Date(y,m-1,d).toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"}); } catch(e){ return ymd; } };
+
+const TIERS = {
+  "field-validated": ["Field-validated", "The author has passed this certification and checked the list against that experience."],
+  "source-traced":   ["Source-traced", "Built from the official sources listed below. The author has not taken this exam yet, so treat it as a structured reading of the blueprint, not a tested plan."],
+  "peer-reviewed":   ["Peer-reviewed", "Built from official sources and reviewed by someone who holds the certification."]
+};
+
+const SECS = CERT.sections || [];
+const OBJ = CERT.objectives && CERT.objectives.items ? CERT.objectives : null;
+const DOMAINS = CERT.domains || [];
+const VER = v => /^\d+(\.\d+)+$/.test(String(v)) ? "v"+v : String(v);
+const DLABEL = CERT.domain_label || "Domain";
+const DABBR = DLABEL.split(/\s+/).map(w=>w[0]).join("").toUpperCase();
+const KEY = "cst:"+CERT.slug;
+
+// Every checkable id and which domain it counts toward
+const ALL = [];
+SECS.forEach(sec => sec.groups.forEach(g => g.items.forEach(it => ALL.push({id:it.id, domain:sec.domain||null, optional:it.tag==="optional"}))));
+if (OBJ) OBJ.items.forEach(o => ALL.push({id:"ts-"+o.id, domain:Number(String(o.id).split(".")[0])||null, optional:false}));
+const required = ALL.filter(x=>!x.optional);
+
+// ---------- State ----------
+let done = {}, filter = "all";
+try { done = JSON.parse(localStorage.getItem(KEY+":done")||"{}") || {}; } catch(e){ done = {}; }
+try { filter = localStorage.getItem(KEY+":filter") || "all"; } catch(e){}
+function save(){
+  const el = document.getElementById("save");
+  try { localStorage.setItem(KEY+":done", JSON.stringify(done)); el.textContent = "Saved on this device"; el.dataset.state = "ok"; }
+  catch(e){ el.textContent = "Not saved: browser storage is off"; el.dataset.state = "local"; }
+}
+
+// ---------- Static parts ----------
+function renderStatic(){
+  document.getElementById("hdrCode").textContent = [CERT.issuer, CERT.code, /^\d+(\.\d+)+$/.test(String(CERT.blueprint.version)) ? "v"+CERT.blueprint.version : ""].filter(Boolean).join(" · ");
+  document.getElementById("hdrTitle").textContent = CERT.code+" Study Tracker";
+
+  const t = TIERS[CERT.confidence] || [CERT.confidence, ""];
+  document.getElementById("meta").innerHTML =
+    '<span class="tier '+esc(CERT.confidence)+'">'+esc(t[0])+'</span>'+
+    '<span>'+esc(CERT.name)+'</span><span class="sep">|</span>'+
+    '<span>Traces to '+esc(CERT.blueprint.title)+' '+esc(VER(CERT.blueprint.version))+'</span><span class="sep">|</span>'+
+    '<span>Last checked '+esc(fmtLong(CERT.last_checked))+'</span>';
+
+  const age = (Date.now() - new Date(CERT.last_checked+"T00:00:00").getTime()) / 864e5;
+  if (age > 180) document.getElementById("stale").innerHTML = '<div class="stale">This list was last checked against the official sources more than six months ago. Confirm the current version of the '+esc(CERT.blueprint.title)+' before relying on it, and <a href="'+issueUrl()+'" target="_blank" rel="noopener">report anything that changed</a>.</div>';
+
+  let intro = "";
+  const parts = [];
+  if (CERT.snapshot) parts.push('<div><h3>'+esc(CERT.snapshot.title||"Snapshot")+'</h3><ul>'+CERT.snapshot.items.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>');
+  if (CERT.lens) parts.push('<div class="lens"><h3>'+esc(CERT.lens.title)+'</h3>'+(CERT.lens.body?'<p>'+md(CERT.lens.body)+'</p>':'')+(CERT.lens.prompts||[]).map(q=>'<q>'+esc(q)+'</q>').join("")+'</div>');
+  if (parts.length) intro = '<div class="intro'+(parts.length===1?' single':'')+'">'+parts.join("")+'</div>';
+  intro += '<p class="tier-note"><strong>'+esc(t[0])+':</strong> '+esc(t[1])+'</p>';
+  document.getElementById("intro").innerHTML = intro;
+
+  const legend = (CERT.tag_legend||[]).map(l=>'<span class="tag '+(TAG_STYLE[l.style]||"ex")+'">'+esc(l.tag)+'</span> '+esc(l.meaning)).join(" · ");
+  document.getElementById("foot").innerHTML = '<div class="site-foot">'+
+    '<p>Built from the official '+esc(CERT.blueprint.title)+' '+esc(VER(CERT.blueprint.version))+(CERT.blueprint.published?' ('+esc(CERT.blueprint.published)+')':'')+' and the sources in section B, checked '+esc(fmtLong(CERT.last_checked))+'.'+(legend?' Tags: '+legend+'.':'')+'</p>'+
+    '<p>Not affiliated with or endorsed by '+esc(CERT.issuer)+'. Contains no exam questions or exam content. Where this page and the official guide disagree, the guide wins. <a href="'+issueUrl()+'" target="_blank" rel="noopener">Report outdated content</a> · <a href="../">All trackers</a> · <a href="'+REPO+'" target="_blank" rel="noopener">Source on GitHub</a></p>'+
+    '<p>Content licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Your ticks are stored only in this browser.</p></div>';
+}
+function issueUrl(){ return REPO+"/issues/new?template=outdated-content.md&title="+encodeURIComponent("["+CERT.code+"] Outdated: "); }
+
+// ---------- Dynamic parts ----------
+function itemHtml(it){
+  const d = done[it.id];
+  const sub = it.sub ? '<ul class="sub">'+it.sub.map(x=>"<li>"+md(x)+"</li>").join("")+"</ul>" : "";
+  const ts = it.ts ? '<span class="tag ts">'+esc(it.ts)+'</span>' : "";
+  return '<li class="item'+(d?' done':'')+'" data-id="'+esc(it.id)+'"><input type="checkbox" id="cb-'+esc(it.id)+'"'+(d?' checked':'')+'>'+
+    '<label for="cb-'+esc(it.id)+'"><span class="t">'+ts+tagHtml(it.tag)+md(it.text)+'</span>'+sub+
+    (d?'<span class="when">Done '+fmtDate(d)+'</span>':'')+'</label></li>';
+}
+const visible = id => filter==="all" || (filter==="done" ? !!done[id] : !done[id]);
+const domainOf = id => DOMAINS.find(d=>d.id===id);
+const secIds = sec => sec.groups.flatMap(g=>g.items.map(i=>i.id));
+
+function renderSections(){
+  let h = "";
+  SECS.forEach(sec => {
+    const ids = secIds(sec), n = ids.filter(i=>done[i]).length, dom = sec.domain ? domainOf(sec.domain) : null;
+    h += '<section class="sec" id="'+esc(sec.id)+'"><div class="sec-head"><span class="no">'+esc(sec.no)+'</span><h2>'+esc(sec.title)+'</h2>'+
+      (dom?'<span class="wt">'+esc(DLABEL)+' '+dom.id+(dom.weight!=null?' · '+dom.weight+'%':'')+'</span>':'')+'<span class="cnt">'+n+' / '+ids.length+'</span></div>';
+    if (sec.note) h += '<p class="sec-note">'+md(sec.note)+'</p>';
+    if (sec.callout) h += '<div class="callout">'+md(sec.callout)+'</div>';
+    sec.groups.forEach(g => {
+      const vis = g.items.filter(i=>visible(i.id));
+      h += '<div class="group">'+(g.title?'<h4>'+esc(g.title)+'</h4>':'')+'<ul class="items">'+
+        (vis.length ? vis.map(itemHtml).join("") : '<li class="hidden-note">'+(filter==="done"?"Nothing ticked here yet.":"All done in this group.")+'</li>')+'</ul></div>';
+    });
+    if (sec.skip) h += '<div class="skip"><h4>Skip or skim</h4><ul>'+sec.skip.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
+    if (sec.out_of_scope) h += '<div class="group"><h4>Out of scope · don\'t study these</h4><ul class="oos">'+sec.out_of_scope.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
+    h += '</section>';
+  });
+
+  if (OBJ){
+    const cn = OBJ.items.filter(o=>done["ts-"+o.id]).length;
+    h += '<section class="sec" id="cov"><div class="sec-head"><span class="no">A</span><h2>'+esc(OBJ.title||"Objective coverage")+'</h2><span class="cnt">'+cn+' / '+OBJ.items.length+'</span></div>'+
+      (OBJ.note?'<p class="sec-note">'+md(OBJ.note)+'</p>':'')+'<ul class="items cov" style="border:0;background:none">';
+    OBJ.items.forEach(o => {
+      const id = "ts-"+o.id; if (!visible(id)) return; const d = done[id];
+      h += '<li class="item'+(d?' done':'')+'" data-id="'+esc(id)+'"><input type="checkbox" id="cb-'+esc(id)+'"'+(d?' checked':'')+'><label for="cb-'+esc(id)+'"><span class="t"><span class="tag ts">'+esc(o.id)+'</span>'+md(o.name)+'</span>'+(o.where?'<span class="where">'+esc(o.where)+'</span>':'')+'</label></li>';
+    });
+    h += '</ul></section>';
+  }
+
+  h += '<section class="sec" id="res"><div class="sec-head"><span class="no">B</span><h2>Official sources</h2></div><ul class="res">'+
+    (CERT.sources||[]).map(r=>'<li><a href="'+esc(r.url)+'" target="_blank" rel="noopener">'+esc(r.title)+'</a>'+(r.note?' · <span style="color:var(--muted)">'+esc(r.note)+'</span>':'')+'</li>').join("")+'</ul></section>';
+  document.getElementById("sections").innerHTML = h;
+}
+
+function renderMeters(){
+  let h = "";
+  DOMAINS.forEach((d,i) => {
+    const ids = required.filter(x=>x.domain===d.id), n = ids.filter(x=>done[x.id]).length, pct = ids.length ? Math.round(n/ids.length*100) : 0;
+    const sec = SECS.find(s=>s.domain===d.id);
+    h += '<button type="button" class="meter'+(i===0&&DOMAINS.length%2?' d1':'')+'" data-go="'+(sec?esc(sec.id):"")+'"><span class="w">'+(d.weight!=null?d.weight+'%<small>'+esc(DABBR)+d.id+'</small>':esc(DABBR)+d.id)+'</span><span class="n">'+esc(d.short||d.name)+'</span>'+
+      '<span class="bar"><i style="width:'+pct+'%"></i></span><span class="c">'+n+' / '+ids.length+' · '+pct+'%</span></button>';
+  });
+  const m = document.getElementById("meters");
+  m.innerHTML = h;
+  if (DOMAINS.length) m.style.setProperty("--cols", DOMAINS.length);
+
+  const n = required.filter(x=>done[x.id]).length;
+  document.getElementById("ovBar").style.width = (required.length ? n/required.length*100 : 0)+"%";
+  document.getElementById("ovNum").textContent = n+" / "+required.length+" done";
+
+  const nav = SECS.map(s=>{ const ids = secIds(s); return [s.id, s.no+" "+(s.short||s.title), ids.filter(i=>done[i]).length, ids.length]; });
+  if (OBJ) nav.push(["cov","A "+(OBJ.short||"Coverage"), OBJ.items.filter(o=>done["ts-"+o.id]).length, OBJ.items.length]);
+  nav.push(["res","B Sources", null, null]);
+  document.getElementById("nav").innerHTML = nav.map(([id,t,a,b])=>'<a href="#'+esc(id)+'" class="'+(b&&a===b?'full':'')+'"><span>'+esc(t)+'</span>'+(b?'<span class="k">'+a+'/'+b+'</span>':'')+'</a>').join("");
+}
+function renderAll(){ renderSections(); renderMeters(); }
+
+// ---------- Events ----------
+document.getElementById("sections").addEventListener("change", e => {
+  const cb = e.target.closest('input[type="checkbox"]'); if (!cb) return;
+  const id = cb.closest(".item").dataset.id;
+  if (cb.checked) done[id] = new Date().toISOString(); else delete done[id];
+  const y = window.scrollY; renderAll(); window.scrollTo(0, y);
+  const again = document.getElementById("cb-"+id); if (again) again.focus({preventScroll:true});
+  save();
+});
+document.getElementById("meters").addEventListener("click", e => {
+  const b = e.target.closest("[data-go]"); if (!b || !b.dataset.go) return;
+  const el = document.getElementById(b.dataset.go); if (el) el.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+});
+document.querySelectorAll(".seg button").forEach(b => {
+  b.setAttribute("aria-pressed", String(b.dataset.f===filter));
+  b.addEventListener("click", () => {
+    filter = b.dataset.f;
+    document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", String(x===b)));
+    try { localStorage.setItem(KEY+":filter", filter); } catch(e){}
+    renderSections();
+  });
+});
+const resetBox = document.getElementById("resetBox");
+const showReset = () => { resetBox.innerHTML = '<button type="button" class="reset" id="resetBtn">Reset progress</button>'; };
+resetBox.addEventListener("click", e => {
+  const t = e.target;
+  if (t.id==="resetBtn"){ resetBox.innerHTML = '<div class="confirm"><span>Clear every tick?</span><button type="button" class="danger" id="resetYes">Clear all</button><button type="button" id="resetNo">Cancel</button></div>'; document.getElementById("resetNo").focus(); }
+  else if (t.id==="resetYes"){ done = {}; renderAll(); save(); showReset(); }
+  else if (t.id==="resetNo"){ showReset(); }
+});
+
+renderStatic();
+renderAll();
+</script>
+</body>
+</html>
