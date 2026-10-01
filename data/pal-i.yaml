@@ -5,8 +5,7 @@ code: PAL-I
 name: Professional Agile Leadership I
 issuer: Scrum.org
 kind: exam
-# Flip to field-validated once the author has reviewed this list against his own PAL-I attempt.
-confidence: source-traced
+confidence: field-validated
 blueprint:
   title: PAL I certification page and focus areas
   version: as of Oct 2026
@@ -15,7 +14,7 @@ last_checked: '2026-10-01'
 summary: >-
   Study plan for the PAL I assessment: the five Professional Scrum Competency focus areas it draws from,
   Scrum.org's own reading list, the 2020 Scrum Guide and 2024 EBM Guide, and practice-assessment gates.
-domain_label: Focus area
+domain_label: Focus Area
 snapshot:
   title: Assessment snapshot
   items:
@@ -28,14 +27,21 @@ snapshot:
   - No question-level feedback; you get a breakdown by competency instead
 lens:
   title: The lens for every question
-  body: >-
-    Scrum.org warns that candidates who don't lead from a servant-leadership mindset, or who aren't prepared to
-    place real trust in the people they lead, tend to struggle. Most questions describe a situation and ask what
-    a leader should do.
+  intro: 'From the author''s attempt:'
+  body:
+  - Many questions ask what a leader should do so that **the team** makes the decision.
+  - Many test what the guides say against what your company actually does.
+  - >-
+    The Scrum Guide and EBM Guide won't fit every organization, but the assessment rewards answering by what
+    they promote, not by what works where you are.
+  - '**Evidence-Based Management is especially prevalent.**'
+  - >-
+    Scrum.org itself warns that candidates who don't lead from a servant-leadership mindset, or who won't place
+    real trust in their teams, tend to struggle.
   prompts:
   - Which option helps the team make the decision, instead of making it for them?
+  - Is this what the guide promotes, or what my organization does?
   - Which option creates the conditions for agility rather than controlling the work?
-  - What does the Scrum Guide actually say, as opposed to common practice?
 domains:
 - id: 1
   name: Understanding and Applying the Scrum Framework
@@ -266,6 +272,9 @@ sections:
   short: Agile Organization
   domain: 5
   note: Scrum.org lists Organizational Design and Culture, and Evidence-Based Management, under this focus area.
+  callout: >-
+    From the author's attempt: Evidence-Based Management came up a lot. Give the EBM Guide more time than its
+    single line on the reading list suggests, and answer by what it promotes.
   groups:
   - title: Read
     items:

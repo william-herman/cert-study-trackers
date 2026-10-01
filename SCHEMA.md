@@ -18,7 +18,7 @@ Text fields accept light Markdown: `**bold**`, `*italic*`, `` `code` ``, `[link]
 | `last_checked` | yes | `YYYY-MM-DD` date the official sources were last compared against this file. |
 | `summary` | yes | One or two sentences for the index page. |
 | `snapshot` | no | `title` plus `items`: key facts (format, length, passing score, cost, validity). |
-| `lens` | no | `title`, `body`, `prompts`: the mindset that helps across questions. |
+| `lens` | no | `title`, optional `intro` (one line above the bullets), `body` (a list of bullets, or one paragraph), `prompts`: the mindset that helps across questions. |
 | `domains` | no | Exam domains: `id`, `name`, `short` (meter label), optional `weight` (percent). Give every domain a weight (summing to 100) or none, e.g. when the issuer doesn't publish weights. Omit entirely for `path` certs; the progress meters are hidden. |
 | `domain_label` | no | What the issuer calls a domain (default `Domain`; e.g. `Focus area`). |
 | `tag_legend` | no | `tag`, `style` (`ex`, `added`, `optional`), `meaning`. Shown in the footer. |

@@ -7,7 +7,7 @@ Free, interactive study trackers for professional certifications. Each tracker i
 | Certification | Issuer | Confidence |
 |---|---|---|
 | [CCAR-F: Claude Certified Architect – Foundations](https://william-herman.github.io/cert-study-trackers/ccar-f/) | Anthropic | Source-traced |
-| [PAL-I: Professional Agile Leadership I](https://william-herman.github.io/cert-study-trackers/pal-i/) | Scrum.org | Source-traced (author review pending) |
+| [PAL-I: Professional Agile Leadership I](https://william-herman.github.io/cert-study-trackers/pal-i/) | Scrum.org | Field-validated |
 
 More are on the way: CSM, Claude Certified Associate and Developer (Foundations), and AWS Certified AI Practitioner.
 

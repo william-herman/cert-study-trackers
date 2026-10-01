@@ -124,7 +124,7 @@ function renderStatic(){
   let intro = "";
   const parts = [];
   if (CERT.snapshot) parts.push('<div><h3>'+esc(CERT.snapshot.title||"Snapshot")+'</h3><ul>'+CERT.snapshot.items.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>');
-  if (CERT.lens) parts.push('<div class="lens"><h3>'+esc(CERT.lens.title)+'</h3>'+(CERT.lens.body?'<p>'+md(CERT.lens.body)+'</p>':'')+(CERT.lens.prompts||[]).map(q=>'<q>'+esc(q)+'</q>').join("")+'</div>');
+  if (CERT.lens) parts.push('<div class="lens"><h3>'+esc(CERT.lens.title)+'</h3>'+(CERT.lens.intro?'<p>'+md(CERT.lens.intro)+'</p>':'')+(Array.isArray(CERT.lens.body)?'<ul>'+CERT.lens.body.map(x=>'<li>'+md(x)+'</li>').join('')+'</ul>':(CERT.lens.body?'<p>'+md(CERT.lens.body)+'</p>':''))+(CERT.lens.prompts||[]).map(q=>'<q>'+esc(q)+'</q>').join("")+'</div>');
   if (parts.length) intro = '<div class="intro'+(parts.length===1?' single':'')+'">'+parts.join("")+'</div>';
   intro += '<p class="tier-note"><strong>'+esc(t[0])+':</strong> '+esc(t[1])+'</p>';
   document.getElementById("intro").innerHTML = intro;
@@ -189,7 +189,7 @@ function renderMeters(){
   DOMAINS.forEach((d,i) => {
     const ids = required.filter(x=>x.domain===d.id), n = ids.filter(x=>done[x.id]).length, pct = ids.length ? Math.round(n/ids.length*100) : 0;
     const sec = SECS.find(s=>s.domain===d.id);
-    h += '<button type="button" class="meter'+(i===0&&DOMAINS.length%2?' d1':'')+'" data-go="'+(sec?esc(sec.id):"")+'"><span class="w">'+(d.weight!=null?d.weight+'%<small>'+esc(DABBR)+d.id+'</small>':esc(DABBR)+d.id)+'</span><span class="n">'+esc(d.short||d.name)+'</span>'+
+    h += '<button type="button" class="meter'+(i===0&&DOMAINS.length%2?' d1':'')+'" data-go="'+(sec?esc(sec.id):"")+'"><span class="w'+(d.weight!=null?'':' lbl')+'">'+(d.weight!=null?d.weight+'%<small>'+esc(DABBR)+d.id+'</small>':esc(DLABEL)+' '+d.id)+'</span><span class="n">'+esc(d.short||d.name)+'</span>'+
       '<span class="bar"><i style="width:'+pct+'%"></i></span><span class="c">'+n+' / '+ids.length+' · '+pct+'%</span></button>';
   });
   const m = document.getElementById("meters");

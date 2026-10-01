@@ -183,3 +183,6 @@ body { margin: 0; }
 .group h4 { margin-bottom: 10px; }
 .cov { margin-top: 16px; }
 #sections section.sec + section.sec { margin-top: 48px; }
+.lens ul { margin: 0 0 10px; }
+.lens ul li { margin: 0; }
+.meter .w.lbl { font-size: 18px; line-height: 1.15; }

@@ -25,9 +25,11 @@ snapshot:
   - Valid 12 months; renewal is a free online assessment
 lens:
   title: The lens for every question
-  body: >-
-    Each item asks for the root cause and the proportionate fix. Wrong answers over-engineer (classifiers,
-    routing layers, bigger models, voting) or use a prompt where a guarantee is needed.
+  body:
+  - Each item asks for the root cause and the proportionate fix.
+  - >-
+    Wrong answers over-engineer (classifiers, routing layers, bigger models, voting) or use a prompt where a
+    guarantee is needed.
   prompts:
   - What's the smallest change that fixes the actual failure?
   - Does this need a guarantee (code) or guidance (prompt)?
