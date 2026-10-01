@@ -4,6 +4,7 @@ slug: ccar-f
 code: CCAR-F
 name: Claude Certified Architect – Foundations
 issuer: Anthropic
+category: ai
 kind: exam
 confidence: source-traced
 blueprint:

@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+{{HEAD}}
 <style>
 {{CSS}}
 </style>
@@ -26,6 +27,7 @@
       <span class="num" id="ovNum">0 / 0</span>
     </div>
     <span class="save" id="save" aria-live="polite">Saved on this device</span>
+    {{TOGGLE}}
   </div>
 </header>
 
@@ -128,14 +130,16 @@ function renderStatic(){
   if (CERT.lens) parts.push('<div class="lens"><h3>'+esc(CERT.lens.title)+'</h3>'+(CERT.lens.intro?'<p>'+md(CERT.lens.intro)+'</p>':'')+(Array.isArray(CERT.lens.body)?'<ul>'+CERT.lens.body.map(x=>'<li>'+md(x)+'</li>').join('')+'</ul>':(CERT.lens.body?'<p>'+md(CERT.lens.body)+'</p>':''))+(CERT.lens.prompts||[]).map(q=>'<q>'+esc(q)+'</q>').join("")+'</div>');
   if (parts.length) intro = '<div class="intro'+(parts.length===1?' single':'')+'">'+parts.join("")+'</div>';
   intro += '<p class="tier-note"><strong>'+esc(t[0])+':</strong> '+esc(t[1])+'</p>';
+  intro += '<p class="review-cta">Hold this certification? <a href="'+reviewUrl()+'" target="_blank" rel="noopener">Peer-review this tracker</a></p>';
   document.getElementById("intro").innerHTML = intro;
 
   const legend = (CERT.tag_legend||[]).map(l=>'<span class="tag '+(TAG_STYLE[l.style]||"ex")+'">'+esc(l.tag)+'</span> '+esc(l.meaning)).join(" · ");
   document.getElementById("foot").innerHTML = '<div class="site-foot">'+
     '<p>Built from the official '+esc(CERT.blueprint.title)+' '+esc(VER(CERT.blueprint.version))+(CERT.blueprint.published?' ('+esc(CERT.blueprint.published)+')':'')+' and the sources in section B, checked '+esc(fmtLong(CERT.last_checked))+'.'+(legend?' Tags: '+legend+'.':'')+'</p>'+
-    '<p>Not affiliated with or endorsed by '+esc(CERT.issuer)+'. Contains no exam questions or exam content. Where this page and the official guide disagree, the guide wins. <a href="'+issueUrl()+'" target="_blank" rel="noopener">Report outdated content</a> · <a href="../">All trackers</a> · <a href="'+REPO+'" target="_blank" rel="noopener">Source on GitHub</a></p>'+
+    '<p>Not affiliated with or endorsed by '+esc(CERT.issuer)+'. Contains no exam questions or exam content. Where this page and the official guide disagree, the guide wins. <a href="'+issueUrl()+'" target="_blank" rel="noopener">Report outdated content</a> · <a href="'+reviewUrl()+'" target="_blank" rel="noopener">Peer-review this tracker</a> · <a href="../">All trackers</a> · <a href="'+REPO+'" target="_blank" rel="noopener">Source on GitHub</a></p>'+
     '<p>Content licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Your ticks are stored only in this browser.</p></div>';
 }
+function reviewUrl(){ return REPO+"/issues/new?template=peer-review.yml&title="+encodeURIComponent("["+CERT.code+"] Peer review"); }
 function issueUrl(){ return REPO+"/issues/new?template=outdated-content.md&title="+encodeURIComponent("["+CERT.code+"] Outdated: "); }
 
 // ---------- Dynamic parts ----------

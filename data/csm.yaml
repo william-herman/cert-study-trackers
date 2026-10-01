@@ -4,6 +4,7 @@ slug: csm
 code: CSM
 name: Certified ScrumMaster
 issuer: Scrum Alliance
+category: project-management
 kind: exam
 confidence: field-validated
 blueprint:

@@ -10,19 +10,38 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+{{HEAD}}
 <style>
 {{CSS}}
 </style>
 </head>
 <body>
 <div class="wrap">
+  <div class="index-top">{{TOGGLE}}</div>
   <div class="hero">
     <h1>Cert Study Trackers</h1>
     <p>Interactive checklists for professional certifications. Every item traces to the certifying body's own exam guide or requirements page, and every tracker says how far it has been validated.</p>
     <p>Tick items as you go. Progress is saved in your browser only; nothing is sent anywhere.</p>
   </div>
 
-  <div class="cards">{{CARDS}}</div>
+  <div class="tabs" role="tablist" aria-label="Certification type">{{TABS}}</div>
+  <div class="cards" id="cards">{{CARDS}}</div>
+  <p class="cards-empty" id="empty" hidden>No trackers in this category yet. More are on the way.</p>
+  <script>
+  (function(){
+    var tabs=[].slice.call(document.querySelectorAll(".tab")), cards=[].slice.call(document.querySelectorAll(".card"));
+    function show(cat, push){
+      var n=0;
+      tabs.forEach(function(t){ t.setAttribute("aria-selected", String(t.dataset.cat===cat)); });
+      cards.forEach(function(c){ var on = cat==="all" || c.dataset.cat===cat; c.hidden=!on; if(on) n++; });
+      document.getElementById("empty").hidden = n>0;
+      if (push) history.replaceState(null, "", cat==="all" ? location.pathname : "#"+cat);
+    }
+    tabs.forEach(function(t){ t.addEventListener("click", function(){ show(t.dataset.cat, true); }); });
+    function fromHash(){ var h=location.hash.slice(1); show(tabs.some(function(t){return t.dataset.cat===h;}) ? h : "all", false); }
+    window.addEventListener("hashchange", fromHash); fromHash();
+  })();
+  </script>
 
   <h2 class="section-h">How much to trust each tracker</h2>
   <ul class="tiers">
@@ -33,7 +52,7 @@
 
   <footer class="site-foot" style="padding-bottom:40px">
     <p>Not affiliated with or endorsed by any certification body. Certification names are trademarks of their owners. These trackers contain no exam questions or exam content; where a tracker and the official guide disagree, the guide wins.</p>
-    <p>Content <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · code MIT · <a href="{{REPO}}" target="_blank" rel="noopener">Source on GitHub</a> · <a href="{{REPO}}/issues/new?template=outdated-content.md" target="_blank" rel="noopener">Report outdated content</a></p>
+    <p>Content <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · code MIT · <a href="{{REPO}}" target="_blank" rel="noopener">Source on GitHub</a> · <a href="{{REPO}}/issues/new?template=outdated-content.md" target="_blank" rel="noopener">Report outdated content</a> · <a href="{{REPO}}/issues/new?template=peer-review.yml" target="_blank" rel="noopener">Become a peer reviewer</a></p>
   </footer>
 </div>
 </body>

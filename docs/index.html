@@ -10,6 +10,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f6b57'/%3E%3Cg transform='rotate(45 16 16)'%3E%3Crect x='13' y='5' width='6' height='17' rx='1' fill='%23ffffff'/%3E%3Crect x='13' y='5' width='6' height='3.5' fill='%23f6c25b'/%3E%3Cpath d='M13 22h6l-3 5z' fill='%23f6e7cf'/%3E%3Cpath d='M15 25.3h2l-1 1.7z' fill='%2316201d'/%3E%3C/g%3E%3C/svg%3E">
+<script>try{var t=localStorage.getItem("cst:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+
 <style>
 /* Layout: sticky progress header, domain meters strip, then a two-column workbench (section index | checklist) that stacks on phones. */
 :root {
@@ -200,17 +203,68 @@ body { margin: 0; }
 .lens ul li { margin: 0; }
 .meter .w.lbl { font-size: 18px; line-height: 1.15; }
 
+/* Theme toggle */
+.theme-btn { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; flex: none; }
+.theme-btn:hover { border-color: var(--accent); }
+.theme-btn .i-sun { display: none; }
+.theme-btn.is-dark .i-sun { display: block; }
+.theme-btn.is-dark .i-moon { display: none; }
+.top .wrap .theme-btn { margin-left: 4px; }
+.index-top { display: flex; justify-content: flex-end; padding-top: 16px; }
+
+/* Index category tabs */
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; border-bottom: 1px solid var(--line); }
+.tab { font: inherit; font-size: 14px; font-weight: 500; background: transparent; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 8px 12px; margin-bottom: -1px; cursor: pointer; }
+.tab:hover { color: var(--fg); }
+.tab[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+.tab .k { font-family: var(--f-mono); font-size: 12px; margin-left: 6px; color: var(--muted); }
+.card[hidden] { display: none; }
+.cards-empty { color: var(--muted); font-size: 14px; padding: 8px 0 24px; }
+.review-cta { font-size: 14px; margin: 6px 0 0; }
+
 </style>
 </head>
 <body>
 <div class="wrap">
+  <div class="index-top"><button type="button" class="theme-btn" id="themeBtn" aria-label="Switch theme" title="Switch light / dark mode">
+  <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+  <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+</button>
+<script>
+(function(){
+  var b=document.getElementById("themeBtn"), r=document.documentElement;
+  function cur(){ var a=r.getAttribute("data-theme"); return a ? a : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); }
+  function paint(){ var d=cur()==="dark"; b.classList.toggle("is-dark", d); b.setAttribute("aria-label", d ? "Switch to light mode" : "Switch to dark mode"); }
+  b.addEventListener("click", function(){ var n=cur()==="dark"?"light":"dark"; r.setAttribute("data-theme", n); try{ localStorage.setItem("cst:theme", n); }catch(e){} paint(); });
+  try{ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint); }catch(e){}
+  paint();
+})();
+</script>
+</div>
   <div class="hero">
     <h1>Cert Study Trackers</h1>
     <p>Interactive checklists for professional certifications. Every item traces to the certifying body's own exam guide or requirements page, and every tracker says how far it has been validated.</p>
     <p>Tick items as you go. Progress is saved in your browser only; nothing is sent anywhere.</p>
   </div>
 
-  <div class="cards"><a class="card" href="ccar-f/"><span class="code">Anthropic · CCAR-F</span><h2>Claude Certified Architect – Foundations</h2><p>Hands-on study plan for the CCAR-F exam: the five weighted domains, every official exercise, extra builds for thinly covered task statements, and readiness gates.</p><span class="row"><span class="tier source-traced">Source-traced</span><span>128 items · checked 2026-10-01</span></span></a><a class="card" href="csm/"><span class="code">Scrum Alliance · CSM</span><h2>Certified ScrumMaster</h2><p>Study plan for the CSM: the required course, all 28 CSM and 24 Scrum Foundations learning objectives the test is built on, the Scrum Guide and Agile Manifesto, and the test and renewal rules.</p><span class="row"><span class="tier field-validated">Field-validated</span><span>82 items · checked 2026-10-01</span></span></a><a class="card" href="pal-i/"><span class="code">Scrum.org · PAL-I</span><h2>Professional Agile Leadership I</h2><p>Study plan for the PAL I assessment: the five Professional Scrum Competency focus areas it draws from, Scrum.org&#x27;s own reading list, the 2020 Scrum Guide and 2024 EBM Guide, and practice-assessment gates.</p><span class="row"><span class="tier field-validated">Field-validated</span><span>57 items · checked 2026-10-01</span></span></a></div>
+  <div class="tabs" role="tablist" aria-label="Certification type"><button type="button" class="tab" role="tab" data-cat="all">All<span class="k">3</span></button><button type="button" class="tab" role="tab" data-cat="project-management">Project Management<span class="k">2</span></button><button type="button" class="tab" role="tab" data-cat="ai">AI<span class="k">1</span></button></div>
+  <div class="cards" id="cards"><a class="card" data-cat="ai" href="ccar-f/"><span class="code">Anthropic · CCAR-F</span><h2>Claude Certified Architect – Foundations</h2><p>Hands-on study plan for the CCAR-F exam: the five weighted domains, every official exercise, extra builds for thinly covered task statements, and readiness gates.</p><span class="row"><span class="tier source-traced">Source-traced</span><span>128 items · checked 2026-10-01</span></span></a><a class="card" data-cat="project-management" href="csm/"><span class="code">Scrum Alliance · CSM</span><h2>Certified ScrumMaster</h2><p>Study plan for the CSM: the required course, all 28 CSM and 24 Scrum Foundations learning objectives the test is built on, the Scrum Guide and Agile Manifesto, and the test and renewal rules.</p><span class="row"><span class="tier field-validated">Field-validated</span><span>82 items · checked 2026-10-01</span></span></a><a class="card" data-cat="project-management" href="pal-i/"><span class="code">Scrum.org · PAL-I</span><h2>Professional Agile Leadership I</h2><p>Study plan for the PAL I assessment: the five Professional Scrum Competency focus areas it draws from, Scrum.org&#x27;s own reading list, the 2020 Scrum Guide and 2024 EBM Guide, and practice-assessment gates.</p><span class="row"><span class="tier field-validated">Field-validated</span><span>57 items · checked 2026-10-01</span></span></a></div>
+  <p class="cards-empty" id="empty" hidden>No trackers in this category yet. More are on the way.</p>
+  <script>
+  (function(){
+    var tabs=[].slice.call(document.querySelectorAll(".tab")), cards=[].slice.call(document.querySelectorAll(".card"));
+    function show(cat, push){
+      var n=0;
+      tabs.forEach(function(t){ t.setAttribute("aria-selected", String(t.dataset.cat===cat)); });
+      cards.forEach(function(c){ var on = cat==="all" || c.dataset.cat===cat; c.hidden=!on; if(on) n++; });
+      document.getElementById("empty").hidden = n>0;
+      if (push) history.replaceState(null, "", cat==="all" ? location.pathname : "#"+cat);
+    }
+    tabs.forEach(function(t){ t.addEventListener("click", function(){ show(t.dataset.cat, true); }); });
+    function fromHash(){ var h=location.hash.slice(1); show(tabs.some(function(t){return t.dataset.cat===h;}) ? h : "all", false); }
+    window.addEventListener("hashchange", fromHash); fromHash();
+  })();
+  </script>
 
   <h2 class="section-h">How much to trust each tracker</h2>
   <ul class="tiers">
@@ -221,7 +275,7 @@ body { margin: 0; }
 
   <footer class="site-foot" style="padding-bottom:40px">
     <p>Not affiliated with or endorsed by any certification body. Certification names are trademarks of their owners. These trackers contain no exam questions or exam content; where a tracker and the official guide disagree, the guide wins.</p>
-    <p>Content <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · code MIT · <a href="https://github.com/william-herman/cert-study-trackers" target="_blank" rel="noopener">Source on GitHub</a> · <a href="https://github.com/william-herman/cert-study-trackers/issues/new?template=outdated-content.md" target="_blank" rel="noopener">Report outdated content</a></p>
+    <p>Content <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · code MIT · <a href="https://github.com/william-herman/cert-study-trackers" target="_blank" rel="noopener">Source on GitHub</a> · <a href="https://github.com/william-herman/cert-study-trackers/issues/new?template=outdated-content.md" target="_blank" rel="noopener">Report outdated content</a> · <a href="https://github.com/william-herman/cert-study-trackers/issues/new?template=peer-review.yml" target="_blank" rel="noopener">Become a peer reviewer</a></p>
   </footer>
 </div>
 </body>

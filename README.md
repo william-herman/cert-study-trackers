@@ -24,6 +24,10 @@ Every tracker shows which version of the official guide it traces to and the dat
 
 No exam questions, brain dumps or recalled exam content. Certification exams are under NDA, and these trackers only restructure what the certifying bodies publish openly.
 
+## Hold one of these certifications?
+
+[Peer-review a tracker](https://github.com/william-herman/cert-study-trackers/issues/new?template=peer-review.yml): tell us what matches the exam, what's missing, and whether you'd like credit. Trackers move to **peer-reviewed** once a certification holder has checked them.
+
 ## Spotted something outdated?
 
 [Open an issue](https://github.com/william-herman/cert-study-trackers/issues/new?template=outdated-content.md) with a link to the official source that changed.
