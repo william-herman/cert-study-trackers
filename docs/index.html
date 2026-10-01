@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f6b57'/%3E%3Cg transform='rotate(45 16 16)'%3E%3Crect x='13' y='5' width='6' height='17' rx='1' fill='%23ffffff'/%3E%3Crect x='13' y='5' width='6' height='3.5' fill='%23f6c25b'/%3E%3Cpath d='M13 22h6l-3 5z' fill='%23f6e7cf'/%3E%3Cpath d='M15 25.3h2l-1 1.7z' fill='%2316201d'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f6b57'/%3E%3Cg transform='rotate%2845 16 16%29'%3E%3Crect x='13' y='5' width='6' height='17' rx='1' fill='%23ffffff'/%3E%3Crect x='13' y='5' width='6' height='3.5' fill='%23f6c25b'/%3E%3Cpath d='M13 22h6l-3 5z' fill='%23f6e7cf'/%3E%3Cpath d='M15 25.3h2l-1 1.7z' fill='%2316201d'/%3E%3C/g%3E%3C/svg%3E">
 <script>try{var t=localStorage.getItem("cst:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 
 <style>
@@ -222,6 +222,51 @@ body { margin: 0; }
 .cards-empty { color: var(--muted); font-size: 14px; padding: 8px 0 24px; }
 .review-cta { font-size: 14px; margin: 6px 0 0; }
 
+/* Breadcrumb */
+.crumbs { display: flex; align-items: center; gap: 6px; font-size: 13px; margin-bottom: 2px; }
+.crumbs a { color: var(--accent); text-decoration: none; font-weight: 500; }
+.crumbs a:hover { text-decoration: underline; }
+.crumbs span { color: var(--muted); }
+
+/* Home-page peer review section */
+.review { margin: 8px 0 36px; }
+.review-lead { color: var(--muted); margin: 0 0 16px; max-width: 70ch; }
+.review-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 760px) { .review-grid { grid-template-columns: minmax(0, 1fr); } }
+.review-ask, .review-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
+.review-ask h3 { font-family: var(--f-display); font-size: 16px; margin: 0 0 8px; }
+.review-ask ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+.review-warn { margin: 12px 0 0; font-size: 14px; background: var(--amber-soft); border-radius: 8px; padding: 10px 12px; }
+.review-card { display: flex; flex-direction: column; gap: 10px; }
+.review-card label { font-weight: 600; font-size: 14px; }
+.review-card select { font: inherit; font-size: 15px; padding: 9px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-2); color: var(--fg); width: 100%; }
+.review-btn { font: inherit; font-weight: 600; font-size: 15px; padding: 10px 14px; border-radius: 8px; border: 0; background: var(--accent); color: var(--accent-fg); cursor: pointer; }
+.review-btn:hover { filter: brightness(1.08); }
+.review-note { margin: 0; font-size: 13px; color: var(--muted); }
+
+/* Home title logo */
+.hero h1 { display: flex; align-items: center; gap: 14px; }
+.hero h1 .logo { width: clamp(34px, 7vw, 44px); height: auto; flex: none; border-radius: 9px; }
+
+/* Share */
+.share-open { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; font: inherit; font-weight: 600; font-size: 15px; padding: 10px 16px; border-radius: 999px; border: 0; cursor: pointer; color: #fff; background: linear-gradient(120deg, #1f6b57, #3d4fa3); }
+.share-open:hover { filter: brightness(1.1); }
+.share-dlg { border: 1px solid var(--line); border-radius: 16px; padding: 20px; background: var(--surface); color: var(--fg); width: min(440px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: auto; }
+.share-dlg::backdrop { background: rgba(10, 16, 14, 0.6); }
+.share-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.share-head h2 { font-family: var(--f-display); font-size: 20px; margin: 0; }
+.share-x { font: inherit; font-size: 26px; line-height: 1; background: none; border: 0; color: var(--muted); cursor: pointer; padding: 2px 6px; }
+.share-name { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+.share-name span { font-weight: 400; color: var(--muted); }
+#shareName { width: 100%; font: inherit; font-size: 15px; padding: 9px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-2); color: var(--fg); }
+.share-preview { margin: 14px 0; }
+.share-preview canvas { display: block; width: 100%; height: auto; border-radius: 12px; }
+.share-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+.share-actions .review-btn { flex: 1; }
+.share-dl { flex: 1; font: inherit; font-weight: 600; font-size: 15px; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-2); color: var(--fg); cursor: pointer; }
+.share-empty-big { font-family: var(--f-display); font-size: 22px; font-weight: 700; margin: 6px 0; }
+.share-start { display: inline-block; text-decoration: none; margin-top: 8px; }
+
 </style>
 </head>
 <body>
@@ -242,9 +287,13 @@ body { margin: 0; }
 </script>
 </div>
   <div class="hero">
-    <h1>Cert Study Trackers</h1>
+    <h1><img class="logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f6b57'/%3E%3Cg transform='rotate%2845 16 16%29'%3E%3Crect x='13' y='5' width='6' height='17' rx='1' fill='%23ffffff'/%3E%3Crect x='13' y='5' width='6' height='3.5' fill='%23f6c25b'/%3E%3Cpath d='M13 22h6l-3 5z' fill='%23f6e7cf'/%3E%3Cpath d='M15 25.3h2l-1 1.7z' fill='%2316201d'/%3E%3C/g%3E%3C/svg%3E" alt="" width="44" height="44">Cert Study Trackers</h1>
     <p>Interactive checklists for professional certifications. Every item traces to the certifying body's own exam guide or requirements page, and every tracker says how far it has been validated.</p>
     <p>Tick items as you go. Progress is saved in your browser only; nothing is sent anywhere.</p>
+    <button type="button" class="share-open" id="shareOpen">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Share my progress
+    </button>
   </div>
 
   <div class="tabs" role="tablist" aria-label="Certification type"><button type="button" class="tab" role="tab" data-cat="all">All<span class="k">4</span></button><button type="button" class="tab" role="tab" data-cat="project-management">Project Management<span class="k">2</span></button><button type="button" class="tab" role="tab" data-cat="ai">AI<span class="k">2</span></button></div>
@@ -273,10 +322,211 @@ body { margin: 0; }
     <li><span class="tier peer-reviewed">Peer-reviewed</span>Built from official sources and reviewed by someone who holds the certification.</li>
   </ul>
 
+  <section class="review" id="review" aria-labelledby="review-h">
+    <h2 class="section-h" id="review-h">Hold one of these certifications? Review its tracker</h2>
+    <p class="review-lead">Reviews from people who passed are what move a tracker to <span class="tier peer-reviewed">Peer-reviewed</span>. It takes about five minutes.</p>
+    <div class="review-grid">
+      <div class="review-ask">
+        <h3>What we'll ask</h3>
+        <ul>
+          <li>Which tracker, whether you hold the certification, and when you passed</li>
+          <li>How well the tracker matches the exam</li>
+          <li>What's wrong, outdated or missing</li>
+          <li>What the exam emphasized (optional; topics and patterns only)</li>
+          <li>Whether you'd like credit by name</li>
+        </ul>
+        <p class="review-warn"><strong>Never share actual exam questions or answers.</strong> Exams are under NDA, and reviews containing exam content are deleted.</p>
+      </div>
+      <form class="review-card" id="reviewForm">
+        <label for="rvTracker">Which tracker are you reviewing?</label>
+        <select id="rvTracker" required><option value="CCAO-F">CCAO-F: Claude Certified Associate – Foundations</option><option value="CCAR-F">CCAR-F: Claude Certified Architect – Foundations</option><option value="CSM">CSM: Certified ScrumMaster</option><option value="PAL-I">PAL-I: Professional Agile Leadership I</option></select>
+        <button type="submit" class="review-btn">Start your review</button>
+        <p class="review-note">Opens the review form on GitHub in a new tab. You'll need a free GitHub account, and reviews are public.</p>
+      </form>
+    </div>
+  </section>
+  <script>
+  (function(){
+    var f=document.getElementById("reviewForm"), s=document.getElementById("rvTracker");
+    f.addEventListener("submit", function(e){
+      e.preventDefault();
+      var o=s.options[s.selectedIndex];
+      var u="https://github.com/william-herman/cert-study-trackers/issues/new?template=peer-review.yml&title="+encodeURIComponent("["+o.value+"] Peer review")+"&tracker="+encodeURIComponent(o.text);
+      window.open(u, "_blank", "noopener");
+    });
+  })();
+  </script>
+
   <footer class="site-foot" style="padding-bottom:40px">
     <p>Not affiliated with or endorsed by any certification body. Certification names are trademarks of their owners. These trackers contain no exam questions or exam content; where a tracker and the official guide disagree, the guide wins.</p>
-    <p>Content <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · code MIT · <a href="https://github.com/william-herman/cert-study-trackers" target="_blank" rel="noopener">Source on GitHub</a> · <a href="https://github.com/william-herman/cert-study-trackers/issues/new?template=outdated-content.md" target="_blank" rel="noopener">Report outdated content</a> · <a href="https://github.com/william-herman/cert-study-trackers/issues/new?template=peer-review.yml" target="_blank" rel="noopener">Become a peer reviewer</a></p>
+    <p>Content <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · code MIT · <a href="https://github.com/william-herman/cert-study-trackers" target="_blank" rel="noopener">Source on GitHub</a> · <a href="https://github.com/william-herman/cert-study-trackers/issues/new?template=outdated-content.md" target="_blank" rel="noopener">Report outdated content</a> · <a href="#review">Become a peer reviewer</a></p>
   </footer>
 </div>
+<dialog class="share-dlg" id="shareDlg" aria-labelledby="shareTitle">
+  <div class="share-head">
+    <h2 id="shareTitle">Share your progress</h2>
+    <button type="button" class="share-x" id="shareClose" aria-label="Close">×</button>
+  </div>
+  <div id="shareBody">
+    <label class="share-name" for="shareName">Your name <span>(optional)</span></label>
+    <input id="shareName" type="text" maxlength="40" autocomplete="name" placeholder="Shown at the top of the image">
+    <div class="share-preview"><canvas id="shareCanvas" width="1080" height="1350" aria-label="Preview of your progress image"></canvas></div>
+    <div class="share-actions">
+      <button type="button" class="review-btn" id="shareNative" hidden>Share</button>
+      <button type="button" class="share-dl" id="shareDownload">Download image</button>
+    </div>
+    <p class="review-note">Made in your browser from your own ticks. Nothing is uploaded.</p>
+  </div>
+  <div id="shareEmpty" hidden>
+    <p class="share-empty-big">Nothing to share yet</p>
+    <p class="review-note">Open a tracker and tick a few items. Your progress image builds itself from what you've done.</p>
+    <a class="review-btn share-start" href="#cards" id="shareStart">Start a tracker</a>
+  </div>
+</dialog>
+<script>
+(function(){
+  var CERTS = [{"slug": "ccao-f", "code": "CCAO-F", "name": "Claude Certified Associate – Foundations", "category": "ai", "ids": ["e-guide", "e-policies", "e-account", "e-self", "c-101", "c-fluency", "c-limits", "c-prep", "c-summary", "d1-1", "d1-2", "d1-3", "d1-4", "p1-lesson", "p1-practice", "p1-types", "d2-1", "d2-2", "d2-3", "d2-4", "d2-5", "d2-6", "p2-lesson", "p2-practice", "p2-cite", "p2-audience", "d3-1", "d3-2", "d3-3", "d3-4", "p3-lesson", "p3-docs", "p3-models", "d4-1", "d4-2", "d4-3", "d4-4", "d4-5", "p4-lesson", "p4-map", "p4-pitch", "d5-1", "d5-2", "d5-3", "d5-4", "p5-lesson", "p5-project", "p5-update", "d6-1", "d6-2", "d6-3", "d6-4", "p6-lesson", "p6-practice", "p6-policy", "d7-1", "d7-2", "d7-3", "p7-lesson", "p7-diag", "r-samples", "r-teach", "r-gate", "l-reg", "l-name", "l-resched", "l-online", "l-retake", "l-renew"], "sections": [{"title": "Setup", "ids": ["e-guide", "e-policies", "e-account", "e-self"]}, {"title": "Free Anthropic courses", "ids": ["c-101", "c-fluency", "c-limits", "c-prep", "c-summary"]}, {"title": "Prompting", "ids": ["d1-1", "d1-2", "d1-3", "d1-4", "p1-lesson", "p1-practice", "p1-types"]}, {"title": "Output Evaluation", "ids": ["d2-1", "d2-2", "d2-3", "d2-4", "d2-5", "d2-6", "p2-lesson", "p2-practice", "p2-cite", "p2-audience"]}, {"title": "Product & Model", "ids": ["d3-1", "d3-2", "d3-3", "d3-4", "p3-lesson", "p3-docs", "p3-models"]}, {"title": "Workflow Integration", "ids": ["d4-1", "d4-2", "d4-3", "d4-4", "d4-5", "p4-lesson", "p4-map", "p4-pitch"]}, {"title": "Configuration", "ids": ["d5-1", "d5-2", "d5-3", "d5-4", "p5-lesson", "p5-project", "p5-update"]}, {"title": "Governance & Risk", "ids": ["d6-1", "d6-2", "d6-3", "d6-4", "p6-lesson", "p6-practice", "p6-policy"]}, {"title": "Troubleshooting", "ids": ["d7-1", "d7-2", "d7-3", "p7-lesson", "p7-diag"]}, {"title": "Readiness", "ids": ["r-samples", "r-teach", "r-gate"]}, {"title": "Logistics", "ids": ["l-reg", "l-name", "l-resched", "l-online", "l-retake", "l-renew"]}]}, {"slug": "ccar-f", "code": "CCAR-F", "name": "Claude Certified Architect – Foundations", "category": "ai", "ids": ["e-guide", "e-env", "e-github", "e-repo", "c-api", "c-mcp", "c-cc", "c-skills", "c-sub", "d1-1", "d1-2", "d1-3", "d1-4", "d1-5", "d1-6", "d1-7", "b1-tools", "b1-loop", "b1-err", "b1-hook", "b1-multi", "b1-norm", "b1-match", "b1-handoff", "b4-coord", "b4-par", "b4-gap", "b4-sess", "d1-sc1", "d1-sc2", "d2-1", "d2-2", "d2-3", "d2-4", "d2-5", "b2-desc", "b2-split", "b2-res", "b2-grep", "b2-trace", "d3-1", "d3-2", "d3-3", "d3-4", "d3-5", "d3-6", "b3-md", "b3-rules", "b3-skill", "b3-mcp", "b3-plan", "b3-import", "b3-user", "b3-cmd", "b3-ci1", "b3-ci2", "b3-ci3", "d3-sc", "d4-1", "d4-2", "d4-3", "d4-4", "d4-5", "d4-6", "b5-schema", "b5-retry", "b5-few", "b5-batch", "b5-conf", "b5-totals", "b5-choice", "b5-crit", "b5-pass", "b5-self", "d5-1", "d5-2", "d5-3", "d5-4", "d5-5", "d5-6", "b6-struct", "b6-timeout", "b6-conflict", "b6-empty", "b6-manifest", "b6-facts", "b6-trim", "b6-scratch", "r-sample", "r-drills", "r-teach", "r-gate", "l-reg", "l-name", "l-resched", "l-online", "l-retake", "l-final", "ts-1.1", "ts-1.2", "ts-1.3", "ts-1.4", "ts-1.5", "ts-1.6", "ts-1.7", "ts-2.1", "ts-2.2", "ts-2.3", "ts-2.4", "ts-2.5", "ts-3.1", "ts-3.2", "ts-3.3", "ts-3.4", "ts-3.5", "ts-3.6", "ts-4.1", "ts-4.2", "ts-4.3", "ts-4.4", "ts-4.5", "ts-4.6", "ts-5.1", "ts-5.2", "ts-5.3", "ts-5.4", "ts-5.5", "ts-5.6"], "sections": [{"title": "Eligibility & setup", "ids": ["e-guide", "e-env", "e-github", "e-repo"]}, {"title": "Free Anthropic courses", "ids": ["c-api", "c-mcp", "c-cc", "c-skills", "c-sub"]}, {"title": "Agentic Architecture & Orchestration", "ids": ["d1-1", "d1-2", "d1-3", "d1-4", "d1-5", "d1-6", "d1-7", "b1-tools", "b1-loop", "b1-err", "b1-hook", "b1-multi", "b1-norm", "b1-match", "b1-handoff", "b4-coord", "b4-par", "b4-gap", "b4-sess", "d1-sc1", "d1-sc2"]}, {"title": "Tool Design & MCP Integration", "ids": ["d2-1", "d2-2", "d2-3", "d2-4", "d2-5", "b2-desc", "b2-split", "b2-res", "b2-grep", "b2-trace"]}, {"title": "Claude Code Configuration & Workflows", "ids": ["d3-1", "d3-2", "d3-3", "d3-4", "d3-5", "d3-6", "b3-md", "b3-rules", "b3-skill", "b3-mcp", "b3-plan", "b3-import", "b3-user", "b3-cmd", "b3-ci1", "b3-ci2", "b3-ci3", "d3-sc"]}, {"title": "Prompt Engineering & Structured Output", "ids": ["d4-1", "d4-2", "d4-3", "d4-4", "d4-5", "d4-6", "b5-schema", "b5-retry", "b5-few", "b5-batch", "b5-conf", "b5-totals", "b5-choice", "b5-crit", "b5-pass", "b5-self"]}, {"title": "Context Management & Reliability", "ids": ["d5-1", "d5-2", "d5-3", "d5-4", "d5-5", "d5-6", "b6-struct", "b6-timeout", "b6-conflict", "b6-empty", "b6-manifest", "b6-facts", "b6-trim", "b6-scratch"]}, {"title": "Drills & readiness gates", "ids": ["r-sample", "r-drills", "r-teach", "r-gate"]}, {"title": "Exam logistics", "ids": ["l-reg", "l-name", "l-resched", "l-online", "l-retake", "l-final"]}, {"title": "Task statement coverage", "ids": ["ts-1.1", "ts-1.2", "ts-1.3", "ts-1.4", "ts-1.5", "ts-1.6", "ts-1.7", "ts-2.1", "ts-2.2", "ts-2.3", "ts-2.4", "ts-2.5", "ts-3.1", "ts-3.2", "ts-3.3", "ts-3.4", "ts-3.5", "ts-3.6", "ts-4.1", "ts-4.2", "ts-4.3", "ts-4.4", "ts-4.5", "ts-4.6", "ts-5.1", "ts-5.2", "ts-5.3", "ts-5.4", "ts-5.5", "ts-5.6"]}]}, {"slug": "csm", "code": "CSM", "name": "Certified ScrumMaster", "category": "project-management", "ids": ["c-find", "c-guide", "c-manifesto", "c-values", "c-los", "f-theory", "f-iter", "f-team", "f-events", "f-artifacts", "s-acc", "s-events", "s-dod", "s-run", "k-fac", "k-stances", "k-try", "v-lead", "v-debt", "v-po", "v-imp", "v-org", "v-list", "r-reread", "r-teach", "r-gate", "t-access", "t-env", "t-pace", "t-renew", "ts-SF1.1", "ts-SF1.2", "ts-SF1.3", "ts-SF1.4", "ts-SF1.5", "ts-SF1.6", "ts-SF1.7", "ts-SF2.1", "ts-SF2.2", "ts-SF3.1", "ts-SF3.2", "ts-SF3.3", "ts-SF3.4", "ts-SF3.5", "ts-SF3.6", "ts-SF4.1", "ts-SF4.2", "ts-SF4.3", "ts-SF4.4", "ts-SF4.5", "ts-SF4.6", "ts-SF4.7", "ts-SF4.8", "ts-SF4.9", "ts-1.1", "ts-1.2", "ts-1.3", "ts-1.4", "ts-1.5", "ts-1.6", "ts-1.7", "ts-1.8", "ts-1.9", "ts-1.10", "ts-1.11", "ts-1.12", "ts-1.13", "ts-1.14", "ts-1.15", "ts-1.16", "ts-2.1", "ts-2.2", "ts-2.3", "ts-3.1", "ts-3.2", "ts-3.3", "ts-3.4", "ts-3.5", "ts-3.6", "ts-3.7", "ts-3.8", "ts-3.9"], "sections": [{"title": "Before the course", "ids": ["c-find", "c-guide", "c-manifesto", "c-values", "c-los"]}, {"title": "Foundations", "ids": ["f-theory", "f-iter", "f-team", "f-events", "f-artifacts"]}, {"title": "Scrum", "ids": ["s-acc", "s-events", "s-dod", "s-run"]}, {"title": "Core Competencies", "ids": ["k-fac", "k-stances", "k-try"]}, {"title": "Service to Team, PO & Org", "ids": ["v-lead", "v-debt", "v-po", "v-imp", "v-org", "v-list"]}, {"title": "Readiness", "ids": ["r-reread", "r-teach", "r-gate"]}, {"title": "Test & renewal", "ids": ["t-access", "t-env", "t-pace", "t-renew"]}, {"title": "Learning objective coverage", "ids": ["ts-SF1.1", "ts-SF1.2", "ts-SF1.3", "ts-SF1.4", "ts-SF1.5", "ts-SF1.6", "ts-SF1.7", "ts-SF2.1", "ts-SF2.2", "ts-SF3.1", "ts-SF3.2", "ts-SF3.3", "ts-SF3.4", "ts-SF3.5", "ts-SF3.6", "ts-SF4.1", "ts-SF4.2", "ts-SF4.3", "ts-SF4.4", "ts-SF4.5", "ts-SF4.6", "ts-SF4.7", "ts-SF4.8", "ts-SF4.9", "ts-1.1", "ts-1.2", "ts-1.3", "ts-1.4", "ts-1.5", "ts-1.6", "ts-1.7", "ts-1.8", "ts-1.9", "ts-1.10", "ts-1.11", "ts-1.12", "ts-1.13", "ts-1.14", "ts-1.15", "ts-1.16", "ts-2.1", "ts-2.2", "ts-2.3", "ts-3.1", "ts-3.2", "ts-3.3", "ts-3.4", "ts-3.5", "ts-3.6", "ts-3.7", "ts-3.8", "ts-3.9"]}]}, {"slug": "pal-i", "code": "PAL-I", "name": "Professional Agile Leadership I", "category": "project-management", "ids": ["e-page", "e-prep", "e-course", "e-baseline", "f1-guide", "f1-values-blog", "f1-glossary", "f1-emp", "f1-val", "f1-team", "f1-events", "f1-art", "f1-but", "f2-leaders", "f2-styles", "f2-smt", "f2-empower", "f2-1", "f2-2", "f2-3", "f2-decide", "f3-strategy", "f3-outcomes", "f3-roadmaps", "f3-1", "f3-2", "f3-3", "f4-undone", "f4-focus", "f4-hdd", "f4-1", "f5-ebm", "f5-studio", "f5-1", "f5-2", "f5-kva", "r-alo", "r-so", "r-why", "r-gate", "l-buy", "l-env", "l-pace", "l-after", "ts-1.1", "ts-1.2", "ts-1.3", "ts-1.4", "ts-2.1", "ts-2.2", "ts-2.3", "ts-3.1", "ts-3.2", "ts-3.3", "ts-4.1", "ts-5.1", "ts-5.2"], "sections": [{"title": "Setup", "ids": ["e-page", "e-prep", "e-course", "e-baseline"]}, {"title": "Scrum Framework", "ids": ["f1-guide", "f1-values-blog", "f1-glossary", "f1-emp", "f1-val", "f1-team", "f1-events", "f1-art", "f1-but"]}, {"title": "People & Teams", "ids": ["f2-leaders", "f2-styles", "f2-smt", "f2-empower", "f2-1", "f2-2", "f2-3", "f2-decide"]}, {"title": "Managing Products", "ids": ["f3-strategy", "f3-outcomes", "f3-roadmaps", "f3-1", "f3-2", "f3-3"]}, {"title": "Delivering Professionally", "ids": ["f4-undone", "f4-focus", "f4-hdd", "f4-1"]}, {"title": "Agile Organization", "ids": ["f5-ebm", "f5-studio", "f5-1", "f5-2", "f5-kva"]}, {"title": "Practice & readiness", "ids": ["r-alo", "r-so", "r-why", "r-gate"]}, {"title": "Assessment day", "ids": ["l-buy", "l-env", "l-pace", "l-after"]}, {"title": "Focus area coverage", "ids": ["ts-1.1", "ts-1.2", "ts-1.3", "ts-1.4", "ts-2.1", "ts-2.2", "ts-2.3", "ts-3.1", "ts-3.2", "ts-3.3", "ts-4.1", "ts-5.1", "ts-5.2"]}]}];
+  var SITE = "william-herman.github.io/cert-study-trackers";
+  var ICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f6b57'/%3E%3Cg transform='rotate%2845 16 16%29'%3E%3Crect x='13' y='5' width='6' height='17' rx='1' fill='%23ffffff'/%3E%3Crect x='13' y='5' width='6' height='3.5' fill='%23f6c25b'/%3E%3Cpath d='M13 22h6l-3 5z' fill='%23f6e7cf'/%3E%3Cpath d='M15 25.3h2l-1 1.7z' fill='%2316201d'/%3E%3C/g%3E%3C/svg%3E";
+  var dlg = document.getElementById("shareDlg"), cv = document.getElementById("shareCanvas"), ctx = cv.getContext("2d");
+  var nameIn = document.getElementById("shareName");
+  var W = 1080, H = 1350, icon = new Image(); icon.src = ICON;
+  try { nameIn.value = localStorage.getItem("cst:share-name") || ""; } catch(e){}
+
+  // ---------- Stats from this browser's ticks ----------
+  function load(slug){ try { return JSON.parse(localStorage.getItem("cst:"+slug+":done")||"{}") || {}; } catch(e){ return {}; } }
+  function dayKey(iso){ var d = new Date(iso); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+  function stats(){
+    var rows = [], total = 0, days = {}, milestones = [];
+    CERTS.forEach(function(c){
+      var done = load(c.slug), n = 0, last = null;
+      c.ids.forEach(function(id){ if (done[id]) { n++; var k = dayKey(done[id]); days[k] = (days[k]||0)+1; if (!last || done[id] > last) last = done[id]; } });
+      if (!n) return;
+      total += n;
+      rows.push({c: c, n: n, pct: Math.round(n / c.ids.length * 100), last: last});
+      c.sections.forEach(function(s){
+        if (!s.ids.length) return;
+        var t = null, all = s.ids.every(function(id){ if (done[id] && (!t || done[id] > t)) t = done[id]; return !!done[id]; });
+        if (all) milestones.push({t: t, text: "Finished " + s.title + " in " + c.code});
+      });
+      if (n === c.ids.length) milestones.push({t: last, big: 1, text: "Completed the full " + c.code + " tracker"});
+    });
+    rows.sort(function(a,b){ return b.pct - a.pct || b.n - a.n; });
+    var best = null; Object.keys(days).forEach(function(k){ if (!best || days[k] > days[best]) best = k; });
+    milestones.sort(function(a,b){ return (b.big||0) - (a.big||0) || (a.t < b.t ? 1 : -1); });
+    return {rows: rows, total: total, nDays: Object.keys(days).length, best: best, bestN: best ? days[best] : 0, milestone: milestones[0] || null};
+  }
+
+  // ---------- Drawing ----------
+  var F_DISP = '"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif', F_BODY = '"IBM Plex Sans", "Segoe UI", system-ui, sans-serif', F_MONO = '"IBM Plex Mono", ui-monospace, monospace';
+  var CAT = {"ai": ["#5cc09f", "#2f8f72"], "project-management": ["#f0b65a", "#c9822a"]};
+  function rr(x, y, w, h, r){ ctx.beginPath(); ctx.moveTo(x+r, y); ctx.arcTo(x+w, y, x+w, y+h, r); ctx.arcTo(x+w, y+h, x, y+h, r); ctx.arcTo(x, y+h, x, y, r); ctx.arcTo(x, y, x+w, y, r); ctx.closePath(); }
+  function fit(text, font, max){ ctx.font = font; if (ctx.measureText(text).width <= max) return text; while (text.length > 1 && ctx.measureText(text + "…").width > max) text = text.slice(0, -1); return text + "…"; }
+  function blob(x, y, r, color){ var g = ctx.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, color); g.addColorStop(1, "rgba(0,0,0,0)"); ctx.fillStyle = g; ctx.fillRect(x - r, y - r, r * 2, r * 2); }
+  function fmtDay(k){ var p = k.split("-"); return new Date(+p[0], +p[1]-1, +p[2]).toLocaleDateString(undefined, {weekday: "short", month: "short", day: "numeric"}); }
+
+  function draw(){
+    var s = stats(), name = nameIn.value.trim();
+    // Background: deep green field with saturated glow blobs
+    var bg = ctx.createLinearGradient(0, 0, W, H); bg.addColorStop(0, "#0d3b2f"); bg.addColorStop(0.55, "#0f1f1a"); bg.addColorStop(1, "#1d1636");
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+    blob(980, 120, 420, "rgba(92,192,159,0.55)"); blob(80, 760, 380, "rgba(240,182,90,0.35)"); blob(900, 1260, 460, "rgba(159,176,245,0.40)");
+
+    // Header
+    var pad = 80;
+    if (icon.complete) ctx.drawImage(icon, pad, 72, 56, 56);
+    ctx.fillStyle = "rgba(255,255,255,0.85)"; ctx.font = "500 26px " + F_MONO; ctx.textBaseline = "middle";
+    ctx.fillText("CERT STUDY TRACKERS", pad + 76, 101);
+    ctx.textBaseline = "alphabetic";
+    ctx.fillStyle = "#ffffff"; ctx.font = "700 54px " + F_DISP;
+    ctx.fillText(fit(name ? name + "'s study progress" : "My study progress", "700 54px " + F_DISP, W - pad * 2), pad, 214);
+
+    // Hero number
+    ctx.font = "700 250px " + F_DISP; ctx.fillStyle = "#ffffff";
+    ctx.fillText(String(s.total), pad - 8, 470);
+    var numW = ctx.measureText(String(s.total)).width;
+    ctx.fillStyle = "#5cc09f"; ctx.font = "600 38px " + F_BODY;
+    ctx.fillText(s.total === 1 ? "study item" : "study items", pad + numW + 24, 400);
+    ctx.fillStyle = "rgba(255,255,255,0.8)"; ctx.fillText("checked off", pad + numW + 24, 450);
+
+    // Stat chips
+    var chips = [[String(s.nDays), s.nDays === 1 ? "day studied" : "days studied"],
+                 [String(s.bestN), "on my best day"],
+                 [s.rows[0].pct + "%", s.rows[0].pct === 100 ? s.rows[0].c.code + " complete" : "through " + s.rows[0].c.code]];
+    var cw = (W - pad * 2 - 40) / 3, cy = 520;
+    chips.forEach(function(ch, i){
+      var x = pad + i * (cw + 20);
+      rr(x, cy, cw, 150, 22); ctx.fillStyle = "rgba(255,255,255,0.09)"; ctx.fill();
+      ctx.fillStyle = "#ffffff"; ctx.font = "700 64px " + F_DISP; ctx.fillText(ch[0], x + 26, cy + 80);
+      ctx.fillStyle = "rgba(255,255,255,0.75)"; ctx.font = "500 24px " + F_BODY; ctx.fillText(fit(ch[1], "500 24px " + F_BODY, cw - 52), x + 26, cy + 122);
+    });
+
+    // Tracker bars, centered in the space between the chips and the milestone
+    var rows = s.rows.slice(0, 5), more = s.rows.length - rows.length;
+    var rowH = rows.length > 3 ? 76 : 112, top = 712, bottom = 1120;
+    var blockH = 30 + rows.length * rowH + (more ? 30 : 0);
+    var y = top + Math.max(0, (bottom - top - blockH) / 2) + 22;
+    ctx.fillStyle = "rgba(255,255,255,0.6)"; ctx.font = "600 22px " + F_MONO; ctx.fillText("MY TRACKERS", pad, y); y += 26;
+    rows.forEach(function(r){
+      var col = CAT[r.c.category] || CAT.ai;
+      ctx.fillStyle = "#ffffff"; ctx.font = "700 32px " + F_DISP; ctx.fillText(r.c.code, pad, y + 36);
+      ctx.fillStyle = "rgba(255,255,255,0.7)"; ctx.font = "400 24px " + F_BODY;
+      ctx.fillText(fit(r.c.name, "400 24px " + F_BODY, 520), pad + 170, y + 34);
+      ctx.fillStyle = "#ffffff"; ctx.font = "700 32px " + F_DISP; ctx.textAlign = "right"; ctx.fillText(r.pct + "%", W - pad, y + 36); ctx.textAlign = "left";
+      rr(pad, y + 50, W - pad * 2, 14, 7); ctx.fillStyle = "rgba(255,255,255,0.14)"; ctx.fill();
+      var bw = Math.max(14, (W - pad * 2) * r.pct / 100), g = ctx.createLinearGradient(pad, 0, pad + bw, 0); g.addColorStop(0, col[1]); g.addColorStop(1, col[0]);
+      rr(pad, y + 50, bw, 14, 7); ctx.fillStyle = g; ctx.fill();
+      if (rows.length <= 3) { ctx.fillStyle = "rgba(255,255,255,0.55)"; ctx.font = "500 20px " + F_MONO; ctx.fillText(r.n + " of " + r.c.ids.length + " items", pad, y + 92); }
+      y += rowH;
+    });
+    if (more) { ctx.fillStyle = "rgba(255,255,255,0.6)"; ctx.font = "500 22px " + F_BODY; ctx.fillText("+ " + more + " more", pad, y + 10); }
+
+    // Milestone + biggest day
+    var my = 1150;
+    rr(pad, my, W - pad * 2, 104, 22); ctx.fillStyle = "rgba(92,192,159,0.18)"; ctx.fill();
+    ctx.fillStyle = "#5cc09f"; ctx.font = "600 20px " + F_MONO;
+    ctx.fillText(s.milestone ? "LATEST MILESTONE" : "BIGGEST STUDY DAY", pad + 28, my + 38);
+    ctx.fillStyle = "#ffffff"; ctx.font = "600 30px " + F_BODY;
+    var line = s.milestone ? s.milestone.text : (s.best ? fmtDay(s.best) + " · " + s.bestN + " items" : "");
+    ctx.fillText(fit(line, "600 30px " + F_BODY, W - pad * 2 - 56), pad + 28, my + 80);
+
+    // Footer
+    ctx.fillStyle = "rgba(255,255,255,0.7)"; ctx.font = "500 24px " + F_BODY; ctx.fillText("Track yours free", pad, H - 50);
+    ctx.fillStyle = "#ffffff"; ctx.font = "500 24px " + F_MONO; ctx.textAlign = "right"; ctx.fillText(SITE, W - pad, H - 50); ctx.textAlign = "left";
+  }
+
+  // ---------- Dialog ----------
+  var fontsReady = (document.fonts && document.fonts.load) ? Promise.all([
+    document.fonts.load('700 80px "Bricolage Grotesque"'), document.fonts.load('600 30px "IBM Plex Sans"'), document.fonts.load('500 24px "IBM Plex Mono"')
+  ]).catch(function(){}) : Promise.resolve();
+  var iconReady = new Promise(function(res){ if (icon.complete) res(); else { icon.onload = res; icon.onerror = res; } });
+
+  function open(){
+    var has = stats().total > 0;
+    document.getElementById("shareBody").hidden = !has;
+    document.getElementById("shareEmpty").hidden = has;
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+    if (has) Promise.all([fontsReady, iconReady]).then(draw);
+  }
+  function close(){ if (dlg.close) dlg.close(); else dlg.removeAttribute("open"); }
+  function file(cb){ cv.toBlob(function(b){ cb(new File([b], "cert-study-progress.png", {type: "image/png"})); }, "image/png"); }
+
+  document.getElementById("shareOpen").addEventListener("click", open);
+  document.getElementById("shareClose").addEventListener("click", close);
+  document.getElementById("shareStart").addEventListener("click", close);
+  dlg.addEventListener("click", function(e){ if (e.target === dlg) close(); });
+  nameIn.addEventListener("input", function(){ try { localStorage.setItem("cst:share-name", nameIn.value); } catch(e){} draw(); });
+
+  var nat = document.getElementById("shareNative");
+  try { nat.hidden = !(navigator.canShare && navigator.canShare({files: [new File([""], "x.png", {type: "image/png"})]})); } catch(e){ nat.hidden = true; }
+  nat.addEventListener("click", function(){
+    file(function(f){ navigator.share({files: [f], title: "My certification study progress", text: "Tracking my certification prep. Track yours free: https://" + SITE }).catch(function(){}); });
+  });
+  document.getElementById("shareDownload").addEventListener("click", function(){
+    file(function(f){ var a = document.createElement("a"); a.href = URL.createObjectURL(f); a.download = f.name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000); });
+  });
+})();
+</script>
+
 </body>
 </html>

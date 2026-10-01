@@ -19,9 +19,13 @@
 <div class="wrap">
   <div class="index-top">{{TOGGLE}}</div>
   <div class="hero">
-    <h1>Cert Study Trackers</h1>
+    <h1><img class="logo" src="{{ICON}}" alt="" width="44" height="44">Cert Study Trackers</h1>
     <p>Interactive checklists for professional certifications. Every item traces to the certifying body's own exam guide or requirements page, and every tracker says how far it has been validated.</p>
     <p>Tick items as you go. Progress is saved in your browser only; nothing is sent anywhere.</p>
+    <button type="button" class="share-open" id="shareOpen">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Share my progress
+    </button>
   </div>
 
   <div class="tabs" role="tablist" aria-label="Certification type">{{TABS}}</div>
@@ -50,10 +54,46 @@
     <li><span class="tier peer-reviewed">Peer-reviewed</span>Built from official sources and reviewed by someone who holds the certification.</li>
   </ul>
 
+  <section class="review" id="review" aria-labelledby="review-h">
+    <h2 class="section-h" id="review-h">Hold one of these certifications? Review its tracker</h2>
+    <p class="review-lead">Reviews from people who passed are what move a tracker to <span class="tier peer-reviewed">Peer-reviewed</span>. It takes about five minutes.</p>
+    <div class="review-grid">
+      <div class="review-ask">
+        <h3>What we'll ask</h3>
+        <ul>
+          <li>Which tracker, whether you hold the certification, and when you passed</li>
+          <li>How well the tracker matches the exam</li>
+          <li>What's wrong, outdated or missing</li>
+          <li>What the exam emphasized (optional; topics and patterns only)</li>
+          <li>Whether you'd like credit by name</li>
+        </ul>
+        <p class="review-warn"><strong>Never share actual exam questions or answers.</strong> Exams are under NDA, and reviews containing exam content are deleted.</p>
+      </div>
+      <form class="review-card" id="reviewForm">
+        <label for="rvTracker">Which tracker are you reviewing?</label>
+        <select id="rvTracker" required>{{REVIEW_OPTIONS}}</select>
+        <button type="submit" class="review-btn">Start your review</button>
+        <p class="review-note">Opens the review form on GitHub in a new tab. You'll need a free GitHub account, and reviews are public.</p>
+      </form>
+    </div>
+  </section>
+  <script>
+  (function(){
+    var f=document.getElementById("reviewForm"), s=document.getElementById("rvTracker");
+    f.addEventListener("submit", function(e){
+      e.preventDefault();
+      var o=s.options[s.selectedIndex];
+      var u="{{REPO}}/issues/new?template=peer-review.yml&title="+encodeURIComponent("["+o.value+"] Peer review")+"&tracker="+encodeURIComponent(o.text);
+      window.open(u, "_blank", "noopener");
+    });
+  })();
+  </script>
+
   <footer class="site-foot" style="padding-bottom:40px">
     <p>Not affiliated with or endorsed by any certification body. Certification names are trademarks of their owners. These trackers contain no exam questions or exam content; where a tracker and the official guide disagree, the guide wins.</p>
-    <p>Content <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · code MIT · <a href="{{REPO}}" target="_blank" rel="noopener">Source on GitHub</a> · <a href="{{REPO}}/issues/new?template=outdated-content.md" target="_blank" rel="noopener">Report outdated content</a> · <a href="{{REPO}}/issues/new?template=peer-review.yml" target="_blank" rel="noopener">Become a peer reviewer</a></p>
+    <p>Content <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · code MIT · <a href="{{REPO}}" target="_blank" rel="noopener">Source on GitHub</a> · <a href="{{REPO}}/issues/new?template=outdated-content.md" target="_blank" rel="noopener">Report outdated content</a> · <a href="#review">Become a peer reviewer</a></p>
   </footer>
 </div>
+{{SHARE}}
 </body>
 </html>

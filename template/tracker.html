@@ -19,6 +19,7 @@
 <header class="top">
   <div class="wrap">
     <div class="brand">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../">All trackers</a><span aria-hidden="true">›</span><span id="crumbCur" aria-current="page"></span></nav>
       <span class="code" id="hdrCode"></span>
       <h1 id="hdrTitle"></h1>
     </div>
@@ -113,6 +114,7 @@ function save(){
 function renderStatic(){
   document.getElementById("hdrCode").textContent = [CERT.issuer, CERT.code, /^\d+(\.\d+)+$/.test(String(CERT.blueprint.version)) ? "v"+CERT.blueprint.version : ""].filter(Boolean).join(" · ");
   document.getElementById("hdrTitle").textContent = CERT.code+" Study Tracker";
+  document.getElementById("crumbCur").textContent = CERT.code;
 
   const t = TIERS[CERT.confidence] || [CERT.confidence, ""];
   document.getElementById("meta").innerHTML =

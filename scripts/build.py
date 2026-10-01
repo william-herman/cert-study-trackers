@@ -6,6 +6,7 @@ Usage: python3 scripts/build.py      (needs PyYAML: pip install pyyaml)
 import datetime as dt
 import html
 import json
+import urllib.parse
 import sys
 from pathlib import Path
 
@@ -14,6 +15,7 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 DATA, TEMPLATE, DOCS = ROOT / "data", ROOT / "template", ROOT / "docs"
 REPO = "https://github.com/william-herman/cert-study-trackers"
+SITE = "william-herman.github.io/cert-study-trackers"
 
 REQUIRED = ["slug", "code", "name", "issuer", "category", "kind", "confidence", "blueprint", "last_checked", "summary", "sections", "sources"]
 KINDS = {"exam", "path"}
@@ -116,6 +118,20 @@ def write_review_form(certs):
                     + yaml.safe_dump(form, sort_keys=False, allow_unicode=True, width=1000), encoding="utf-8")
 
 
+def share_data(certs):
+    """Compact per-tracker id lists for the share image: required items, grouped by section."""
+    out = []
+    for c in certs:
+        secs = [{"title": s.get("short") or s["title"],
+                 "ids": [i["id"] for g in s["groups"] for i in g["items"] if i.get("tag") != "optional"]} for s in c["sections"]]
+        obj = c.get("objectives") or {}
+        if obj.get("items"):
+            secs.append({"title": obj.get("title", "Coverage"), "ids": ["ts-" + str(o["id"]) for o in obj["items"]]})
+        out.append({"slug": c["slug"], "code": c["code"], "name": c["name"], "category": c["category"],
+                    "ids": [i for s in secs for i in s["ids"]], "sections": secs})
+    return json.dumps(out, ensure_ascii=False).replace("</", "<\\/")
+
+
 def count(cert):
     n = sum(1 for s in cert["sections"] for g in s["groups"] for i in g["items"] if i.get("tag") != "optional")
     return n + len((cert.get("objectives") or {}).get("items", []))
@@ -123,7 +139,9 @@ def count(cert):
 
 def main():
     css = (TEMPLATE / "tracker.css").read_text(encoding="utf-8")
-    head = (TEMPLATE / "head.html").read_text(encoding="utf-8")
+    icon = "data:image/svg+xml," + urllib.parse.quote((TEMPLATE / "icon.svg").read_text(encoding="utf-8").strip(), safe=" /:=',")
+    head = (TEMPLATE / "head.html").read_text(encoding="utf-8").replace("{{ICON}}", icon)
+    share = (TEMPLATE / "share.html").read_text(encoding="utf-8")
     toggle = (TEMPLATE / "toggle.html").read_text(encoding="utf-8")
     page = (TEMPLATE / "tracker.html").read_text(encoding="utf-8")
     index_tpl = (TEMPLATE / "index.html").read_text(encoding="utf-8")
@@ -158,11 +176,15 @@ def main():
         f'<span>{count(c)} items · checked {html.escape(c["last_checked"])}</span></span></a>'
         for c in sorted(certs, key=lambda c: (c["issuer"], c["code"]))
     )
+    review_opts = "".join(f'<option value="{html.escape(c["code"])}">{html.escape(c["code"])}: {html.escape(c["name"])}</option>'
+                          for c in sorted(certs, key=lambda c: c["code"]))
     tabs = f'<button type="button" class="tab" role="tab" data-cat="all">All<span class="k">{len(certs)}</span></button>' + "".join(
         f'<button type="button" class="tab" role="tab" data-cat="{k}">{v}<span class="k">{sum(c["category"] == k for c in certs)}</span></button>'
         for k, v in CATEGORIES.items())
     (DOCS / "index.html").write_text(index_tpl.replace("{{HEAD}}", head).replace("{{TOGGLE}}", toggle).replace("{{CSS}}", css)
-                                     .replace("{{TABS}}", tabs).replace("{{CARDS}}", cards).replace("{{REPO}}", REPO), encoding="utf-8")
+                                     .replace("{{SHARE}}", share.replace("{{SHARE_DATA}}", share_data(certs)).replace("{{SITE}}", SITE))
+                                     .replace("{{ICON}}", icon).replace("{{TABS}}", tabs).replace("{{CARDS}}", cards).replace("{{REVIEW_OPTIONS}}", review_opts)
+                                     .replace("{{REPO}}", REPO), encoding="utf-8")
     write_review_form(certs)
     print("OK .github/ISSUE_TEMPLATE/peer-review.yml")
     (DOCS / ".nojekyll").write_text("", encoding="utf-8")

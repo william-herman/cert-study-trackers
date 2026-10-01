@@ -1,0 +1,165 @@
+<dialog class="share-dlg" id="shareDlg" aria-labelledby="shareTitle">
+  <div class="share-head">
+    <h2 id="shareTitle">Share your progress</h2>
+    <button type="button" class="share-x" id="shareClose" aria-label="Close">×</button>
+  </div>
+  <div id="shareBody">
+    <label class="share-name" for="shareName">Your name <span>(optional)</span></label>
+    <input id="shareName" type="text" maxlength="40" autocomplete="name" placeholder="Shown at the top of the image">
+    <div class="share-preview"><canvas id="shareCanvas" width="1080" height="1350" aria-label="Preview of your progress image"></canvas></div>
+    <div class="share-actions">
+      <button type="button" class="review-btn" id="shareNative" hidden>Share</button>
+      <button type="button" class="share-dl" id="shareDownload">Download image</button>
+    </div>
+    <p class="review-note">Made in your browser from your own ticks. Nothing is uploaded.</p>
+  </div>
+  <div id="shareEmpty" hidden>
+    <p class="share-empty-big">Nothing to share yet</p>
+    <p class="review-note">Open a tracker and tick a few items. Your progress image builds itself from what you've done.</p>
+    <a class="review-btn share-start" href="#cards" id="shareStart">Start a tracker</a>
+  </div>
+</dialog>
+<script>
+(function(){
+  var CERTS = {{SHARE_DATA}};
+  var SITE = "{{SITE}}";
+  var ICON = "{{ICON}}";
+  var dlg = document.getElementById("shareDlg"), cv = document.getElementById("shareCanvas"), ctx = cv.getContext("2d");
+  var nameIn = document.getElementById("shareName");
+  var W = 1080, H = 1350, icon = new Image(); icon.src = ICON;
+  try { nameIn.value = localStorage.getItem("cst:share-name") || ""; } catch(e){}
+
+  // ---------- Stats from this browser's ticks ----------
+  function load(slug){ try { return JSON.parse(localStorage.getItem("cst:"+slug+":done")||"{}") || {}; } catch(e){ return {}; } }
+  function dayKey(iso){ var d = new Date(iso); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+  function stats(){
+    var rows = [], total = 0, days = {}, milestones = [];
+    CERTS.forEach(function(c){
+      var done = load(c.slug), n = 0, last = null;
+      c.ids.forEach(function(id){ if (done[id]) { n++; var k = dayKey(done[id]); days[k] = (days[k]||0)+1; if (!last || done[id] > last) last = done[id]; } });
+      if (!n) return;
+      total += n;
+      rows.push({c: c, n: n, pct: Math.round(n / c.ids.length * 100), last: last});
+      c.sections.forEach(function(s){
+        if (!s.ids.length) return;
+        var t = null, all = s.ids.every(function(id){ if (done[id] && (!t || done[id] > t)) t = done[id]; return !!done[id]; });
+        if (all) milestones.push({t: t, text: "Finished " + s.title + " in " + c.code});
+      });
+      if (n === c.ids.length) milestones.push({t: last, big: 1, text: "Completed the full " + c.code + " tracker"});
+    });
+    rows.sort(function(a,b){ return b.pct - a.pct || b.n - a.n; });
+    var best = null; Object.keys(days).forEach(function(k){ if (!best || days[k] > days[best]) best = k; });
+    milestones.sort(function(a,b){ return (b.big||0) - (a.big||0) || (a.t < b.t ? 1 : -1); });
+    return {rows: rows, total: total, nDays: Object.keys(days).length, best: best, bestN: best ? days[best] : 0, milestone: milestones[0] || null};
+  }
+
+  // ---------- Drawing ----------
+  var F_DISP = '"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif', F_BODY = '"IBM Plex Sans", "Segoe UI", system-ui, sans-serif', F_MONO = '"IBM Plex Mono", ui-monospace, monospace';
+  var CAT = {"ai": ["#5cc09f", "#2f8f72"], "project-management": ["#f0b65a", "#c9822a"]};
+  function rr(x, y, w, h, r){ ctx.beginPath(); ctx.moveTo(x+r, y); ctx.arcTo(x+w, y, x+w, y+h, r); ctx.arcTo(x+w, y+h, x, y+h, r); ctx.arcTo(x, y+h, x, y, r); ctx.arcTo(x, y, x+w, y, r); ctx.closePath(); }
+  function fit(text, font, max){ ctx.font = font; if (ctx.measureText(text).width <= max) return text; while (text.length > 1 && ctx.measureText(text + "…").width > max) text = text.slice(0, -1); return text + "…"; }
+  function blob(x, y, r, color){ var g = ctx.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, color); g.addColorStop(1, "rgba(0,0,0,0)"); ctx.fillStyle = g; ctx.fillRect(x - r, y - r, r * 2, r * 2); }
+  function fmtDay(k){ var p = k.split("-"); return new Date(+p[0], +p[1]-1, +p[2]).toLocaleDateString(undefined, {weekday: "short", month: "short", day: "numeric"}); }
+
+  function draw(){
+    var s = stats(), name = nameIn.value.trim();
+    // Background: deep green field with saturated glow blobs
+    var bg = ctx.createLinearGradient(0, 0, W, H); bg.addColorStop(0, "#0d3b2f"); bg.addColorStop(0.55, "#0f1f1a"); bg.addColorStop(1, "#1d1636");
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+    blob(980, 120, 420, "rgba(92,192,159,0.55)"); blob(80, 760, 380, "rgba(240,182,90,0.35)"); blob(900, 1260, 460, "rgba(159,176,245,0.40)");
+
+    // Header
+    var pad = 80;
+    if (icon.complete) ctx.drawImage(icon, pad, 72, 56, 56);
+    ctx.fillStyle = "rgba(255,255,255,0.85)"; ctx.font = "500 26px " + F_MONO; ctx.textBaseline = "middle";
+    ctx.fillText("CERT STUDY TRACKERS", pad + 76, 101);
+    ctx.textBaseline = "alphabetic";
+    ctx.fillStyle = "#ffffff"; ctx.font = "700 54px " + F_DISP;
+    ctx.fillText(fit(name ? name + "'s study progress" : "My study progress", "700 54px " + F_DISP, W - pad * 2), pad, 214);
+
+    // Hero number
+    ctx.font = "700 250px " + F_DISP; ctx.fillStyle = "#ffffff";
+    ctx.fillText(String(s.total), pad - 8, 470);
+    var numW = ctx.measureText(String(s.total)).width;
+    ctx.fillStyle = "#5cc09f"; ctx.font = "600 38px " + F_BODY;
+    ctx.fillText(s.total === 1 ? "study item" : "study items", pad + numW + 24, 400);
+    ctx.fillStyle = "rgba(255,255,255,0.8)"; ctx.fillText("checked off", pad + numW + 24, 450);
+
+    // Stat chips
+    var chips = [[String(s.nDays), s.nDays === 1 ? "day studied" : "days studied"],
+                 [String(s.bestN), "on my best day"],
+                 [s.rows[0].pct + "%", s.rows[0].pct === 100 ? s.rows[0].c.code + " complete" : "through " + s.rows[0].c.code]];
+    var cw = (W - pad * 2 - 40) / 3, cy = 520;
+    chips.forEach(function(ch, i){
+      var x = pad + i * (cw + 20);
+      rr(x, cy, cw, 150, 22); ctx.fillStyle = "rgba(255,255,255,0.09)"; ctx.fill();
+      ctx.fillStyle = "#ffffff"; ctx.font = "700 64px " + F_DISP; ctx.fillText(ch[0], x + 26, cy + 80);
+      ctx.fillStyle = "rgba(255,255,255,0.75)"; ctx.font = "500 24px " + F_BODY; ctx.fillText(fit(ch[1], "500 24px " + F_BODY, cw - 52), x + 26, cy + 122);
+    });
+
+    // Tracker bars, centered in the space between the chips and the milestone
+    var rows = s.rows.slice(0, 5), more = s.rows.length - rows.length;
+    var rowH = rows.length > 3 ? 76 : 112, top = 712, bottom = 1120;
+    var blockH = 30 + rows.length * rowH + (more ? 30 : 0);
+    var y = top + Math.max(0, (bottom - top - blockH) / 2) + 22;
+    ctx.fillStyle = "rgba(255,255,255,0.6)"; ctx.font = "600 22px " + F_MONO; ctx.fillText("MY TRACKERS", pad, y); y += 26;
+    rows.forEach(function(r){
+      var col = CAT[r.c.category] || CAT.ai;
+      ctx.fillStyle = "#ffffff"; ctx.font = "700 32px " + F_DISP; ctx.fillText(r.c.code, pad, y + 36);
+      ctx.fillStyle = "rgba(255,255,255,0.7)"; ctx.font = "400 24px " + F_BODY;
+      ctx.fillText(fit(r.c.name, "400 24px " + F_BODY, 520), pad + 170, y + 34);
+      ctx.fillStyle = "#ffffff"; ctx.font = "700 32px " + F_DISP; ctx.textAlign = "right"; ctx.fillText(r.pct + "%", W - pad, y + 36); ctx.textAlign = "left";
+      rr(pad, y + 50, W - pad * 2, 14, 7); ctx.fillStyle = "rgba(255,255,255,0.14)"; ctx.fill();
+      var bw = Math.max(14, (W - pad * 2) * r.pct / 100), g = ctx.createLinearGradient(pad, 0, pad + bw, 0); g.addColorStop(0, col[1]); g.addColorStop(1, col[0]);
+      rr(pad, y + 50, bw, 14, 7); ctx.fillStyle = g; ctx.fill();
+      if (rows.length <= 3) { ctx.fillStyle = "rgba(255,255,255,0.55)"; ctx.font = "500 20px " + F_MONO; ctx.fillText(r.n + " of " + r.c.ids.length + " items", pad, y + 92); }
+      y += rowH;
+    });
+    if (more) { ctx.fillStyle = "rgba(255,255,255,0.6)"; ctx.font = "500 22px " + F_BODY; ctx.fillText("+ " + more + " more", pad, y + 10); }
+
+    // Milestone + biggest day
+    var my = 1150;
+    rr(pad, my, W - pad * 2, 104, 22); ctx.fillStyle = "rgba(92,192,159,0.18)"; ctx.fill();
+    ctx.fillStyle = "#5cc09f"; ctx.font = "600 20px " + F_MONO;
+    ctx.fillText(s.milestone ? "LATEST MILESTONE" : "BIGGEST STUDY DAY", pad + 28, my + 38);
+    ctx.fillStyle = "#ffffff"; ctx.font = "600 30px " + F_BODY;
+    var line = s.milestone ? s.milestone.text : (s.best ? fmtDay(s.best) + " · " + s.bestN + " items" : "");
+    ctx.fillText(fit(line, "600 30px " + F_BODY, W - pad * 2 - 56), pad + 28, my + 80);
+
+    // Footer
+    ctx.fillStyle = "rgba(255,255,255,0.7)"; ctx.font = "500 24px " + F_BODY; ctx.fillText("Track yours free", pad, H - 50);
+    ctx.fillStyle = "#ffffff"; ctx.font = "500 24px " + F_MONO; ctx.textAlign = "right"; ctx.fillText(SITE, W - pad, H - 50); ctx.textAlign = "left";
+  }
+
+  // ---------- Dialog ----------
+  var fontsReady = (document.fonts && document.fonts.load) ? Promise.all([
+    document.fonts.load('700 80px "Bricolage Grotesque"'), document.fonts.load('600 30px "IBM Plex Sans"'), document.fonts.load('500 24px "IBM Plex Mono"')
+  ]).catch(function(){}) : Promise.resolve();
+  var iconReady = new Promise(function(res){ if (icon.complete) res(); else { icon.onload = res; icon.onerror = res; } });
+
+  function open(){
+    var has = stats().total > 0;
+    document.getElementById("shareBody").hidden = !has;
+    document.getElementById("shareEmpty").hidden = has;
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+    if (has) Promise.all([fontsReady, iconReady]).then(draw);
+  }
+  function close(){ if (dlg.close) dlg.close(); else dlg.removeAttribute("open"); }
+  function file(cb){ cv.toBlob(function(b){ cb(new File([b], "cert-study-progress.png", {type: "image/png"})); }, "image/png"); }
+
+  document.getElementById("shareOpen").addEventListener("click", open);
+  document.getElementById("shareClose").addEventListener("click", close);
+  document.getElementById("shareStart").addEventListener("click", close);
+  dlg.addEventListener("click", function(e){ if (e.target === dlg) close(); });
+  nameIn.addEventListener("input", function(){ try { localStorage.setItem("cst:share-name", nameIn.value); } catch(e){} draw(); });
+
+  var nat = document.getElementById("shareNative");
+  try { nat.hidden = !(navigator.canShare && navigator.canShare({files: [new File([""], "x.png", {type: "image/png"})]})); } catch(e){ nat.hidden = true; }
+  nat.addEventListener("click", function(){
+    file(function(f){ navigator.share({files: [f], title: "My certification study progress", text: "Tracking my certification prep. Track yours free: https://" + SITE }).catch(function(){}); });
+  });
+  document.getElementById("shareDownload").addEventListener("click", function(){
+    file(function(f){ var a = document.createElement("a"); a.href = URL.createObjectURL(f); a.download = f.name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000); });
+  });
+})();
+</script>
