@@ -67,8 +67,8 @@ def validate(cert, path):
     if any(w is not None for w in weights):
         if any(w is None for w in weights):
             errs.append("either every domain has a weight or none do")
-        elif sum(weights) != 100:
-            total = sum(weights)
+        elif round(sum(weights), 1) != 100:
+            total = round(sum(weights), 1)
             errs.append(f"domain weights add to {total}, not 100")
     return errs
 

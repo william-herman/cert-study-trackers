@@ -18,6 +18,7 @@ body:
     options:
     - 'CCAO-F: Claude Certified Associate – Foundations'
     - 'CCAR-F: Claude Certified Architect – Foundations'
+    - 'CCDV-F: Claude Certified Developer – Foundations'
     - 'CSM: Certified ScrumMaster'
     - 'PAL-I: Professional Agile Leadership I'
   validations:

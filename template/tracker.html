@@ -90,6 +90,8 @@ const OBJ = CERT.objectives && CERT.objectives.items ? CERT.objectives : null;
 const DOMAINS = CERT.domains || [];
 const VER = v => /^\d+(\.\d+)+$/.test(String(v)) ? "v"+v : String(v);
 const DLABEL = CERT.domain_label || "Domain";
+const WDEC = DOMAINS.some(d => d.weight != null && d.weight % 1 !== 0);
+const WFMT = w => WDEC ? Number(w).toFixed(1) : String(w);
 const DNAME = d => d.label || (DLABEL+" "+d.id);
 const DABBR = DLABEL.split(/\s+/).map(w=>w[0]).join("").toUpperCase();
 const KEY = "cst:"+CERT.slug;
@@ -162,7 +164,7 @@ function renderSections(){
   SECS.forEach(sec => {
     const ids = secIds(sec), n = ids.filter(i=>done[i]).length, dom = sec.domain ? domainOf(sec.domain) : null;
     h += '<section class="sec" id="'+esc(sec.id)+'"><div class="sec-head"><span class="no">'+esc(sec.no)+'</span><h2>'+esc(sec.title)+'</h2>'+
-      (dom?'<span class="wt">'+esc(DNAME(dom))+(dom.weight!=null?' · '+dom.weight+'%':'')+'</span>':'')+'<span class="cnt">'+n+' / '+ids.length+'</span></div>';
+      (dom?'<span class="wt">'+esc(DNAME(dom))+(dom.weight!=null?' · '+WFMT(dom.weight)+'%':'')+'</span>':'')+'<span class="cnt">'+n+' / '+ids.length+'</span></div>';
     if (sec.note) h += '<p class="sec-note">'+md(sec.note)+'</p>';
     if (sec.callout) h += '<div class="callout">'+md(sec.callout)+'</div>';
     sec.groups.forEach(g => {
@@ -196,7 +198,7 @@ function renderMeters(){
   DOMAINS.forEach((d,i) => {
     const ids = required.filter(x=>x.domain===d.id), n = ids.filter(x=>done[x.id]).length, pct = ids.length ? Math.round(n/ids.length*100) : 0;
     const sec = SECS.find(s=>s.domain===d.id);
-    h += '<button type="button" class="meter'+(i===0&&DOMAINS.length%2?' d1':'')+'" data-go="'+(sec?esc(sec.id):"")+'"><span class="w'+(d.weight!=null?'':' lbl')+'">'+(d.weight!=null?d.weight+'%<small>'+esc(DABBR)+d.id+'</small>':esc(DNAME(d)))+'</span><span class="n">'+esc(d.short||d.name)+'</span>'+
+    h += '<button type="button" class="meter'+(i===0&&DOMAINS.length%2?' d1':'')+'" data-go="'+(sec?esc(sec.id):"")+'"><span class="w'+(d.weight!=null?'':' lbl')+'">'+(d.weight!=null?WFMT(d.weight)+'%<small>'+esc(DABBR)+d.id+'</small>':esc(DNAME(d)))+'</span><span class="n">'+esc(d.short||d.name)+'</span>'+
       '<span class="bar"><i style="width:'+pct+'%"></i></span><span class="c">'+n+' / '+ids.length+' · '+pct+'%</span></button>';
   });
   const m = document.getElementById("meters");
