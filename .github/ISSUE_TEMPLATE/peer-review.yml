@@ -21,6 +21,7 @@ body:
     - 'CCDV-F: Claude Certified Developer – Foundations'
     - 'CSM: Certified ScrumMaster'
     - 'PAL-I: Professional Agile Leadership I'
+    - 'PMP: Project Management Professional'
   validations:
     required: true
 - type: dropdown

@@ -11,7 +11,7 @@ Text fields accept light Markdown: `**bold**`, `*italic*`, `` `code` ``, `[link]
 | `slug` | yes | URL folder name, lowercase with hyphens (`ccar-f`). Must match the file name. |
 | `code` | yes | Short code shown in the header (`CCAR-F`). |
 | `name` | yes | Full certification name. |
-| `issuer` | yes | Certifying body (`Anthropic`, `AWS`, `Scrum.org`, `Scrum Alliance`). |
+| `issuer` | yes | Certifying body (`Anthropic`, `AWS`, `PMI`, `Scrum.org`, `Scrum Alliance`). |
 | `category` | yes | Index tab: `project-management` or `ai` (the list lives in `CATEGORIES` in `scripts/build.py`). |
 | `kind` | yes | `exam` (blueprint with weighted domains) or `path` (earned through courses, experience and prerequisites). |
 | `confidence` | yes | `field-validated` (author passed it), `source-traced` (built from official sources, not yet tested), or `peer-reviewed` (checked by a holder). |

@@ -9,6 +9,7 @@ Free, interactive study trackers for professional certifications. Each tracker i
 | [CCAO-F: Claude Certified Associate – Foundations](https://william-herman.github.io/cert-study-trackers/ccao-f/) | Anthropic | Source-traced |
 | [CCAR-F: Claude Certified Architect – Foundations](https://william-herman.github.io/cert-study-trackers/ccar-f/) | Anthropic | Source-traced |
 | [CCDV-F: Claude Certified Developer – Foundations](https://william-herman.github.io/cert-study-trackers/ccdv-f/) | Anthropic | Source-traced |
+| [PMP: Project Management Professional](https://william-herman.github.io/cert-study-trackers/pmp/) | PMI | Source-traced |
 | [PAL-I: Professional Agile Leadership I](https://william-herman.github.io/cert-study-trackers/pal-i/) | Scrum.org | Field-validated |
 | [CSM: Certified ScrumMaster](https://william-herman.github.io/cert-study-trackers/csm/) | Scrum Alliance | Field-validated |
 
