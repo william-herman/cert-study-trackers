@@ -16,7 +16,7 @@
 </style>
 </head>
 <body>
-<div class="wrap">
+<main class="wrap" id="main">
   <div class="index-top">{{TOGGLE}}</div>
   <div class="hero">
     <h1><img class="logo" src="{{ICON}}" alt="" width="44" height="44">Cert Study Trackers</h1>
@@ -28,7 +28,8 @@
     </button>
   </div>
 
-  <div class="tabs" role="tablist" aria-label="Certification type">{{TABS}}</div>
+  <div class="resume" id="resume" hidden><span class="rlbl">Pick up where you left off</span><a id="resumeLink" href="#"><span class="rcode"></span><span class="rpct"></span></a></div>
+  <div class="tabs" role="group" aria-label="Filter by certification type">{{TABS}}</div>
   <div class="cards" id="cards">{{CARDS}}</div>
   <p class="cards-empty" id="empty" hidden>No trackers in this category yet. More are on the way.</p>
   <script>
@@ -36,7 +37,7 @@
     var tabs=[].slice.call(document.querySelectorAll(".tab")), cards=[].slice.call(document.querySelectorAll(".card"));
     function show(cat, push){
       var n=0;
-      tabs.forEach(function(t){ t.setAttribute("aria-selected", String(t.dataset.cat===cat)); });
+      tabs.forEach(function(t){ t.setAttribute("aria-pressed", String(t.dataset.cat===cat)); });
       cards.forEach(function(c){ var on = cat==="all" || c.dataset.cat===cat; c.hidden=!on; if(on) n++; });
       document.getElementById("empty").hidden = n>0;
       if (push) history.replaceState(null, "", cat==="all" ? location.pathname : "#"+cat);
@@ -44,6 +45,27 @@
     tabs.forEach(function(t){ t.addEventListener("click", function(){ show(t.dataset.cat, true); }); });
     function fromHash(){ var h=location.hash.slice(1); show(tabs.some(function(t){return t.dataset.cat===h;}) ? h : "all", false); }
     window.addEventListener("hashchange", fromHash); fromHash();
+  })();
+  </script>
+  <script>
+  (function(){
+    var CERTS = {{SHARE_DATA}}, best = null;
+    function load(slug){ try { return JSON.parse(localStorage.getItem("cst:"+slug+":done")||"{}") || {}; } catch(e){ return {}; } }
+    CERTS.forEach(function(c){
+      var done = load(c.slug), n = 0, last = "";
+      c.ids.forEach(function(id){ if (done[id]) { n++; if (done[id] > last) last = done[id]; } });
+      var card = document.querySelector('.card[data-slug="'+c.slug+'"]'); if (!card) return;
+      var pct = Math.round(n / c.ids.length * 100), txt = card.querySelector(".ptxt");
+      card.querySelector(".pbar i").style.width = pct + "%";
+      card.querySelector(".pbar").setAttribute("aria-valuenow", pct);
+      if (n) { txt.textContent = n === c.ids.length ? "Complete: all " + n + " done" : n + " of " + c.ids.length + " done (" + pct + "%)"; txt.classList.remove("none"); }
+      if (n && n < c.ids.length && (!best || last > best.last)) best = {c: c, pct: pct, last: last};
+    });
+    if (best) {
+      var r = document.getElementById("resume"), a = document.getElementById("resumeLink");
+      a.href = best.c.slug + "/"; a.querySelector(".rcode").textContent = best.c.code + ": " + best.c.name; a.querySelector(".rpct").textContent = best.pct + "%";
+      r.hidden = false;
+    }
   })();
   </script>
 
@@ -93,7 +115,7 @@
     <p>Not affiliated with or endorsed by any certification body. Certification names are trademarks of their owners. These trackers contain no exam questions or exam content; where a tracker and the official guide disagree, the guide wins.</p>
     <p>Content <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · code MIT · <a href="{{REPO}}" target="_blank" rel="noopener">Source on GitHub</a> · <a href="{{REPO}}/issues/new?template=outdated-content.md" target="_blank" rel="noopener">Report outdated content</a> · <a href="#review">Become a peer reviewer</a></p>
   </footer>
-</div>
+</main>
 {{SHARE}}
 </body>
 </html>

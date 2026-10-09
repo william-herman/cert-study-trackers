@@ -1,0 +1,219 @@
+# CCAR-P study tracker data. Schema: see SCHEMA.md.
+slug: ccar-p
+code: CCAR-P
+name: Claude Certified Architect – Professional
+issuer: Anthropic
+category: ai
+kind: exam
+confidence: source-traced
+blueprint:
+  title: CCAR-P Exam Guide
+  version: '1.0'
+  published: July 2026
+last_checked: '2026-10-09'
+summary: >-
+  Study plan for the professional-level Claude architect exam: all 38 objectives across seven weighted domains,
+  the prep course, an end-to-end build with RAG, evals and observability, and the exam rules.
+snapshot:
+  title: Exam snapshot
+  items:
+  - 63 items in 120 minutes
+  - Multiple-choice and **multiple-response**; each item says how many to pick
+  - Scaled 100–1,000, **720 to pass**, with percent-correct by domain
+  - $175 USD, proctored by Pearson VUE online or at a test center
+  - 'No prerequisites. Recommended: 3+ years in systems architecture and 6+ months with Claude or similar LLMs in production'
+  - Valid 12 months; on-time renewal is a **free** online assessment
+lens:
+  title: The lens for every question
+  intro: 'From the reasoning behind the guide''s sample questions:'
+  body:
+  - Remove what isn't needed before you guard it. Least privilege means taking away capabilities a role doesn't use; logging and confirmations are compensating controls, not the fix.
+  - Optimize without losing what matters. Put stable content first and cache it, rather than truncating required context or downsizing the model blindly.
+  - Diagnose from what changed. If answers went wrong right after a document refresh, look at retrieval and indexing before blaming the model.
+  prompts:
+  - What's the root cause, given what actually changed?
+  - Does this remove the risk, or just watch it?
+  - Which option keeps quality while cutting cost or latency?
+domains:
+- {id: 1, name: Solution Design & Architecture, short: Solution Design, weight: 17}
+- {id: 2, name: 'Claude Models, Prompting & Context Engineering', short: Models & Prompting, weight: 13}
+- {id: 3, name: Integration, short: Integration, weight: 19}
+- {id: 4, name: 'Evaluation, Testing & Optimization', short: Evaluation & Optimization, weight: 16}
+- {id: 5, name: 'Governance, Safety & Risk Management', short: Governance & Risk, weight: 14}
+- {id: 6, name: Stakeholder Communication & Lifecycle Management, short: Stakeholders & Lifecycle, weight: 14}
+- {id: 7, name: Developer Productivity & Operational Enablement, short: Developer Enablement, weight: 7}
+tag_legend:
+- {tag: guide, style: ex, meaning: preparation steps from section 7 of the exam guide}
+- {tag: added, style: added, meaning: extra hands-on practice for objectives the guide doesn't give an exercise for}
+- {tag: optional, style: optional, meaning: not counted toward progress}
+sections:
+- id: s0
+  'no': '0'
+  title: Setup
+  groups:
+  - items:
+    - id: e-guide
+      text: Read the full [CCAR-P Exam Guide v1.0 (PDF)](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542810%2FClaude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf).
+    - id: e-policies
+      text: >-
+        Read the [Certification Terms and Conditions](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F34hhd92iyp94a0gtbr15cy5jk%2Fpublic%2F1782870634%2FCertification+Terms+and+Conditions.pdf)
+        and [Exam Policy](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F34hhd92iyp94a0gtbr15cy5jk%2Fpublic%2F1782870704%2FAnthropic+Certification+Exam+Policy.pdf).
+    - id: e-self
+      tag: guide
+      text: Self-assess against all 38 objectives below. Mark the ones you haven't done in a real system; that's your study order.
+    - id: e-ccarf
+      tag: optional
+      text: If you hold CCAR-F, revisit its tracker. The Foundations exam is not a prerequisite, but it covers the same ground at a lower level.
+- id: s1
+  'no': '1'
+  title: Free Anthropic courses
+  groups:
+  - title: The prep course
+    items:
+    - id: c-prep
+      text: >-
+        Register for the free [Claude Certified Architect – Professional Prep Course](https://anthropic-partners.skilljar.com/path/claude-certified-architect-professional)
+        (5 lessons, about 12 hours).
+      sub:
+      - '*Claude Platform & Solution Design*: Domains 1 and 2.'
+      - '*Enterprise Integration & Production*: Domains 3 and 4.'
+      - '*Responsible AI, Safety & Risk for Architects*: Domain 5.'
+      - '*Stakeholder Engagement, Lifecycle & GTM*: Domain 6.'
+      - '*Team Enablement & Operational Productivity*: Domain 7.'
+  - title: Courses the certification page recommends
+    items:
+    - {id: c-api, text: '[Building with the Claude API](https://anthropic.skilljar.com/claude-with-the-anthropic-api)'}
+    - {id: c-mcp, text: '[Introduction to Model Context Protocol](https://anthropic.skilljar.com/introduction-to-model-context-protocol)'}
+    - {id: c-mcp-adv, text: '[Model Context Protocol: Advanced Topics](https://anthropic.skilljar.com/model-context-protocol-advanced-topics)'}
+    - {id: c-cloud, tag: optional, text: Claude with Amazon Bedrock or Claude on Google Cloud, if you deploy through a cloud provider.}
+- id: s2
+  'no': '2'
+  title: Solution Design & Architecture
+  short: Solution Design
+  domain: 1
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d1-1, ts: '1.1', text: Translate business problems into Claude-based AI solutions.}
+    - {id: d1-2, ts: '1.2', text: 'Design end-to-end architectures: input, processing, output and feedback loops.'}
+    - {id: d1-3, ts: '1.3', text: 'Select architectural patterns: workflow, agentic, augmented LLM.'}
+    - {id: d1-4, ts: '1.4', text: Design multi-agent systems and orchestration strategies.}
+    - {id: d1-5, ts: '1.5', text: Apply decomposition techniques to complex problems.}
+    - {id: d1-6, ts: '1.6', text: 'Align solutions to business value: efficiency, transformation, productivity, cost and performance SLAs.'}
+- id: s3
+  'no': '3'
+  title: Claude Models, Prompting & Context Engineering
+  short: Models & Prompting
+  domain: 2
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d2-1, ts: '2.1', text: Select Claude models based on trade-offs.}
+    - {id: d2-2, ts: '2.2', text: Design system prompts, templates and guardrails.}
+    - {id: d2-3, ts: '2.3', text: 'Apply prompting techniques: zero-shot, few-shot, chain-of-thought.'}
+    - {id: d2-4, ts: '2.4', text: Optimize context windows and manage token usage.}
+    - {id: d2-5, ts: '2.5', text: 'Implement prompt reuse: caching, modular prompts, Skills.'}
+  - title: Practice
+    items:
+    - {id: p2-cache, tag: added, text: Reorder a long prompt so stable content comes first, enable prompt caching, and measure time-to-first-token and cost before and after.}
+- id: s4
+  'no': '4'
+  title: Integration
+  domain: 3
+  note: The heaviest domain.
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d3-1, ts: '3.1', text: Evaluate tool and agent configuration for capability bloat.}
+    - {id: d3-2, ts: '3.2', text: Analyze authentication and authorization requirements to find security gaps.}
+    - {id: d3-3, ts: '3.3', text: Evaluate accuracy-latency trade-offs and justify configuration decisions.}
+    - {id: d3-4, ts: '3.4', text: Analyze observability challenges and choose monitoring strategies at scale.}
+    - {id: d3-5, ts: '3.5', text: Design a RAG pipeline with suitable chunking and indexing.}
+    - {id: d3-6, ts: '3.6', text: Match retrieval strategies to data shape and query pattern.}
+    - {id: d3-7, ts: '3.7', text: 'Choose the integration mechanism: MCP, API or CLI, or agent-to-agent.'}
+    - {id: d3-8, ts: '3.8', text: Evaluate progressive discovery versus a monolithic context strategy.}
+  - title: Practice
+    items:
+    - {id: p3-least, tag: added, text: Audit an agent's tool list and remove every tool its role doesn't need. Write down what attack surface that closed.}
+- id: s5
+  'no': '5'
+  title: Evaluation, Testing & Optimization
+  short: Evaluation
+  domain: 4
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d4-1, ts: '4.1', text: 'Define evaluation metrics: accuracy, latency, cost, safety, security.'}
+    - {id: d4-2, ts: '4.2', text: Design evaluation datasets and test frameworks using mixed methods.}
+    - {id: d4-3, ts: '4.3', text: Run A/B tests and iterate.}
+    - {id: d4-4, ts: '4.4', text: 'Diagnose system issues: prompt failure, hallucinations, model mismatch.'}
+    - {id: d4-5, ts: '4.5', text: Optimize token use, latency and cost-performance trade-offs.}
+    - {id: d4-6, ts: '4.6', text: Monitor performance with logging and observability tools.}
+- id: s6
+  'no': '6'
+  title: Governance, Safety & Risk Management
+  short: Governance & Risk
+  domain: 5
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d5-1, ts: '5.1', text: Implement guardrails and safety controls.}
+    - {id: d5-2, ts: '5.2', text: Identify risks, limitations and failure modes of LLM systems.}
+    - {id: d5-3, ts: '5.3', text: Apply human-in-the-loop validation.}
+    - {id: d5-4, ts: '5.4', text: 'Ensure regulatory compliance, for example GDPR, HIPAA, FedRAMP.'}
+    - {id: d5-5, ts: '5.5', text: 'Address ethical AI: bias, fairness, transparency.'}
+- id: s7
+  'no': '7'
+  title: Stakeholder Communication & Lifecycle Management
+  short: Stakeholders
+  domain: 6
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d6-1, ts: '6.1', text: Run structured discovery and requirement gathering.}
+    - {id: d6-2, ts: '6.2', text: Communicate architectural decisions and trade-offs.}
+    - {id: d6-3, ts: '6.3', text: 'Manage stakeholder feedback and expectations, including SLAs.'}
+    - {id: d6-4, ts: '6.4', text: Document architectures and give implementation guidance.}
+    - {id: d6-5, ts: '6.5', text: 'Support lifecycle phases: discovery, design, handoff, monitoring, iteration.'}
+  - title: Practice
+    items:
+    - {id: p6-adr, tag: added, text: Write a one-page architecture decision record for your build, including the option you rejected and why.}
+- id: s8
+  'no': '8'
+  title: Developer Productivity & Operational Enablement
+  short: Developer Enablement
+  domain: 7
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d7-1, ts: '7.1', text: 'Configure Claude tools and environments for teams, for example Claude Code.'}
+    - {id: d7-2, ts: '7.2', text: Improve developer workflows with AI-assisted tooling.}
+    - {id: d7-3, ts: '7.3', text: Support debugging and operational issue resolution.}
+- id: s9
+  'no': '9'
+  title: End-to-end build
+  short: End-to-end build
+  note: The guide asks you to build and operate at least one end-to-end Claude solution.
+  groups:
+  - items:
+    - {id: b-rag, tag: guide, text: The solution includes RAG.}
+    - {id: b-eval, tag: guide, text: It includes evaluation.}
+    - {id: b-obs, tag: guide, text: It includes observability.}
+    - {id: b-decide, tag: guide, text: 'You''ve practised the architectural decisions it involved: model selection, integration protocol, and security trade-offs.'}
+    - {id: b-docs, tag: guide, text: 'You''ve reviewed the official docs for the Claude API, models, prompt engineering, MCP and Skills.'}
+- id: s10
+  'no': '10'
+  title: Readiness and logistics
+  short: Readiness
+  callout: There is no practice exam. The guide's three sample questions are the only official practice.
+  groups:
+  - items:
+    - {id: r-samples, tag: guide, text: Work the sample questions in section 8 of the guide and explain why each wrong option is wrong.}
+    - {id: r-gate, text: '**Booking gate:** every objective ticked and the end-to-end build done.'}
+    - {id: l-resched, text: Reschedule or cancel at least 48 hours ahead (the newer certification FAQ's rule). Your registration name must match your ID exactly.}
+    - {id: l-retake, text: 'Retakes cost the full fee, with waits of 14 / 30 / 90 days and at most 4 attempts in 12 months.'}
+sources:
+- {title: CCAR-P certification page, url: 'https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification', note: 'format, price, domain weights'}
+- {title: CCAR-P Exam Guide v1.0 (PDF), url: 'https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542810%2FClaude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf'}
+- {title: CCAR-P Prep Course, url: 'https://anthropic-partners.skilljar.com/path/claude-certified-architect-professional'}
+- {title: Certification FAQ, url: 'https://anthropic-partners.skilljar.com/page/faq-certifications'}

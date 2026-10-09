@@ -1,0 +1,132 @@
+# AWS Certified AI Practitioner study tracker data. Schema: see SCHEMA.md.
+slug: aif-c01
+code: AIF-C01
+name: AWS Certified AI Practitioner
+issuer: AWS
+category: ai
+kind: exam
+confidence: source-traced
+blueprint:
+  title: AIF-C01 exam guide
+  version: '1.1'
+  published: April 2026
+last_checked: '2026-10-09'
+summary: >-
+  Study plan for AWS's foundational AI exam: all 14 task statements across five weighted domains, including the
+  agentic AI and MCP topics added in 2026, AWS's exam prep plan, and the exam format.
+snapshot:
+  title: Exam snapshot
+  items:
+  - '**65 questions in 90 minutes**: 50 scored, 15 unscored and not identified'
+  - Multiple choice, multiple response, **ordering** and **matching**
+  - Scaled 100–1,000, **700 to pass**; no penalty for guessing
+  - $100 USD, at a Pearson VUE test center or online
+  - 'Foundational: for people who **use**, not build, AI/ML on AWS'
+  - Guide updated to v1.1 in April 2026, adding agentic AI, MCP and context engineering
+lens:
+  title: The lens for every question
+  intro: 'From the exam guide''s target candidate and scope:'
+  body:
+  - You're expected to know **what** each AWS AI service is for and **when** to use it, not how to code or tune it.
+  - Know when AI is **not** the right answer, for example when cost outweighs benefit or an exact outcome is needed.
+  - Security, governance and responsible AI are 28% combined, as much as the heaviest domain.
+  prompts:
+  - Which AWS service is purpose-built for this?
+  - Is AI even the right tool here?
+  - What's the cost, risk or compliance trade-off?
+domains:
+- {id: 1, name: Fundamentals of AI and ML, short: AI & ML fundamentals, weight: 20}
+- {id: 2, name: Fundamentals of GenAI, short: GenAI fundamentals, weight: 24}
+- {id: 3, name: Applications of Foundation Models, short: Foundation model apps, weight: 28}
+- {id: 4, name: Guidelines for Responsible AI, short: Responsible AI, weight: 14}
+- {id: 5, name: 'Security, Compliance, and Governance for AI Solutions', short: Security & governance, weight: 14}
+sections:
+- id: s0
+  'no': '0'
+  title: Setup
+  groups:
+  - items:
+    - {id: e-guide, text: 'Read the [AIF-C01 exam guide](https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html), including the in-scope and out-of-scope services lists.'}
+    - {id: e-plan, text: 'Follow AWS''s [4-step Exam Prep Plan on Skill Builder](https://skillbuilder.aws/category/exam-prep/ai-practitioner-AIF-C01).'}
+    - {id: e-base, tag: optional, text: 'If AWS itself is new to you, start with [AWS Cloud Practitioner Essentials](https://explore.skillbuilder.aws/learn/course/external/view/elearning/134/aws-cloud-practitioner-essentials). The guide assumes basic familiarity with EC2, S3, Lambda, IAM, the shared responsibility model and AWS pricing.'}
+- id: s1
+  'no': '1'
+  title: Fundamentals of AI and ML
+  short: AI & ML fundamentals
+  domain: 1
+  groups:
+  - title: Task statements
+    items:
+    - {id: d1-1, ts: '1.1', text: Explain basic AI concepts and terms, sub: ['AI vs. ML vs. GenAI vs. deep learning vs. agentic AI.', 'Inference types (batch, real-time, asynchronous, serverless), data types, and learning types.']}
+    - {id: d1-2, ts: '1.2', text: Identify practical use cases for AI, sub: ['Where AI adds value, and when it is **not** appropriate.', 'Regression, classification, clustering; AWS managed AI services (SageMaker AI, Transcribe, Translate, Comprehend, Lex, Polly); traditional ML vs. foundation models.']}
+    - {id: d1-3, ts: '1.3', text: Describe the AI/ML development lifecycle, sub: ['Pipeline components, model sources and ways to run models in production.', 'AWS services per stage, MLOps basics, and model vs. business metrics.']}
+- id: s2
+  'no': '2'
+  title: Fundamentals of GenAI
+  short: GenAI fundamentals
+  domain: 2
+  groups:
+  - title: Task statements
+    items:
+    - {id: d2-1, ts: '2.1', text: Explain basic GenAI concepts, sub: ['Tokens, chunking, embeddings, vectors, transformers, multimodal and diffusion models; the FM lifecycle.', 'Token-based pricing, context engineering, and agentic AI concepts including MCP and multi-agent patterns.']}
+    - {id: d2-2, ts: '2.2', text: 'GenAI''s capabilities and limitations for business problems: advantages, disadvantages such as hallucinations, model selection factors, and business metrics.'}
+    - {id: d2-3, ts: '2.3', text: 'AWS infrastructure and services for GenAI apps (Bedrock, SageMaker AI and JumpStart, Amazon Quick, Kiro, Strands Agents, Bedrock AgentCore), their benefits and cost trade-offs.'}
+- id: s3
+  'no': '3'
+  title: Applications of Foundation Models
+  short: Foundation model apps
+  domain: 3
+  note: The heaviest domain.
+  groups:
+  - title: Task statements
+    items:
+    - {id: d3-1, ts: '3.1', text: Design considerations for FM applications, sub: ['Model selection criteria and inference parameters.', 'RAG (Bedrock Knowledge Bases), vector stores on AWS, customization cost trade-offs, and AI agents.']}
+    - {id: d3-2, ts: '3.2', text: 'Choose effective prompt engineering techniques, know their risks (poisoning, hijacking, jailbreaking), and version prompts with Bedrock Prompt Management.'}
+    - {id: d3-3, ts: '3.3', text: 'The training and fine-tuning process for FMs, and how to prepare data for it.'}
+    - {id: d3-4, ts: '3.4', text: 'Evaluate FM performance: human and benchmark evaluation, metrics such as ROUGE, BLEU, BERTScore and LLM-as-a-judge, and business alignment.'}
+  - title: Practice
+    items:
+    - {id: p3-bedrock, tag: added, text: 'In the Bedrock console, compare two foundation models on the same prompt and adjust temperature. Note how the outputs differ.'}
+- id: s4
+  'no': '4'
+  title: Guidelines for Responsible AI
+  short: Responsible AI
+  domain: 4
+  groups:
+  - title: Task statements
+    items:
+    - {id: d4-1, ts: '4.1', text: Develop AI systems responsibly, sub: ['Features of responsible AI, Bedrock Guardrails, sustainable model choice.', 'Legal risks of GenAI, dataset characteristics, bias and variance, and tools to monitor them.']}
+    - {id: d4-2, ts: '4.2', text: 'Transparent and explainable models: the difference, tools such as SageMaker Model Cards, safety vs. transparency trade-offs, and human-centered design.'}
+- id: s5
+  'no': '5'
+  title: Security, Compliance, and Governance for AI Solutions
+  short: Security & governance
+  domain: 5
+  groups:
+  - title: Task statements
+    items:
+    - {id: d5-1, ts: '5.1', text: Secure AI systems, sub: ['AWS security services and features, including IAM, encryption, Macie, PrivateLink, AgentCore Identity and Guardrails.', 'Data lineage, secure data engineering, prompt injection and data leakage, and hallucination detection.']}
+    - {id: d5-2, ts: '5.2', text: 'Governance and compliance: AWS Config, Inspector, Artifact, CloudTrail and Trusted Advisor; data governance strategies; governance processes such as the Generative AI Security Scoping Matrix.'}
+- id: s6
+  'no': '6'
+  title: Readiness and logistics
+  short: Readiness
+  groups:
+  - items:
+    - {id: r-practice, text: Take the AWS Certification Official Practice Question Set from the exam prep plan.}
+    - {id: r-pretest, text: Take the AWS Certification Official Pretest to find weak areas.}
+    - {id: r-new, text: 'Double-check the topics added in v1.1 (agentic AI, MCP, context engineering, AgentCore). Older prep material may not cover them.'}
+    - {id: r-gate, text: '**Booking gate:** every task statement ticked and consistent pretest results.'}
+  out_of_scope:
+  - Developing or coding AI/ML models or algorithms
+  - Data or feature engineering
+  - Hyperparameter tuning or model optimization
+  - Building and deploying ML pipelines or infrastructure
+  - Mathematical or statistical analysis of models
+  - Implementing security or compliance protocols
+  - Writing governance frameworks or policies
+sources:
+- {title: AWS Certified AI Practitioner page, url: 'https://aws.amazon.com/certification/certified-ai-practitioner/', note: 'duration, cost, languages'}
+- {title: AIF-C01 exam guide, url: 'https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html'}
+- {title: AIF-C01 exam guide revisions, url: 'https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/aif-01-revisions.html', note: v1.1 changes}
+- {title: AWS Skill Builder exam prep plan, url: 'https://skillbuilder.aws/category/exam-prep/ai-practitioner-AIF-C01'}

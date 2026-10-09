@@ -16,6 +16,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#sections">Skip to checklist</a>
 <header class="top">
   <div class="wrap">
     <div class="brand">
@@ -32,7 +33,7 @@
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap" id="main">
   <div class="meta" id="meta"></div>
   <div id="stale"></div>
   <div class="meters" id="meters"></div>
@@ -41,8 +42,8 @@
     <aside class="index">
       <nav id="nav" aria-label="Sections"></nav>
       <div class="filters">
-        <span class="lbl">Show</span>
-        <div class="seg" role="group" aria-label="Filter items">
+        <span class="lbl" id="showLbl">Show</span>
+        <div class="seg" role="group" aria-labelledby="showLbl">
           <button type="button" data-f="all" aria-pressed="true">All</button>
           <button type="button" data-f="open" aria-pressed="false">To do</button>
           <button type="button" data-f="done" aria-pressed="false">Done</button>
@@ -51,13 +52,13 @@
       </div>
     </aside>
 
-    <main class="content" id="content">
+    <div class="content" id="content">
       <div id="intro"></div>
       <div id="sections"></div>
       <footer id="foot"></footer>
-    </main>
+    </div>
   </div>
-</div>
+</main>
 
 <script>
 const CERT = {{DATA}};
@@ -114,7 +115,8 @@ function save(){
 
 // ---------- Static parts ----------
 function renderStatic(){
-  document.getElementById("hdrCode").textContent = [CERT.issuer, CERT.code, /^\d+(\.\d+)+$/.test(String(CERT.blueprint.version)) ? "v"+CERT.blueprint.version : ""].filter(Boolean).join(" · ");
+  document.getElementById("hdrCode").textContent = CERT.issuer;
+  document.body.dataset.cat = CERT.category || "";
   document.getElementById("hdrTitle").textContent = CERT.code+" Study Tracker";
   document.getElementById("crumbCur").textContent = CERT.code;
 
@@ -130,8 +132,8 @@ function renderStatic(){
 
   let intro = "";
   const parts = [];
-  if (CERT.snapshot) parts.push('<div><h3>'+esc(CERT.snapshot.title||"Snapshot")+'</h3><ul>'+CERT.snapshot.items.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>');
-  if (CERT.lens) parts.push('<div class="lens"><h3>'+esc(CERT.lens.title)+'</h3>'+(CERT.lens.intro?'<p>'+md(CERT.lens.intro)+'</p>':'')+(Array.isArray(CERT.lens.body)?'<ul>'+CERT.lens.body.map(x=>'<li>'+md(x)+'</li>').join('')+'</ul>':(CERT.lens.body?'<p>'+md(CERT.lens.body)+'</p>':''))+(CERT.lens.prompts||[]).map(q=>'<q>'+esc(q)+'</q>').join("")+'</div>');
+  if (CERT.snapshot) parts.push('<div><h2>'+esc(CERT.snapshot.title||"Snapshot")+'</h2><ul>'+CERT.snapshot.items.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>');
+  if (CERT.lens) parts.push('<div class="lens"><h2>'+esc(CERT.lens.title)+'</h2>'+(CERT.lens.intro?'<p>'+md(CERT.lens.intro)+'</p>':'')+(Array.isArray(CERT.lens.body)?'<ul>'+CERT.lens.body.map(x=>'<li>'+md(x)+'</li>').join('')+'</ul>':(CERT.lens.body?'<p>'+md(CERT.lens.body)+'</p>':''))+(CERT.lens.prompts||[]).map(q=>'<q>'+esc(q)+'</q>').join("")+'</div>');
   if (parts.length) intro = '<div class="intro'+(parts.length===1?' single':'')+'">'+parts.join("")+'</div>';
   intro += '<p class="tier-note"><strong>'+esc(t[0])+':</strong> '+esc(t[1])+'</p>';
   intro += '<p class="review-cta">Hold this certification? <a href="'+reviewUrl()+'" target="_blank" rel="noopener">Peer-review this tracker</a></p>';
@@ -169,11 +171,11 @@ function renderSections(){
     if (sec.callout) h += '<div class="callout">'+md(sec.callout)+'</div>';
     sec.groups.forEach(g => {
       const vis = g.items.filter(i=>visible(i.id));
-      h += '<div class="group">'+(g.title?'<h4>'+esc(g.title)+'</h4>':'')+'<ul class="items">'+
+      h += '<div class="group">'+(g.title?'<h3>'+esc(g.title)+'</h3>':'')+'<ul class="items">'+
         (vis.length ? vis.map(itemHtml).join("") : '<li class="hidden-note">'+(filter==="done"?"Nothing ticked here yet.":"All done in this group.")+'</li>')+'</ul></div>';
     });
-    if (sec.skip) h += '<div class="skip"><h4>Skip or skim</h4><ul>'+sec.skip.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
-    if (sec.out_of_scope) h += '<div class="group"><h4>Out of scope · don\'t study these</h4><ul class="oos">'+sec.out_of_scope.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
+    if (sec.skip) h += '<div class="skip"><h3>Skip or skim</h3><ul>'+sec.skip.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
+    if (sec.out_of_scope) h += '<div class="group"><h3>Out of scope: don\'t study these</h3><ul class="oos">'+sec.out_of_scope.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
     h += '</section>';
   });
 

@@ -1,0 +1,117 @@
+# Google Cloud Generative AI Leader study tracker data. Schema: see SCHEMA.md.
+slug: gail
+code: GAIL
+name: Google Cloud Certified Generative AI Leader
+issuer: Google Cloud
+category: ai
+kind: exam
+confidence: source-traced
+blueprint:
+  title: Generative AI Leader Certification exam guide
+  version: as of Oct 2026
+  published: Google Cloud
+last_checked: '2026-10-09'
+summary: >-
+  Study plan for Google's business-level gen AI certification: all 15 objectives across four weighted sections,
+  Google's learning path and study guide, and the exam and renewal rules. No technical background needed.
+snapshot:
+  title: Exam snapshot
+  items:
+  - 50–60 multiple-choice questions in 90 minutes
+  - $99 USD (plus tax), online or at a test center
+  - No prerequisites, and no hands-on technical experience needed
+  - English, Japanese, Spanish, Portuguese
+  - Valid **3 years**, with a renewal exam
+  - Google renamed some products recently, so learn the names **as the exam guide uses them**
+lens:
+  title: The lens for every question
+  intro: 'From the exam guide''s own framing:'
+  body:
+  - This is a **strategy** exam, not an implementation one. Expect "which offering fits this business need" rather than "how do I configure it".
+  - Google Cloud's own offerings are the expected answers. Know what each product is for and who uses it.
+  - Responsible and secure AI run through every section, not just the last one.
+  prompts:
+  - What business problem is this scenario really about?
+  - Which Google offering is built for exactly that?
+  - What's the responsible or secure way to do it?
+domain_label: Section
+domains:
+- {id: 1, name: Fundamentals of gen AI, short: Gen AI fundamentals, weight: 30}
+- {id: 2, name: Google Cloud's gen AI offerings, short: Google Cloud offerings, weight: 35}
+- {id: 3, name: Techniques to improve gen AI model output, short: Improving model output, weight: 20}
+- {id: 4, name: Business strategies for a successful gen AI solution, short: Business strategy, weight: 15}
+sections:
+- id: s0
+  'no': '0'
+  title: Setup
+  groups:
+  - items:
+    - {id: e-guide, text: 'Read the [Generative AI Leader exam guide (PDF)](https://services.google.com/fh/files/misc/generative_ai_leader_exam_guide_english.pdf). It lists everything on both the standard and renewal exams.'}
+    - {id: e-path, text: 'Follow the [Generative AI Leader learning path](https://www.cloudskillsboost.google/paths/1951) on Google Cloud Skills Boost.'}
+    - {id: e-study, text: 'Read the [Generative AI Leader Study Guide (PDF)](https://services.google.com/fh/files/misc/generative_ai_leader_study_guide_english.pdf).'}
+- id: s1
+  'no': '1'
+  title: Fundamentals of gen AI
+  short: Fundamentals
+  domain: 1
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d1-1, ts: '1.1', text: Core gen AI concepts and use cases, sub: ['Key terms: AI, NLP, machine learning, foundation and multimodal models, diffusion models, LLMs, prompt tuning and engineering.', 'Supervised, unsupervised and reinforcement learning; the ML lifecycle and Google Cloud tools for each stage.', 'Choosing a foundation model for a business use case, and where gen AI can create, summarize, discover and automate.']}
+    - {id: d1-2, ts: '1.2', text: How data types are used in gen AI, sub: ['Data quality and accessibility; structured vs. unstructured; labeled vs. unlabeled.']}
+    - {id: d1-3, ts: '1.3', text: 'The layers of the gen AI landscape: infrastructure, models, platforms, agents, applications.'}
+    - {id: d1-4, ts: '1.4', text: "Use cases and strengths of Google's foundation models: Gemini, Gemma, Imagen, Veo."}
+- id: s2
+  'no': '2'
+  title: Google Cloud's gen AI offerings
+  short: Google Cloud offerings
+  domain: 2
+  note: The heaviest section.
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d2-1, ts: '2.1', text: "Google Cloud's strengths in gen AI", sub: ['Enterprise-ready platform, open approach, AI-optimized infrastructure (TPUs, GPUs).', 'Control over your data, and low-code and no-code tools that broaden who can build.']}
+    - {id: d2-2, ts: '2.2', text: 'Prebuilt offerings for AI-powered work: the Gemini app, Gemini Enterprise, Gemini for Google Workspace.'}
+    - {id: d2-3, ts: '2.3', text: 'Customer experience offerings: search offerings and the Customer Engagement Suite.'}
+    - {id: d2-4, ts: '2.4', text: 'Building with AI: Agent Platform, Google Cloud RAG offerings, and building custom agents.'}
+    - {id: d2-5, ts: '2.5', text: 'Agent tooling: how agents use tools, the relevant Google Cloud services and AI APIs, and when to use Agent Studio vs. Google AI Studio.'}
+  - title: Practice
+    items:
+    - {id: p2-map, tag: added, text: 'List five business problems from your own work and, for each, the Google offering from this section that fits it best.'}
+- id: s3
+  'no': '3'
+  title: Techniques to improve gen AI model output
+  short: Improving output
+  domain: 3
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d3-1, ts: '3.1', text: Overcoming foundation model limitations, sub: ['Limits: data dependency, knowledge cutoff, bias, hallucinations, edge cases.', 'Fixes: grounding, RAG, prompt engineering, fine-tuning, human in the loop; plus ongoing monitoring and evaluation.']}
+    - {id: d3-2, ts: '3.2', text: 'Prompt engineering techniques, from zero- and few-shot to chain-of-thought and ReAct.'}
+    - {id: d3-3, ts: '3.3', text: 'Grounding and its use cases, Google Cloud grounding offerings, and sampling settings (temperature, top-p, token limits, safety settings).'}
+- id: s4
+  'no': '4'
+  title: Business strategies for a successful gen AI solution
+  short: Business strategy
+  domain: 4
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d4-1, ts: '4.1', text: "Google Cloud's recommended steps to implement a gen AI solution, choose the right one, and measure its impact."}
+    - {id: d4-2, ts: '4.2', text: "Secure AI: security across the ML lifecycle, Google's Secure AI Framework (SAIF), and Google Cloud security tools."}
+    - {id: d4-3, ts: '4.3', text: 'Responsible AI: transparency, privacy, data quality and bias, accountability and explainability.'}
+- id: s5
+  'no': '5'
+  title: Readiness and logistics
+  short: Readiness
+  groups:
+  - items:
+    - {id: r-samples, text: 'Try Google''s official [sample questions](https://forms.gle/soztS7Q74AXBncATA). Google notes they don''t reflect the range or difficulty of the real exam.'}
+    - {id: r-names, text: Re-read the product names in the exam guide. Recent rebranding means older courses and videos may use outdated names.}
+    - {id: r-gate, text: '**Booking gate:** every objective ticked, and you can explain each Google offering''s purpose in one sentence.'}
+    - {id: l-renew, text: The certification is valid 3 years. Renew within the eligibility window using the renewal exam.}
+sources:
+- {title: Generative AI Leader certification page, url: 'https://cloud.google.com/learn/certification/generative-ai-leader', note: 'format, price, validity'}
+- {title: Generative AI Leader exam guide (PDF), url: 'https://services.google.com/fh/files/misc/generative_ai_leader_exam_guide_english.pdf'}
+- {title: Generative AI Leader Study Guide (PDF), url: 'https://services.google.com/fh/files/misc/generative_ai_leader_study_guide_english.pdf'}
+- {title: Generative AI Leader learning path, url: 'https://www.cloudskillsboost.google/paths/1951'}

@@ -1,0 +1,140 @@
+# CompTIA Security+ V8 study tracker data. Schema: see SCHEMA.md.
+slug: sy0-801
+code: SY0-801
+name: CompTIA Security+ (V8)
+issuer: CompTIA
+category: cybersecurity
+kind: exam
+confidence: source-traced
+blueprint:
+  title: Security+ SY0-801 V8 exam objectives
+  version: '2.0'
+  published: CompTIA
+last_checked: '2026-10-09'
+summary: >-
+  Study plan for the new Security+ V8, which launches November 17, 2026: all 27 objectives across five weighted
+  domains, including the new AI threats and AI-assisted operations, plus the exam rules.
+snapshot:
+  title: Exam snapshot
+  items:
+  - '**V8 launches on or around November 17, 2026.** V7 (SY0-701) stays available in English until June 11, 2027'
+  - Up to **90 questions in 90 minutes**, multiple choice plus **performance-based**
+  - Scaled 100–900, **750 to pass**
+  - 'Recommended: two years of hands-on experience as a security administrator'
+  - English at launch
+  - Valid 3 years; renew through CompTIA's continuing education program
+lens:
+  title: The lens for every question
+  intro: 'From the objectives and CompTIA''s target candidate:'
+  body:
+  - Security Operations is the heaviest domain at 27%. Expect to act on alerts, vulnerabilities and incidents, not only name them.
+  - V8 adds AI on both sides, as a source of risk (2.6) and as a tool in operations (4.6). Older V7 material won't cover either.
+  - The candidate is an administrator who supports the program. Choose the answer that follows policy and process, not a heroic one-person fix.
+  prompts:
+  - Which control type and category is this?
+  - What's the first step in the process the objective names?
+  - Does this reduce the risk, or just detect it?
+domains:
+- {id: 1, name: General Security Concepts, short: General concepts, weight: 16}
+- {id: 2, name: 'Threats, Vulnerabilities, and Attacks', short: Threats & attacks, weight: 24}
+- {id: 3, name: Security Architecture, short: Architecture, weight: 19}
+- {id: 4, name: Security Operations, short: Operations, weight: 27}
+- {id: 5, name: Security Program Management and Oversight, short: Program management, weight: 14}
+sections:
+- id: s0
+  'no': '0'
+  title: Setup
+  groups:
+  - items:
+    - {id: e-obj, text: 'Download the [Security+ V8 exam objectives (PDF)](https://lecbyo.files.cmp.optimizely.com/download/77f3bd3223ac11f180820e495f189928), including the acronym list.'}
+    - {id: e-ver, text: 'Check which version you''ll sit. If you test on V7 before it retires, use CompTIA''s [V7 objectives](https://www.comptia.org/en-us/certifications/security/v7/) instead; this tracker follows V8.'}
+    - {id: e-acr, text: Work through the acronym list until you can expand and explain each one.}
+    - {id: e-net, tag: optional, text: 'If networking is new to you, start with the [Network+ tracker](https://william-herman.github.io/cert-study-trackers/n10-009/). CompTIA once listed Network+ as recommended experience for Security+.'}
+- id: s1
+  'no': '1'
+  title: General Security Concepts
+  short: General concepts
+  domain: 1
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d1-1, ts: '1.1', text: 'Security concepts and controls: defense in depth, control categories and control types.'}
+    - {id: d1-2, ts: '1.2', text: 'Given a scenario, the security impact of change management: approvals, technical implications, documentation, version control.'}
+    - {id: d1-3, ts: '1.3', text: 'Cryptographic solutions: PKI, certificates, encryption levels, digital signatures, salting, obfuscation, hashing.'}
+- id: s2
+  'no': '2'
+  title: 'Threats, Vulnerabilities, and Attacks'
+  short: Threats & attacks
+  domain: 2
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d2-1, ts: '2.1', text: 'Characteristics of threats and vulnerabilities, including CVSS scoring.'}
+    - {id: d2-2, ts: '2.2', text: 'Threat actors, their motivations and attributes.'}
+    - {id: d2-3, ts: '2.3', text: 'Threat vectors and sources: message, image, attachment, browser, network, endpoint, supply chain, human, IoT, OT, physical and signal-based.'}
+    - {id: d2-4, ts: '2.4', text: 'Vulnerabilities and attack surfaces: unpatched and unmanaged systems, zero-days, shadow IT, misconfiguration, LLMs, identity providers, public repos and storage.'}
+    - {id: d2-5, ts: '2.5', text: 'Given a scenario, analyze indicators of malicious activity: malware, physical, network, social engineering, application and credential attacks, IoCs.'}
+    - {id: d2-6, ts: '2.6', text: 'Threats from AI usage: model manipulation, poisoning, prompt injection, jailbreaking, data loss, hallucinations, bias, privacy.'}
+- id: s3
+  'no': '3'
+  title: Security Architecture
+  short: Architecture
+  domain: 3
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d3-1, ts: '3.1', text: 'Security implications of architecture models: serverless, multicloud, deployment models, IaC, technical and business considerations.'}
+    - {id: d3-2, ts: '3.2', text: 'Given a scenario, manage security architecture: zero trust, secure communication, least privilege, identity, failure modes.'}
+    - {id: d3-3, ts: '3.3', text: 'Protecting data: types, states, classifications, securing methods, roles, handling, life cycle, compliance.'}
+    - {id: d3-4, ts: '3.4', text: 'Resilience and recovery: site considerations, redundancy and power, storage, backups, testing, DR, business continuity, recovery metrics.'}
+- id: s4
+  'no': '4'
+  title: Security Operations
+  short: Operations
+  domain: 4
+  note: The heaviest domain.
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d4-1, ts: '4.1', text: 'Given a scenario, apply mitigating controls: segmentation, hardening, sandboxing, IDS/IPS, firewalls, EDR/XDR, NAC, email security (DMARC, DKIM).'}
+    - {id: d4-2, ts: '4.2', text: 'Hardware, software and data asset management across the life cycle, from procurement to disposal.'}
+    - {id: d4-3, ts: '4.3', text: 'Given a scenario, vulnerability management: identification, prioritization, remediation, verification, reporting.'}
+    - {id: d4-4, ts: '4.4', text: 'Alerting and monitoring concepts and tools: activities, protocols, automated alerts, dashboards.'}
+    - {id: d4-5, ts: '4.5', text: 'Given a scenario, identity and access management: provisioning, federation, SSO, MFA, access models, access reviews, password concepts.'}
+    - {id: d4-6, ts: '4.6', text: 'Given a scenario, automation and orchestration, including AI (agentic, chatbots, predictive analysis) and CI/CD in SecOps.'}
+    - {id: d4-7, ts: '4.7', text: 'Incident response: preparation, identification, investigation, containment, eradication and recovery, reporting, post-incident.'}
+    - {id: d4-8, ts: '4.8', text: 'Given a scenario, use data, artifacts and sources in an investigation: logs, system images, integrity, log parsing.'}
+  - title: Practice
+    items:
+    - {id: p4-logs, tag: added, text: 'Read real logs (your own firewall, OS or web server) and pick out one event worth investigating. Note which 4.8 data source it came from.'}
+- id: s5
+  'no': '5'
+  title: Security Program Management and Oversight
+  short: Program management
+  domain: 5
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d5-1, ts: '5.1', text: 'Governance, risk and compliance artifacts: guidelines, standards, procedures, plans, policies.'}
+    - {id: d5-2, ts: '5.2', text: 'Risk management: identification, assessment, analysis (including ALE and ARO), the risk register, treatment.'}
+    - {id: d5-3, ts: '5.3', text: 'Third-party risk: vendor selection, agreement types, monitoring, rules of engagement.'}
+    - {id: d5-4, ts: '5.4', text: 'Effective security compliance: training, monitoring, consequences, privacy, legal compliance.'}
+    - {id: d5-5, ts: '5.5', text: 'Audits and assessments: scoping, engagement types, penetration testing, frameworks, functional and behavioral testing.'}
+    - {id: d5-6, ts: '5.6', text: 'Given a scenario, apply security awareness: training types, delivery, measuring effectiveness, common topics.'}
+  - title: Practice
+    items:
+    - {id: p5-ale, tag: added, text: 'Work three ALE calculations (SLE × ARO) from made-up assets until the formula is automatic.'}
+- id: s6
+  'no': '6'
+  title: Readiness and logistics
+  short: Readiness
+  groups:
+  - items:
+    - {id: r-new, text: 'Double-check the V8 additions (2.6, 4.6). Prep material written for V7 won''t cover them.'}
+    - {id: r-pbq, text: Practice performance-based questions under time pressure; you can flag them and come back.}
+    - {id: r-gate, text: '**Booking gate:** every objective ticked and consistent results on V8-labeled practice tests.'}
+    - {id: l-renew, text: 'After you pass, plan renewal: the certification is valid 3 years and renews through CompTIA''s continuing education program.'}
+sources:
+- {title: Security+ V8 page, url: 'https://www.comptia.org/en-us/certifications/security/v8/', note: 'launch date, exam details, weights'}
+- {title: Security+ V8 exam objectives (PDF), url: 'https://lecbyo.files.cmp.optimizely.com/download/77f3bd3223ac11f180820e495f189928'}
+- {title: Security+ V7 page, url: 'https://www.comptia.org/en-us/certifications/security/v7/', note: V7 retirement dates}

@@ -1,0 +1,130 @@
+# ISC2 Certified in Cybersecurity study tracker data. Schema: see SCHEMA.md.
+slug: isc2-cc
+code: CC
+name: ISC2 Certified in Cybersecurity
+issuer: ISC2
+category: cybersecurity
+kind: exam
+confidence: source-traced
+blueprint:
+  title: CC Certification Exam Outline
+  version: effective Sept 1, 2026
+  published: ISC2
+last_checked: '2026-10-09'
+summary: >-
+  Study plan for ISC2's entry-level cybersecurity exam, using the outline that took effect September 1, 2026: all
+  19 objectives across five weighted domains, AI security across every domain, and the testing windows.
+snapshot:
+  title: Exam snapshot
+  items:
+  - '**100–125 items in 2 hours**, computerized adaptive testing (CAT)'
+  - Multiple choice and advanced item types; **700 of 1,000 to pass**
+  - $199 USD exam; in person at a Pearson VUE test center only
+  - '**Testing windows only:** Jan 4–Feb 2, Apr 1–30, Jul 11–Aug 9, Oct 8–Nov 6'
+  - No experience required
+  - New outline effective **September 1, 2026**, with AI security woven into all five domains
+lens:
+  title: The lens for every question
+  intro: 'From ISC2''s description of who CC is for:'
+  body:
+  - CC is for newcomers. Expect concepts and judgment, not hands-on configuration.
+  - The entry-level role supports the organization. Follow the policy, playbook or escalation path rather than acting alone.
+  - AI is now part of every domain, for example model poisoning as an integrity risk and model drift as a continuity risk.
+  - The ISC2 Code of Ethics is in scope (1.5). Know its canons and their order.
+  prompts:
+  - Which part of the CIA triad (or AAA) is at stake?
+  - What does policy or the playbook say to do first?
+  - Is this my call to make, or should it be escalated?
+domains:
+- {id: 1, name: Security Principles, short: Security principles, weight: 24}
+- {id: 2, name: Security Governance, short: Governance, weight: 17.3}
+- {id: 3, name: Identity and Access Management (IAM) Concepts, short: IAM, weight: 20}
+- {id: 4, name: Networking and Cloud Security Concepts, short: Network & cloud, weight: 21.3}
+- {id: 5, name: Security Operations and Incident Response, short: SecOps & IR, weight: 17.3}
+sections:
+- id: s0
+  'no': '0'
+  title: Setup
+  groups:
+  - items:
+    - {id: e-outline, text: 'Read the [CC exam outline](https://www.isc2.org/certifications/cc/cc-certification-exam-outline), including the section on how AI security is built into each domain.'}
+    - {id: e-version, text: 'Check that your prep material covers the **September 2026** outline. The domain names changed, so older material uses a different structure.'}
+    - {id: e-window, text: 'Pick a testing window and confirm there''s a [Pearson test center](https://www.isc2.org/certifications/cc) near you. The exam isn''t offered online.'}
+- id: s1
+  'no': '1'
+  title: Security Principles
+  short: Security principles
+  domain: 1
+  note: The heaviest domain.
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d1-1, ts: '1.1', text: 'Cybersecurity concepts: confidentiality, integrity, availability, AAA, non-repudiation, privacy.'}
+    - {id: d1-2, ts: '1.2', text: 'Risk management concepts: the risk management life cycle and its processes.'}
+    - {id: d1-3, ts: '1.3', text: 'Governance concepts: regulations and laws, frameworks, and policies, standards (ISO, CIS) and procedures.'}
+    - {id: d1-4, ts: '1.4', text: 'Cybersecurity controls: technical, administrative, physical.'}
+    - {id: d1-5, ts: '1.5', text: 'Professional and ethical conduct: code of conduct, due care and due diligence, the [ISC2 Code of Ethics](https://www.isc2.org/ethics).'}
+- id: s2
+  'no': '2'
+  title: Security Governance
+  short: Governance
+  domain: 2
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d2-1, ts: '2.1', text: 'Governance, risk and compliance (GRC): purpose, importance, frameworks and tools.'}
+    - {id: d2-2, ts: '2.2', text: 'Redundancy: business continuity and disaster recovery, including model drift as a BC/DR risk.'}
+    - {id: d2-3, ts: '2.3', text: 'Security awareness: organizational culture, social engineering, password protection, phishing, and how AI escalates them.'}
+    - {id: d2-4, ts: '2.4', text: 'Measuring cybersecurity effectiveness: key metrics, key risk indicators, dashboards and reports.'}
+- id: s3
+  'no': '3'
+  title: Identity and Access Management Concepts
+  short: IAM
+  domain: 3
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d3-1, ts: '3.1', text: 'Identity life cycle: role definition, provisioning, review, deprovisioning, frameworks and tools.'}
+    - {id: d3-2, ts: '3.2', text: 'Logical access controls: least privilege, separation of duties, access control models.'}
+  - title: Practice
+    items:
+    - {id: p3-models, tag: added, text: 'For DAC, MAC and RBAC, write one workplace example each and say who decides access.'}
+- id: s4
+  'no': '4'
+  title: Networking and Cloud Security Concepts
+  short: Network & cloud
+  domain: 4
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d4-1, ts: '4.1', text: 'Network security: OSI and TCP/IP models, IPv4 and IPv6, VPN, firewalls and ports, wireless, embedded systems, ICS and IoT.'}
+    - {id: d4-2, ts: '4.2', text: 'Network security architecture: segmentation (zones, VLANs, micro-segmentation), defense in depth, zero trust.'}
+    - {id: d4-3, ts: '4.3', text: 'Cloud security: cloud characteristics, service and deployment models, the shared responsibility model.'}
+- id: s5
+  'no': '5'
+  title: Security Operations and Incident Response
+  short: SecOps & IR
+  domain: 5
+  groups:
+  - title: Objectives to own
+    items:
+    - {id: d5-1, ts: '5.1', text: 'Data security: classification, labeling, masking and sanitization; symmetric, asymmetric, hashing and quantum-resistant cryptography.'}
+    - {id: d5-2, ts: '5.2', text: 'Security operations: logging and monitoring, event triage, threat actors, cyber threat intelligence, threat frameworks.'}
+    - {id: d5-3, ts: '5.3', text: 'Incident response: implementing the incident response plan, exercises such as tabletops.'}
+    - {id: d5-4, ts: '5.4', text: 'Asset protection: asset life cycle (including end-of-life), configuration and change management.'}
+    - {id: d5-5, ts: '5.5', text: 'Security testing: blue, purple and red teaming; vulnerability scanning, static and dynamic analysis, threat modeling; physical penetration testing.'}
+- id: s6
+  'no': '6'
+  title: Readiness and logistics
+  short: Readiness
+  groups:
+  - items:
+    - {id: r-cat, text: 'Understand CAT: questions adapt to your answers, and you can''t go back to change one. Practice committing to an answer.'}
+    - {id: r-gate, text: '**Booking gate:** every objective ticked and you can explain each one to a non-technical friend.'}
+    - {id: r-id, text: Bring the ID Pearson VUE requires; the name must match your registration.}
+    - {id: l-member, text: 'After you pass, complete ISC2''s membership steps to be awarded the certification, and keep it current with continuing education credits.'}
+sources:
+- {title: CC certification page, url: 'https://www.isc2.org/certifications/cc', note: exam price and delivery}
+- {title: CC exam outline, url: 'https://www.isc2.org/certifications/cc/cc-certification-exam-outline', note: 'effective Sept 1, 2026; weights, format, testing windows'}
+- {title: CC exam outline (PDF), url: 'https://edge.sitecorecloud.io/internationf173-xmc4e73-prodbc0f-9660/media/Project/ISC2/Main/Media/documents/exam-outlines/2026/EXAMS-CC_Exam_Outline-English-Revised-01-2026-Final.pdf'}
+- {title: ISC2 Code of Ethics, url: 'https://www.isc2.org/ethics'}

@@ -1,0 +1,143 @@
+# Cisco CCNA (200-301 v2.0) study tracker data. Schema: see SCHEMA.md.
+slug: ccna
+code: CCNA
+name: Cisco Certified Network Associate (200-301 v2.0)
+issuer: Cisco
+category: cybersecurity
+kind: exam
+confidence: source-traced
+blueprint:
+  title: 200-301 CCNA v2.0 exam topics
+  version: '2.0'
+  published: Cisco, 2026
+last_checked: '2026-10-09'
+summary: >-
+  Study plan for CCNA v2.0, which goes live February 3, 2027: all 29 exam topics across five weighted domains,
+  including the new AI and agentic operations domain, with lab practice and the exam rules.
+snapshot:
+  title: Exam snapshot
+  items:
+  - '**v2.0 goes live February 3, 2027.** The last day to test on v1.1 is February 2, 2027'
+  - 120 minutes; Cisco doesn't publish the question count
+  - $300 USD, or Cisco Learning Credits
+  - Same exam number (200-301) and the same CCNA certification
+  - 'New in v2.0: evaluating output from agentic AI and digital network assistants'
+lens:
+  title: The lens for every question
+  intro: 'From Cisco''s exam description and topic verbs:'
+  body:
+  - 'Most topics are **Configure** or **Troubleshoot**. Expect to read command output and decide what''s wrong, not just recall facts.'
+  - You may have to judge **AI recommendations** for network operations. Check them against what the device output actually shows.
+  - Cisco calls the topics "a general guide". Related topics can appear, so lab around each topic rather than memorizing it.
+  prompts:
+  - What does the show output actually say?
+  - Which layer is failing, 1, 2 or 3?
+  - Is the AI's suggestion supported by the evidence here?
+domains:
+- {id: 1, name: Network Infrastructure and Connectivity, short: Infrastructure, weight: 25}
+- {id: 2, name: Switching and Network Access, short: Switching & access, weight: 25}
+- {id: 3, name: IP Routing, short: IP routing, weight: 20}
+- {id: 4, name: Network Services and Security, short: Services & security, weight: 20}
+- {id: 5, name: 'AI, and Network Operations and Management', short: AI & operations, weight: 10}
+sections:
+- id: s0
+  'no': '0'
+  title: Setup
+  groups:
+  - items:
+    - {id: e-topics, text: 'Read the [CCNA v2.0 exam topics (PDF)](https://learningcontent.cisco.com/documents/marketing/exam-topics/200-301_CCNA_v2.0_Exam_Topics_PDF.pdf).'}
+    - {id: e-version, text: 'Decide your version. Testing before February 3, 2027 means v1.1, and Cisco [advises](https://blogs.cisco.com/learning/stay-on-track-get-certified-before-the-ccna-refresh) finishing it rather than pausing. This tracker follows v2.0.'}
+    - {id: e-lab, text: 'Set up a lab: Cisco Packet Tracer (free with a Cisco Networking Academy account), a virtual lab, or spare hardware. Most v2.0 topics are hands-on.'}
+    - {id: e-net, tag: optional, text: 'If networking is new to you, the [Network+ tracker](https://william-herman.github.io/cert-study-trackers/n10-009/) covers vendor-neutral fundamentals first.'}
+- id: s1
+  'no': '1'
+  title: Network Infrastructure and Connectivity
+  short: Infrastructure
+  domain: 1
+  groups:
+  - title: Exam topics to own
+    items:
+    - {id: d1-1, ts: '1.1', text: 'Diagnose interface and cable issues (copper and fiber): collisions, errors, duplex and speed mismatch, distance, signal levels, pinout.'}
+    - {id: d1-2, ts: '1.2', text: 'The role and function of hypervisors, virtual machines and containers.'}
+    - {id: d1-3, ts: '1.3', text: 'Troubleshoot IPv4 addressing, assignment and subnetting (public and private).'}
+    - {id: d1-4, ts: '1.4', text: 'Troubleshoot IPv6 addressing, assignment and prefix sizing (unicast and modified EUI-64).'}
+    - {id: d1-5, ts: '1.5', text: 'Wireless principles: band and channel selection, RF characteristics, security protocols, causes of interference.'}
+    - {id: d1-6, ts: '1.6', text: 'Troubleshoot wired and wireless client connectivity on Windows, macOS and Linux.'}
+    - {id: d1-7, ts: '1.7', text: 'Troubleshoot DHCPv4 client, server and relay on IOS devices.'}
+- id: s2
+  'no': '2'
+  title: Switching and Network Access
+  short: Switching & access
+  domain: 2
+  groups:
+  - title: Exam topics to own
+    items:
+    - {id: d2-1, ts: '2.1', text: 'Configure switch-to-switch and switch-to-router links: L2/L3 interfaces, 802.1Q trunks, LACP EtherChannel, SVIs.'}
+    - {id: d2-2, ts: '2.2', text: 'Configure edge ports (VLAN, PoE, port channel, LACP) for desktops, printers, IoT, access points, IP phones, virtual hosts and appliances.'}
+    - {id: d2-3, ts: '2.3', text: 'Validate network documentation using CDP and LLDP.'}
+    - {id: d2-4, ts: '2.4', text: 'Troubleshoot L2/L3 connectivity with show commands and logs, ping, extended ping, traceroute and packet captures.'}
+    - {id: d2-5, ts: '2.5', text: 'Configure Rapid PVST+: root bridge and port roles, port states, PortFast, root guard, loop guard, BPDU guard.'}
+  - title: Practice
+    items:
+    - {id: p2-lab, tag: added, text: 'Lab: two switches with a trunk and an EtherChannel, three VLANs, and a chosen root bridge. Confirm each with show commands.'}
+- id: s3
+  'no': '3'
+  title: IP Routing
+  short: IP routing
+  domain: 3
+  groups:
+  - title: Exam topics to own
+    items:
+    - {id: d3-1, ts: '3.1', text: 'Read a routing table to find the next hop: protocol, prefix and mask, administrative distance, metric, default route.'}
+    - {id: d3-2, ts: '3.2', text: 'Troubleshoot IPv4 and IPv6 static routing: default, network, host and floating static routes.'}
+    - {id: d3-3, ts: '3.3', text: 'Configure single-area OSPFv2 and OSPFv3: adjacencies, point-to-point, broadcast (DR/BDR), router ID.'}
+    - {id: d3-4, ts: '3.4', text: 'Interpret the status of first-hop redundancy protocols (HSRP and VRRP).'}
+  - title: Practice
+    items:
+    - {id: p3-lab, tag: added, text: 'Lab: three routers in single-area OSPF plus a floating static backup. Shut a link and watch the routing table change.'}
+- id: s4
+  'no': '4'
+  title: Network Services and Security
+  short: Services & security
+  domain: 4
+  groups:
+  - title: Exam topics to own
+    items:
+    - {id: d4-1, ts: '4.1', text: 'Configure local users and AAA (TACACS+, RADIUS) for device management.'}
+    - {id: d4-2, ts: '4.2', text: 'Manage configuration and software files with SFTP/SCP.'}
+    - {id: d4-3, ts: '4.3', text: 'Configure NAT/PAT on IOS XE routers.'}
+    - {id: d4-4, ts: '4.4', text: 'Diagnose DNS record issues (A, AAAA, CNAME, MX, NS, PTR) for host, web and mail access.'}
+    - {id: d4-5, ts: '4.5', text: 'IPsec remote-access and site-to-site VPNs: protocols and transport modes.'}
+    - {id: d4-6, ts: '4.6', text: 'Configure IPv4 ACLs: standard, extended, numbered and named.'}
+    - {id: d4-7, ts: '4.7', text: 'Configure Layer 2 security: DHCP snooping, dynamic ARP inspection, storm control, RA guard, port security.'}
+- id: s5
+  'no': '5'
+  title: 'AI, and Network Operations and Management'
+  short: AI & operations
+  domain: 5
+  note: New in v2.0.
+  groups:
+  - title: Exam topics to own
+    items:
+    - {id: d5-1, ts: '5.1', text: 'The role of agentic AI in network operations.'}
+    - {id: d5-2, ts: '5.2', text: 'Choose a prompt for a generative AI system in network operations, weighing data classification, output format, persona and instructions.'}
+    - {id: d5-3, ts: '5.3', text: 'Network management approaches: device-based, cloud-based, controller-based, automation-based, infrastructure as code.'}
+    - {id: d5-4, ts: '5.4', text: 'The function of SNMP in network operations.'}
+    - {id: d5-5, ts: '5.5', text: 'Use configuration management tools such as Ansible to run commands.'}
+    - {id: d5-6, ts: '5.6', text: 'Interpret syslog messages: content, severity levels, facilities.'}
+  - title: Practice
+    items:
+    - {id: p5-ai, tag: added, text: 'Paste a show output (with nothing sensitive in it) into an AI assistant, ask for a diagnosis, and check every claim against the output yourself.'}
+- id: s6
+  'no': '6'
+  title: Readiness and logistics
+  short: Readiness
+  groups:
+  - items:
+    - {id: r-cli, text: 'Practice reading show output fast: interfaces, VLANs, spanning tree, routing table, OSPF neighbors, NAT translations.'}
+    - {id: r-gate, text: '**Booking gate:** every topic ticked and every lab rebuilt from a blank config without notes.'}
+    - {id: r-date, text: Confirm your exam date is on or after February 3, 2027, so you get the version this tracker covers.}
+sources:
+- {title: CCNA v2.0 exam topics (PDF), url: 'https://learningcontent.cisco.com/documents/marketing/exam-topics/200-301_CCNA_v2.0_Exam_Topics_PDF.pdf'}
+- {title: CCNA exam page, url: 'https://www.cisco.com/site/us/en/learn/training-certifications/exams/ccna.html', note: 'price, duration'}
+- {title: 'Cisco blog: get certified before the CCNA refresh', url: 'https://blogs.cisco.com/learning/stay-on-track-get-certified-before-the-ccna-refresh', note: v1.1 and v2.0 dates}

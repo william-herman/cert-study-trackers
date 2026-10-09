@@ -1,0 +1,130 @@
+# Registered Scrum@Scale Practitioner study tracker data. Schema: see SCHEMA.md.
+slug: scrum-at-scale
+code: RS@SP
+name: Registered Scrum@Scale Practitioner
+issuer: Scrum Inc.
+category: project-management
+kind: path
+confidence: source-traced
+blueprint:
+  title: The Scrum@Scale Guide
+  version: 2006–2022 edition
+  published: Jeff Sutherland and Scrum Inc.
+last_checked: '2026-10-09'
+summary: >-
+  Study plan for Scrum Inc.'s scaling credential: the 2-day course and exam, every component of the official
+  Scrum@Scale Guide across both the Scrum Master and Product Owner cycles, and the Scrum foundations it builds on.
+snapshot:
+  title: Credential snapshot
+  items:
+  - '**Course required:** at least 14 hours of live instruction with a Registered Scrum@Scale Trainer, usually 2 days'
+  - You can't miss more than **2 hours** of the course and still qualify
+  - Pass the credentialing exam after the course to earn RS@SP and the digital badge
+  - Scrum Inc. doesn't publish the exam's length or passing score; your trainer will cover them
+  - Online or in person; 16 PMI PDUs
+  - 'Recommended: Scrum Master training or real Scrum experience; Product Owner training helps'
+lens:
+  title: The lens for every question
+  intro: 'From the Scrum@Scale Guide:'
+  body:
+  - '"If an organization cannot Scrum, it cannot scale." The Team Process is plain Scrum, and everything else scales it.'
+  - Two cycles run side by side. The **Scrum Master cycle** coordinates the how, and the **Product Owner cycle** coordinates the what.
+  - Aim for a **minimum viable bureaucracy**, the least governance needed without slowing value delivery.
+  prompts:
+  - Is this a "how" problem (Scrum Master cycle) or a "what" problem (Product Owner cycle)?
+  - Which group owns it, the Executive Action Team or the Executive MetaScrum?
+  - Does this add bureaucracy, or remove an impediment?
+tag_legend:
+- {tag: guide, style: ex, meaning: recommended by Scrum Inc. before class}
+- {tag: added, style: added, meaning: extra practice to apply a component to your own organization}
+- {tag: optional, style: optional, meaning: not counted toward progress}
+sections:
+- id: s0
+  'no': '0'
+  title: Before the course
+  groups:
+  - items:
+    - {id: b-guide, tag: guide, text: 'Read the [Scrum@Scale Guide](https://www.scrumatscale.com/scrum-at-scale-guide/) end to end. Scrum Inc. recommends it before class.'}
+    - {id: b-scrum, text: 'Re-read the [2020 Scrum Guide](https://scrumguides.org/scrum-guide.html) and the [Agile Manifesto](https://agilemanifesto.org/). The Scrum@Scale Guide calls both essential.'}
+    - {id: b-csm, tag: optional, text: 'If you hold CSM, revisit the [CSM tracker](https://william-herman.github.io/cert-study-trackers/csm/). Scrum Master training is the recommended starting point.'}
+    - {id: b-book, text: 'Book a course with a Registered Scrum@Scale Trainer from [Scrum Inc.''s course page](https://www.scruminc.com/registered-scrum-at-scale-practitioner/).'}
+- id: s1
+  'no': '1'
+  title: Foundations of Scrum@Scale
+  short: Foundations
+  groups:
+  - title: Components to own
+    items:
+    - {id: f-purpose, text: 'Why Scrum@Scale exists: a "scale-free" architecture and minimum viable bureaucracy, and how they reduce decision latency.'}
+    - {id: f-culture, text: 'Values-driven culture: the empirical pillars (transparency, inspection, adaptation) and the five Scrum values.'}
+    - {id: f-ref, text: 'Getting started: why a Reference Model (a small set of teams delivering every Sprint) comes before scaling.'}
+    - {id: f-team, text: 'The Team Process: plain Scrum, the first point where the two cycles meet, and its four goals.'}
+- id: s2
+  'no': '2'
+  title: Scaling the teams
+  short: Scaling teams
+  groups:
+  - title: Components to own
+    items:
+    - {id: t-sos, text: 'The Scrum of Scrums (SoS): a team of teams acting as one Scrum Team, ideally 4–5 teams, delivering an integrated increment every Sprint.'}
+    - {id: t-sosos, text: 'Scrum of Scrum of Scrums (SoSoS): how stacking groups keeps communication paths low and scaling linear.'}
+    - {id: t-events, text: 'Which scaled events coordinate the how (Daily Scrum, Retrospective), which coordinate the what (Planning, Review, Refinement), and who facilitates each.'}
+    - {id: t-sds, text: 'The Scaled Daily Scrum: 15 minutes or less, at least one representative per team, focused on impediments and dependencies.'}
+    - {id: t-retro, text: 'The Scaled Retrospective: Scrum Masters share improvement experiments and spread what works.'}
+- id: s3
+  'no': '3'
+  title: 'The Scrum Master cycle: coordinating the how'
+  short: Scrum Master cycle
+  groups:
+  - title: Components to own
+    items:
+    - {id: sm-sosm, text: 'The Scrum of Scrums Master (SoSM): accountabilities, working with the Chief Product Owner, radiating progress and impediments.'}
+    - {id: sm-eat, text: 'The Executive Action Team (EAT): the hub of the cycle, empowered to remove impediments the teams can''t, with its own PO, SM and backlog.'}
+    - {id: sm-eatb, text: 'The EAT backlog: building an agile operating system, funding the Product Owner organization, measuring the quality of Scrum.'}
+    - {id: sm-ci, text: 'Continuous improvement and impediment removal: its four goals.'}
+    - {id: sm-xtc, text: 'Cross-team coordination: syncing processes, mitigating dependencies, aligning norms.'}
+    - {id: sm-del, text: 'Delivery: a consistent flow of finished product, integrated across teams, with a high-quality customer experience.'}
+- id: s4
+  'no': '4'
+  title: 'The Product Owner cycle: coordinating the what'
+  short: Product Owner cycle
+  groups:
+  - title: Components to own
+    items:
+    - {id: po-team, text: 'The Product Owner Team: one shared backlog per Scrum of Scrums, and its seven main functions.'}
+    - {id: po-cpo, text: 'The Chief Product Owner (CPO): strategic vision, a single prioritized backlog, metrics, customer feedback, facilitating the MetaScrum.'}
+    - {id: po-ems, text: 'The Executive MetaScrum (EMS): the hub of the cycle and the only forum where priorities, budgets and team alignment change, held at least once per Sprint.'}
+    - {id: po-vision, text: 'Strategic vision and its goals.'}
+    - {id: po-prio, text: 'Backlog prioritization: ordering by value, risk and dependencies across the whole organization.'}
+    - {id: po-decomp, text: 'Backlog decomposition and refinement: from Product Goals down to items a team can finish in one Sprint.'}
+    - {id: po-release, text: 'Release planning: forecasting delivery and communicating expectations and financial impact.'}
+- id: s5
+  'no': '5'
+  title: Connecting the cycles
+  short: Connecting cycles
+  groups:
+  - title: Components to own
+    items:
+    - {id: c-meet, text: 'Where the two cycles meet: the Team Process at the start, and Feedback and Metrics at the end.'}
+    - {id: c-feedback, text: 'Product feedback (read by the PO organization) vs. release feedback (read by the SM organization).'}
+    - {id: c-metrics, text: 'The four minimum metrics (productivity, value delivery, quality, sustainability) and radical transparency.'}
+    - {id: c-org, text: 'Organizational design: component-based teams, shared-services teams, and how the EAT and EMS can overlap.'}
+  - title: Practice
+    items:
+    - {id: p-map, tag: added, text: 'Sketch your own organization as Scrum of Scrums. Name who would sit on the EAT and the Executive MetaScrum.'}
+    - {id: p-imp, tag: added, text: 'Write three items for a transformation backlog: impediments the EAT would own because no team can remove them.'}
+- id: s6
+  'no': '6'
+  title: Course and credential
+  short: Credential
+  groups:
+  - items:
+    - {id: x-attend, text: Attend the full course; missing more than 2 hours makes you ineligible for the exam.}
+    - {id: x-review, text: 'After the course, re-read the Scrum@Scale Guide with your course notes before taking the exam.'}
+    - {id: x-exam, text: Pass the credentialing exam.}
+    - {id: x-badge, tag: optional, text: 'Claim your digital badge and, if you want, a listing in the International Registry of Agile Professionals.'}
+sources:
+- {title: RS@SP course page, url: 'https://www.scruminc.com/registered-scrum-at-scale-practitioner/', note: 'course format, eligibility, FAQ'}
+- {title: The Scrum@Scale Guide, url: 'https://www.scrumatscale.com/scrum-at-scale-guide/'}
+- {title: Scrum@Scale Guide source on GitHub, url: 'https://github.com/scrumatscale/official-guide'}
+- {title: The 2020 Scrum Guide, url: 'https://scrumguides.org/scrum-guide.html'}

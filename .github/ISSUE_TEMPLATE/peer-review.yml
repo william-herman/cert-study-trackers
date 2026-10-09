@@ -16,12 +16,20 @@ body:
   attributes:
     label: Which tracker are you reviewing?
     options:
+    - 'AIF-C01: AWS Certified AI Practitioner'
+    - 'CC: ISC2 Certified in Cybersecurity'
     - 'CCAO-F: Claude Certified Associate – Foundations'
     - 'CCAR-F: Claude Certified Architect – Foundations'
+    - 'CCAR-P: Claude Certified Architect – Professional'
     - 'CCDV-F: Claude Certified Developer – Foundations'
+    - 'CCNA: Cisco Certified Network Associate (200-301 v2.0)'
     - 'CSM: Certified ScrumMaster'
+    - 'GAIL: Google Cloud Certified Generative AI Leader'
+    - 'N10-009: CompTIA Network+'
     - 'PAL-I: Professional Agile Leadership I'
     - 'PMP: Project Management Professional'
+    - 'RS@SP: Registered Scrum@Scale Practitioner'
+    - 'SY0-801: CompTIA Security+ (V8)'
   validations:
     required: true
 - type: dropdown

@@ -11,8 +11,8 @@ Text fields accept light Markdown: `**bold**`, `*italic*`, `` `code` ``, `[link]
 | `slug` | yes | URL folder name, lowercase with hyphens (`ccar-f`). Must match the file name. |
 | `code` | yes | Short code shown in the header (`CCAR-F`). |
 | `name` | yes | Full certification name. |
-| `issuer` | yes | Certifying body (`Anthropic`, `AWS`, `PMI`, `Scrum.org`, `Scrum Alliance`). |
-| `category` | yes | Index tab: `project-management` or `ai` (the list lives in `CATEGORIES` in `scripts/build.py`). |
+| `issuer` | yes | Certifying body (e.g. `Anthropic`, `AWS`, `Google Cloud`, `CompTIA`, `ISC2`, `Cisco`, `PMI`, `Scrum.org`, `Scrum Alliance`, `Scrum Inc.`). |
+| `category` | yes | Index tab: `project-management`, `ai` or `cybersecurity` (the list lives in `CATEGORIES` in `scripts/build.py`). |
 | `kind` | yes | `exam` (blueprint with weighted domains) or `path` (earned through courses, experience and prerequisites). |
 | `confidence` | yes | `field-validated` (author passed it), `source-traced` (built from official sources, not yet tested), or `peer-reviewed` (checked by a holder). |
 | `blueprint` | yes | `title`, `version`, `published` of the official document the checklist traces to. For `path` certs, the requirements page. |
@@ -20,7 +20,7 @@ Text fields accept light Markdown: `**bold**`, `*italic*`, `` `code` ``, `[link]
 | `summary` | yes | One or two sentences for the index page. |
 | `snapshot` | no | `title` plus `items`: key facts (format, length, passing score, cost, validity). |
 | `lens` | no | `title`, optional `intro` (one line above the bullets), `body` (a list of bullets, or one paragraph), `prompts`: the mindset that helps across questions. |
-| `domains` | no | Exam domains: `id`, `name`, `short` (meter label), optional `weight` (percent), optional `label` (overrides the "Domain N" text, e.g. `Foundations`). Give every domain a weight (summing to 100) or none, e.g. when the issuer doesn't publish weights. Omit entirely for `path` certs; the progress meters are hidden. |
+| `domains` | no | Exam domains: `id`, `name`, `short` (meter label), optional `weight` (percent), optional `label` (overrides the "Domain N" text, e.g. `Foundations`). Give every domain a weight (summing to 100, within 0.2 for issuers that round, e.g. ISC2's 17.3%) or none, e.g. when the issuer doesn't publish weights. Omit entirely for `path` certs; the progress meters are hidden. |
 | `domain_label` | no | What the issuer calls a domain (default `Domain`; e.g. `Focus area`). |
 | `tag_legend` | no | `tag`, `style` (`ex`, `added`, `optional`), `meaning`. Shown in the footer. |
 | `sections` | yes | See below. |
@@ -32,7 +32,7 @@ Text fields accept light Markdown: `**bold**`, `*italic*`, `` `code` ``, `[link]
 ```yaml
 sections:
 - id: s2            # unique, used for anchors
-  no: '2'           # shown as §2
+  no: '2'           # section number shown in the nav
   title: Agentic Architecture & Orchestration
   short: Agentic    # optional shorter nav label
   domain: 1         # optional; links the section to a domain meter
@@ -55,6 +55,7 @@ sections:
 
 - All required fields are present, and `kind` and `confidence` use allowed values.
 - Item and objective ids are unique within a file.
+- Domain weights add to 100 (within 0.2).
 - `last_checked` is a valid date. The page shows a warning when it is more than 180 days old.
 - No item text may come from real exam questions. That one can't be checked by the build; it's on the author.
 

@@ -20,7 +20,7 @@ SITE = "william-herman.github.io/cert-study-trackers"
 REQUIRED = ["slug", "code", "name", "issuer", "category", "kind", "confidence", "blueprint", "last_checked", "summary", "sections", "sources"]
 KINDS = {"exam", "path"}
 # Index tabs, in display order (an "All" tab is always added first).
-CATEGORIES = {"project-management": "Project Management", "ai": "AI"}
+CATEGORIES = {"project-management": "Project Management", "ai": "AI", "cybersecurity": "Cybersecurity & Networking"}
 TIERS = {"field-validated": "Field-validated", "source-traced": "Source-traced", "peer-reviewed": "Peer-reviewed"}
 
 
@@ -67,7 +67,8 @@ def validate(cert, path):
     if any(w is not None for w in weights):
         if any(w is None for w in weights):
             errs.append("either every domain has a weight or none do")
-        elif round(sum(weights), 1) != 100:
+        # Issuers sometimes publish rounded weights (ISC2 CC sums to 99.9), so allow a small tolerance.
+        elif abs(sum(weights) - 100) > 0.2:
             total = round(sum(weights), 1)
             errs.append(f"domain weights add to {total}, not 100")
     return errs
@@ -132,6 +133,11 @@ def share_data(certs):
     return json.dumps(out, ensure_ascii=False).replace("</", "<\\/")
 
 
+def fmt_date(ymd):
+    d = dt.date.fromisoformat(ymd)
+    return f"{d:%b} {d.day}, {d.year}"
+
+
 def count(cert):
     n = sum(1 for s in cert["sections"] for g in s["groups"] for i in g["items"] if i.get("tag") != "optional")
     return n + len((cert.get("objectives") or {}).get("items", []))
@@ -169,21 +175,24 @@ def main():
         print(f"OK {path.name} -> docs/{cert['slug']}/  ({count(cert)} checkable items)")
 
     cards = "".join(
-        f'<a class="card" data-cat="{c["category"]}" href="{html.escape(c["slug"])}/">'
-        f'<span class="code">{html.escape(c["issuer"])} · {html.escape(c["code"])}</span>'
-        f'<h2>{html.escape(c["name"])}</h2><p>{html.escape(c["summary"])}</p>'
-        f'<span class="row"><span class="tier {c["confidence"]}">{TIERS[c["confidence"]]}</span>'
-        f'<span>{count(c)} items · checked {html.escape(c["last_checked"])}</span></span></a>'
+        f'<a class="card" data-cat="{c["category"]}" data-slug="{html.escape(c["slug"])}" href="{html.escape(c["slug"])}/">'
+        f'<span class="issuer">{html.escape(c["issuer"])}</span>'
+        f'<h2><span class="ccode">{html.escape(c["code"])}</span><span class="cname">{html.escape(c["name"])}</span></h2>'
+        f'<p class="sum">{html.escape(c["summary"])}</p>'
+        f'<span class="prog"><span class="pbar" role="progressbar" aria-label="Your progress in {html.escape(c["code"])}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></span>'
+        f'<span class="ptxt none">Not started</span></span>'
+        f'<span class="meta-row"><span class="tier {c["confidence"]}">{TIERS[c["confidence"]]}</span>'
+        f'<span>{count(c)} items</span><span>Checked {fmt_date(c["last_checked"])}</span></span></a>'
         for c in sorted(certs, key=lambda c: (c["issuer"], c["code"]))
     )
     review_opts = "".join(f'<option value="{html.escape(c["code"])}">{html.escape(c["code"])}: {html.escape(c["name"])}</option>'
                           for c in sorted(certs, key=lambda c: c["code"]))
-    tabs = f'<button type="button" class="tab" role="tab" data-cat="all">All<span class="k">{len(certs)}</span></button>' + "".join(
-        f'<button type="button" class="tab" role="tab" data-cat="{k}">{v}<span class="k">{sum(c["category"] == k for c in certs)}</span></button>'
+    tabs = f'<button type="button" class="tab" data-cat="all">All<span class="k">{len(certs)}</span></button>' + "".join(
+        f'<button type="button" class="tab" data-cat="{k}">{v}<span class="k">{sum(c["category"] == k for c in certs)}</span></button>'
         for k, v in CATEGORIES.items())
     (DOCS / "index.html").write_text(index_tpl.replace("{{HEAD}}", head).replace("{{TOGGLE}}", toggle).replace("{{CSS}}", css)
                                      .replace("{{SHARE}}", share.replace("{{SHARE_DATA}}", share_data(certs)).replace("{{SITE}}", SITE))
-                                     .replace("{{ICON}}", icon).replace("{{TABS}}", tabs).replace("{{CARDS}}", cards).replace("{{REVIEW_OPTIONS}}", review_opts)
+                                     .replace("{{ICON}}", icon).replace("{{SHARE_DATA}}", share_data(certs)).replace("{{TABS}}", tabs).replace("{{CARDS}}", cards).replace("{{REVIEW_OPTIONS}}", review_opts)
                                      .replace("{{REPO}}", REPO), encoding="utf-8")
     write_review_form(certs)
     print("OK .github/ISSUE_TEMPLATE/peer-review.yml")
