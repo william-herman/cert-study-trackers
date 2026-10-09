@@ -25,7 +25,10 @@
   --accent: #1f6b57;
   --accent-soft: #d8ebe4;
   --accent-fg: #ffffff;
-  --amber: #a5620a;
+  --amber: #8a4f05;
+  --cat-project-management: #b8740f;
+  --cat-ai: #1f6b57;
+  --cat-cybersecurity: #2f5fb3;
   --amber-soft: #f6e7cf;
   --ex: #3d4fa3;
   --ex-soft: #e2e6f6;
@@ -40,6 +43,7 @@
     --bg: #111715; --surface: #18201d; --surface-2: #1d2623; --fg: #e4ebe8; --muted: #95a39e;
     --line: #2b3632; --accent: #5cc09f; --accent-soft: #1c3a31; --accent-fg: #0b1512;
     --amber: #e3a54d; --amber-soft: #3a2c16; --ex: #9fb0f5; --ex-soft: #232a4a; --done-fg: #66736e; --focus: #5cc09f;
+    --cat-project-management: #e3a54d; --cat-ai: #5cc09f; --cat-cybersecurity: #7fa6f0;
     color-scheme: dark;
   }
 }
@@ -61,7 +65,7 @@ code { font-family: var(--f-mono); font-size: .86em; background: var(--surface-2
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding-block: 12px; }
 .brand { display: flex; flex-direction: column; min-width: 0; }
-.brand .code { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+.brand .code { font-size: 13px; color: var(--muted); font-weight: 500; }
 .brand h1 { font-family: var(--f-display); font-weight: 700; font-size: 22px; line-height: 1.15; margin: 0; text-wrap: balance; }
 .overall { flex: 1 1 260px; display: flex; align-items: center; gap: 12px; min-width: 0; }
 .bar { flex: 1; height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
@@ -92,7 +96,7 @@ code { font-family: var(--f-mono); font-size: .86em; background: var(--surface-2
 .index nav a .k { font-family: var(--f-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .index nav a.full .k { color: var(--accent); }
 .filters { display: flex; flex-direction: column; gap: 8px; }
-.filters .lbl { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.filters .lbl { font-size: 13px; color: var(--muted); font-weight: 600; }
 .seg { display: inline-flex; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 2px; }
 .seg button { font: inherit; font-size: 13px; border: 0; background: transparent; color: var(--muted); padding: 4px 10px; border-radius: 6px; cursor: pointer; }
 .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); }
@@ -121,7 +125,7 @@ section.sec { scroll-margin-top: 96px; }
 .callout { background: var(--amber-soft); color: var(--fg); border-radius: 8px; padding: 10px 14px; font-size: 14px; margin-top: 10px; }
 
 .group { margin-top: 16px; }
-.group h4 { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; font-weight: 600; }
+.group h3 { font-family: var(--f-body); font-size: 14px; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
 .items { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
 .item { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; padding: 11px 14px; border-top: 1px solid var(--line); }
 .item:first-child { border-top: 0; }
@@ -143,7 +147,7 @@ section.sec { scroll-margin-top: 96px; }
 .hidden-note { font-size: 13px; color: var(--muted); padding: 10px 14px; }
 
 .skip { margin-top: 12px; background: var(--surface-2); border: 1px dashed var(--line); border-radius: 10px; padding: 12px 16px; font-size: 14px; }
-.skip h4 { margin: 0 0 6px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.skip h3 { font-family: var(--f-body); margin: 0 0 6px; font-size: 14px; font-weight: 600; color: var(--muted); }
 .skip ul { margin: 0; padding-left: 18px; color: var(--muted); }
 .oos { columns: 2 220px; column-gap: 24px; margin: 0; padding-left: 18px; font-size: 14px; color: var(--muted); }
 
@@ -181,7 +185,7 @@ body { margin: 0; }
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; padding-block: 20px 28px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px; color: inherit; text-decoration: none; }
 .card:hover { border-color: var(--accent); }
-.card .code { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+.card .issuer { font-size: 13px; font-weight: 500; color: var(--muted); }
 .card h2 { font-family: var(--f-display); font-size: 20px; margin: 0; line-height: 1.2; }
 .card p { margin: 0; font-size: 14px; color: var(--muted); }
 .card .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: auto; font-size: 12px; color: var(--muted); }
@@ -196,7 +200,7 @@ body { margin: 0; }
 .sec-head { margin-bottom: 12px; }
 .sec-note { margin-top: 10px; }
 .group { margin-top: 24px; }
-.group h4 { margin-bottom: 10px; }
+.group h3 { margin-bottom: 10px; }
 .cov { margin-top: 16px; }
 #sections section.sec + section.sec { margin-top: 48px; }
 .lens ul { margin: 0 0 10px; }
@@ -267,9 +271,47 @@ body { margin: 0; }
 .share-empty-big { font-family: var(--f-display); font-size: 22px; font-weight: 700; margin: 6px 0; }
 .share-start { display: inline-block; text-decoration: none; margin-top: 8px; }
 
+/* ---- Batch 3 design pass ---- */
+.intro h2 { margin: 0 0 6px; font-family: var(--f-display); font-size: 16px; font-weight: 700; }
+.item input { width: 22px; height: 22px; }
+.skip-link { position: absolute; left: 12px; top: -60px; z-index: 20; background: var(--accent); color: var(--accent-fg); padding: 10px 14px; border-radius: 8px; font-weight: 600; text-decoration: none; }
+.skip-link:focus { top: 12px; }
+.share-open { background: var(--accent); color: var(--accent-fg); }
+.share-open:hover { filter: brightness(1.08); }
+
+/* Category colour: a spine on cards, a rule under the tracker header */
+.card { position: relative; overflow: hidden; padding-left: 22px; }
+.card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--cat, var(--accent)); }
+.card[data-cat="project-management"] { --cat: var(--cat-project-management); }
+.card[data-cat="ai"] { --cat: var(--cat-ai); }
+.card[data-cat="cybersecurity"] { --cat: var(--cat-cybersecurity); }
+.card h2 { display: flex; flex-direction: column; gap: 2px; }
+.card h2 .ccode { font-size: 30px; line-height: 1; letter-spacing: -.01em; color: var(--cat, var(--fg)); }
+.card h2 .cname { font-family: var(--f-body); font-size: 15px; font-weight: 600; color: var(--fg); }
+.card .sum { font-size: 14px; color: var(--muted); }
+.card .meta-row { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: 12px; color: var(--muted); margin-top: auto; }
+.prog { display: flex; flex-direction: column; gap: 6px; }
+.prog .pbar { height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; }
+.prog .pbar i { display: block; height: 100%; width: 0; background: var(--cat, var(--accent)); border-radius: 99px; }
+.prog .ptxt { font-size: 13px; font-weight: 600; color: var(--fg); }
+.prog .ptxt.none { color: var(--muted); font-weight: 500; }
+body[data-cat="project-management"] .top { box-shadow: inset 0 -3px 0 var(--cat-project-management); }
+body[data-cat="ai"] .top { box-shadow: inset 0 -3px 0 var(--cat-ai); }
+body[data-cat="cybersecurity"] .top { box-shadow: inset 0 -3px 0 var(--cat-cybersecurity); }
+
+/* Continue strip */
+.resume { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 18px; padding: 14px 18px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
+.resume[hidden] { display: none; }
+.resume .rlbl { font-size: 14px; color: var(--muted); }
+.resume a { font-weight: 600; font-size: 15px; color: var(--fg); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.resume a:hover .rcode { text-decoration: underline; }
+.resume .rpct { font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 99px; }
+.tab[aria-pressed="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+
 </style>
 </head>
 <body>
+<a class="skip-link" href="#sections">Skip to checklist</a>
 <header class="top">
   <div class="wrap">
     <div class="brand">
@@ -300,7 +342,7 @@ body { margin: 0; }
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap" id="main">
   <div class="meta" id="meta"></div>
   <div id="stale"></div>
   <div class="meters" id="meters"></div>
@@ -309,8 +351,8 @@ body { margin: 0; }
     <aside class="index">
       <nav id="nav" aria-label="Sections"></nav>
       <div class="filters">
-        <span class="lbl">Show</span>
-        <div class="seg" role="group" aria-label="Filter items">
+        <span class="lbl" id="showLbl">Show</span>
+        <div class="seg" role="group" aria-labelledby="showLbl">
           <button type="button" data-f="all" aria-pressed="true">All</button>
           <button type="button" data-f="open" aria-pressed="false">To do</button>
           <button type="button" data-f="done" aria-pressed="false">Done</button>
@@ -319,13 +361,13 @@ body { margin: 0; }
       </div>
     </aside>
 
-    <main class="content" id="content">
+    <div class="content" id="content">
       <div id="intro"></div>
       <div id="sections"></div>
       <footer id="foot"></footer>
-    </main>
+    </div>
   </div>
-</div>
+</main>
 
 <script>
 const CERT = {"slug": "pmp", "code": "PMP", "name": "Project Management Professional", "issuer": "PMI", "category": "project-management", "kind": "exam", "confidence": "source-traced", "blueprint": {"title": "PMP Examination Content Outline", "version": "2026", "published": "July 2026 exam update"}, "last_checked": "2026-10-02", "summary": "Study plan for the new (July 2026) PMP exam: eligibility and the 35-hour training rule, all 26 tasks across People, Process and Business Environment, PMI's reference list, and the exam-day and renewal rules.", "snapshot": {"title": "Exam snapshot", "items": ["**180 questions in 240 minutes**: 170 scored, 10 unscored pretest", "Two 10-minute breaks. You **can't go back** to a section once you take a break", "**New question types:** case/scenario sets and graphic-based questions, plus multiple choice, multiple response, matching and more", "About **40% predictive** and **60% agile or hybrid**, spread across all three domains", "At a Pearson VUE test center (PMI's recommendation) or online with a proctor", "Up to 3 attempts within a 1-year eligibility window", "Fee depends on PMI membership and region; check at checkout", "Renew every 3 years with 60 PDUs and a renewal fee"]}, "lens": {"title": "The lens for every question", "intro": "From the reasoning in PMI's published sample questions and the outline:", "body": ["Assess before you act. Evaluate the impact and the options first, then follow the agreed process (for example, change control), rather than rejecting, accepting or escalating on reflex.", "Deal with people directly. When a stakeholder causes confusion, talk to them about roles, authority and impact instead of quietly working around it or passing it on.", "Think in outcomes and value, not just schedule and budget. The 2026 outline puts value delivery, AI and sustainability into project scenarios, and Business Environment rose from 8% to 26%.", "Most questions aren't predictive. Expect to choose the right approach, predictive, agile or hybrid, for the situation described."], "prompts": ["What should I do first, before taking any irreversible step?", "Is there an agreed process here that I should follow?", "Which option delivers the most value to stakeholders, not just the plan?"]}, "domains": [{"id": 1, "name": "People", "short": "People", "weight": 33}, {"id": 2, "name": "Process", "short": "Process", "weight": 41}, {"id": 3, "name": "Business Environment", "short": "Business Environment", "weight": 26}], "tag_legend": [{"tag": "added", "style": "added", "meaning": "apply-it-to-your-own-projects exercises beyond the outline"}, {"tag": "optional", "style": "optional", "meaning": "not counted toward progress"}], "sections": [{"id": "s0", "no": "0", "title": "Eligibility and application", "short": "Eligibility", "note": "You have to qualify before you can sit the exam. Do this first.", "groups": [{"title": "Check you qualify", "items": [{"id": "e-exp", "text": "Confirm your experience path. All experience must be non-overlapping, leading projects in a professional setting, within the last 10 years.", "sub": ["Secondary school: 5 years (60 months).", "Associate's-level or advanced vocational: 4 years (48 months).", "Bachelor's or higher: 3 years (36 months).", "Bachelor's or postgraduate from a PMI GAC-accredited program: 2 years (24 months)."]}, {"id": "e-overlap", "text": "Count months, not projects. Two projects that overlapped in the same months only count once."}, {"id": "e-35", "text": "Complete 35 hours of project management training aligned to the outline (an active CAPM waives this).", "sub": ["From 1 December 2026, **live** classes only count if run by a PMI Authorized Training Partner, a China REP, or an accredited academic program.", "Self-paced courses from any provider still count, and training finished before 1 December 2026 stays eligible.", "Books and practice exams alone don't count."]}]}, {"title": "Apply", "items": [{"id": "e-record", "text": "Record each project separately, describing your role leading and directing it. Leave out routine, operational or admin work."}, {"id": "e-audit", "text": "Keep proof of your education level, experience and training hours ready. Any application can be selected for audit."}, {"id": "e-window", "text": "Once approved, pay the fee and schedule. You have **1 year** of eligibility to pass."}]}]}, {"id": "s1", "no": "1", "title": "Official resources", "note": "PMI says the exam isn't written from any single text; these are the sources it cites most.", "groups": [{"items": [{"id": "r-eco", "text": "Read the [PMP Examination Content Outline (July 2026)](https://www.pmi.org/-/media/pmi/documents/public/pdf/certifications/new-pmp-examination-content-outline-2026.pdf?rev=af7ae1c6006f43009fee4f613a350f9b) end to end. It defines every task tested and is the coverage list below."}, {"id": "r-pmbok", "text": "The [PMBOK® Guide](https://www.pmi.org/standards/pmbok), free for PMI members."}, {"id": "r-agile", "text": "The [Agile Practice Guide](https://www.pmi.org/standards/agile), free for PMI members. Most questions involve agile or hybrid work."}, {"id": "r-handbook", "text": "Read the [PMI Certification Handbook](https://www.pmi.org/-/media/pmi/documents/public/pdf/certifications/generic-certification-handbook.pdf?rev=50817fae4cd644b2b29df06898e27a33) for application, audit, scheduling and exam-day rules."}, {"id": "r-prep", "tag": "optional", "text": "PMI's on-demand [PMP Exam Prep Course](https://www.pmi.org/dcpdp/sku/EL326), which also meets the 35-hour requirement."}, {"id": "r-refs", "tag": "optional", "text": "Additional references PMI lists, for example *Essential Scrum* (Rubin), *Project Management: The Managerial Process* (Larson) and Kerzner's *Project Management: A Systems Approach*. PMI doesn't endorse these."}]}]}, {"id": "s2", "no": "2", "title": "People", "domain": 1, "note": "8 tasks, 33% of the exam.", "groups": [{"title": "Tasks to own", "items": [{"id": "d1-1", "ts": "1.1", "text": "Develop a common vision", "sub": ["Build and promote a shared vision with key stakeholders", "and keep it current.", "Find the root cause when people misunderstand it."]}, {"id": "d1-2", "ts": "1.2", "text": "Manage conflicts", "sub": ["Identify sources and analyze context; implement an agreed resolution strategy.", "Set and uphold ground rules", "and handle violations."]}, {"id": "d1-3", "ts": "1.3", "text": "Lead the project team", "sub": ["Set team expectations; empower the team; solve problems; represent the team's voice.", "Support varied experience and perspectives; choose a leadership style; set clear roles."]}, {"id": "d1-4", "ts": "1.4", "text": "Engage stakeholders", "sub": ["Identify and analyze stakeholders, and tailor communication to them.", "Execute the engagement plan; align needs with objectives; build trust and influence."]}, {"id": "d1-5", "ts": "1.5", "text": "Align stakeholder expectations", "sub": ["Categorize stakeholders and identify their expectations.", "Facilitate discussions to align them; act on mentoring opportunities."]}, {"id": "d1-6", "ts": "1.6", "text": "Manage stakeholder expectations", "sub": ["Identify internal and external customer expectations, align outcomes to them, and monitor satisfaction."]}, {"id": "d1-7", "ts": "1.7", "text": "Help ensure knowledge transfer", "sub": ["Identify and gather critical knowledge, and foster an environment for sharing it."]}, {"id": "d1-8", "ts": "1.8", "text": "Plan and manage communication", "sub": ["Define a communication strategy; promote transparency; set up a feedback loop.", "Understand reporting requirements and create reports that fit sponsors and governance."]}]}, {"title": "Apply", "items": [{"id": "a1-conflict", "tag": "added", "text": "Think of a real conflict on a past project. Name its source, the resolution strategy used, and what you'd do differently now."}]}]}, {"id": "s3", "no": "3", "title": "Process", "domain": 2, "note": "10 tasks, 41% of the exam, the heaviest domain.", "groups": [{"title": "Tasks to own", "items": [{"id": "d2-1", "ts": "2.1", "text": "Develop an integrated project management plan and plan delivery", "sub": ["Assess needs, complexity and size, and recommend a predictive, agile or hybrid approach.", "Determine critical information needs (for example, sustainability) and an execution strategy.", "Create, assess and maintain the integrated plan; estimate effort and resources; use data to decide."]}, {"id": "d2-2", "ts": "2.2", "text": "Develop and manage project scope", "sub": ["Define scope; get stakeholder agreement; break it down."]}, {"id": "d2-3", "ts": "2.3", "text": "Help ensure value-based delivery", "sub": ["Identify value with stakeholders and prioritize work by value and feedback.", "Look for incremental delivery; track business value and benefits throughout."]}, {"id": "d2-4", "ts": "2.4", "text": "Plan and manage resources", "sub": ["Plan resources from requirements, then manage and optimize availability."]}, {"id": "d2-5", "ts": "2.5", "text": "Plan and manage procurement", "sub": ["Plan procurement and strategy; choose contract types; negotiate.", "Manage suppliers and contracts, evaluate vendor performance, and confirm agreement objectives are met."]}, {"id": "d2-6", "ts": "2.6", "text": "Plan and manage finance", "sub": ["Analyze financial needs; quantify risk and contingency allocations.", "Plan spend tracking and financial reporting; monitor variations; manage reserves."]}, {"id": "d2-7", "ts": "2.7", "text": "Plan and optimize quality of products and deliverables", "sub": ["Gather quality requirements; plan and run quality processes and reviews.", "Ensure regulatory compliance; manage cost of quality and sustainability; improve continuously."]}, {"id": "d2-8", "ts": "2.8", "text": "Plan and manage schedule", "sub": ["Prepare a schedule suited to the approach; estimate with milestones, dependencies or story points.", "Use benchmarks and history; baseline, execute and analyze variation; coordinate with other work."]}, {"id": "d2-9", "ts": "2.9", "text": "Evaluate project status", "sub": ["Develop and update metrics; assess progress; communicate status.", "Identify, tailor and maintain the right artifacts, and keep them accessible."]}, {"id": "d2-10", "ts": "2.10", "text": "Manage project closure", "sub": ["Get approval of completion; set closure criteria; validate readiness for transition.", "Close out lessons learned, retrospectives, procurement, financials and resources."]}]}, {"title": "Apply", "items": [{"id": "a2-approach", "tag": "added", "text": "For three projects you know, say whether predictive, agile or hybrid fits best, and the one fact that decides it."}, {"id": "a2-value", "tag": "added", "text": "Pick one project and write how you'd know it delivered value, beyond being on time and on budget."}]}]}, {"id": "s4", "no": "4", "title": "Business Environment", "short": "Business Environment", "domain": 3, "note": "8 tasks, 26% of the exam, up from 8% in the previous outline.", "groups": [{"title": "Tasks to own", "items": [{"id": "d3-1", "ts": "3.1", "text": "Define and establish project governance", "sub": ["Set structure, rules, reporting, ethics and policies using organizational process assets.", "Define success metrics and escalation paths and thresholds."]}, {"id": "d3-2", "ts": "3.2", "text": "Plan and manage project compliance", "sub": ["Confirm requirements (security, health and safety, sustainability, regulatory) and classify them.", "Find threats, analyze the cost of noncompliance, act, and measure compliance."]}, {"id": "d3-3", "ts": "3.3", "text": "Manage and control changes", "sub": ["Run the change control process and communicate change status.", "Implement approved changes and update documentation."]}, {"id": "d3-4", "ts": "3.4", "text": "Remove impediments and manage issues", "sub": ["Evaluate, prioritize and remove impediments, and keep reassessing.", "Recognize when a risk becomes an issue; resolve issues with the right stakeholders."]}, {"id": "d3-5", "ts": "3.5", "text": "Plan and manage risk", "sub": ["Identify, analyze, monitor and control risks; keep a risk register.", "Plan and execute responses, including security and sustainability risks, and report risk status."]}, {"id": "d3-6", "ts": "3.6", "text": "Continuous improvement", "sub": ["Use lessons learned; keep improvement processes and organizational process assets updated."]}, {"id": "d3-7", "ts": "3.7", "text": "Support organizational change", "sub": ["Assess culture, and evaluate how organizational change affects the project."]}, {"id": "d3-8", "ts": "3.8", "text": "Evaluate external business environment changes", "sub": ["Watch regulation, technology, geopolitical and market changes, and adjust scope or backlog for them."]}]}, {"title": "Apply", "items": [{"id": "a3-ext", "tag": "added", "text": "Name one external change (a regulation, an AI tool, a market shift) that affected a project you know, and how scope or backlog should have responded."}]}]}, {"id": "s5", "no": "5", "title": "Readiness", "short": "Readiness", "groups": [{"items": [{"id": "x-samples", "text": "Work through the sample questions on PMI's [PMP certification page](https://www.pmi.org/certifications/project-management-pmp). For each, explain why the other options are worse."}, {"id": "x-practice", "tag": "optional", "text": "PMI's official full-length PMP Practice Exam, or PMI Study Hall, linked from the [new exam page](https://www.pmi.org/certifications/project-management-pmp/new-exam)."}, {"id": "x-types", "text": "Get comfortable with case/scenario sets and graphic-based questions, which are new in 2026. Practice reading a chart or scenario before the questions."}, {"id": "x-teach", "text": "Explain each of the 26 tasks in a sentence or two, with an example from your own projects, without notes."}, {"id": "x-gate", "text": "**Booking gate:** every task ticked, and your practice results are consistent."}]}]}, {"id": "s6", "no": "6", "title": "Exam day", "short": "Exam day", "groups": [{"items": [{"id": "l-sched", "text": "Schedule through PMI with Pearson VUE, at a test center (PMI recommends this) or online."}, {"id": "l-online", "text": "If testing online, run Pearson's system test in advance, use a private space, and have valid photo ID. You may be asked for ID again after a break."}, {"id": "l-breaks", "text": "Plan your breaks: the first comes after the case-study section, the second about halfway through the rest. Review your answers first, because you can't return afterward."}, {"id": "l-pace", "text": "Pace at about 1 minute 20 seconds per question."}, {"id": "l-retake", "text": "If you don't pass, you can retake up to 3 times within your 1-year eligibility. After 3 attempts there's a 1-year wait."}]}]}, {"id": "s7", "no": "7", "title": "After passing", "short": "Renewal", "groups": [{"items": [{"id": "m-ccr", "text": "Plan renewal: 60 PDUs every 3 years plus the renewal fee. One PDU is one hour of learning, teaching, presenting, reading, volunteering or creating content. See PMI's [maintenance page](https://www.pmi.org/certifications/certification-resources/maintain)."}]}]}], "sources": [{"title": "PMP certification page", "url": "https://www.pmi.org/certifications/project-management-pmp", "note": "eligibility, exam format, sample questions"}, {"title": "PMP Examination Content Outline (July 2026, PDF)", "url": "https://www.pmi.org/-/media/pmi/documents/public/pdf/certifications/new-pmp-examination-content-outline-2026.pdf?rev=af7ae1c6006f43009fee4f613a350f9b"}, {"title": "What's new in the 2026 PMP exam", "url": "https://www.pmi.org/certifications/project-management-pmp/new-exam", "note": "domain weight changes, training rule from 1 Dec 2026"}, {"title": "PMP Exam Prep and references", "url": "https://www.pmi.org/certifications/project-management-pmp/pmp-exam-preparation"}, {"title": "PMI Certification Handbook (PDF)", "url": "https://www.pmi.org/-/media/pmi/documents/public/pdf/certifications/generic-certification-handbook.pdf?rev=50817fae4cd644b2b29df06898e27a33"}, {"title": "Maintaining your certification", "url": "https://www.pmi.org/certifications/certification-resources/maintain"}]};
@@ -382,7 +424,8 @@ function save(){
 
 // ---------- Static parts ----------
 function renderStatic(){
-  document.getElementById("hdrCode").textContent = [CERT.issuer, CERT.code, /^\d+(\.\d+)+$/.test(String(CERT.blueprint.version)) ? "v"+CERT.blueprint.version : ""].filter(Boolean).join(" · ");
+  document.getElementById("hdrCode").textContent = CERT.issuer;
+  document.body.dataset.cat = CERT.category || "";
   document.getElementById("hdrTitle").textContent = CERT.code+" Study Tracker";
   document.getElementById("crumbCur").textContent = CERT.code;
 
@@ -398,8 +441,8 @@ function renderStatic(){
 
   let intro = "";
   const parts = [];
-  if (CERT.snapshot) parts.push('<div><h3>'+esc(CERT.snapshot.title||"Snapshot")+'</h3><ul>'+CERT.snapshot.items.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>');
-  if (CERT.lens) parts.push('<div class="lens"><h3>'+esc(CERT.lens.title)+'</h3>'+(CERT.lens.intro?'<p>'+md(CERT.lens.intro)+'</p>':'')+(Array.isArray(CERT.lens.body)?'<ul>'+CERT.lens.body.map(x=>'<li>'+md(x)+'</li>').join('')+'</ul>':(CERT.lens.body?'<p>'+md(CERT.lens.body)+'</p>':''))+(CERT.lens.prompts||[]).map(q=>'<q>'+esc(q)+'</q>').join("")+'</div>');
+  if (CERT.snapshot) parts.push('<div><h2>'+esc(CERT.snapshot.title||"Snapshot")+'</h2><ul>'+CERT.snapshot.items.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>');
+  if (CERT.lens) parts.push('<div class="lens"><h2>'+esc(CERT.lens.title)+'</h2>'+(CERT.lens.intro?'<p>'+md(CERT.lens.intro)+'</p>':'')+(Array.isArray(CERT.lens.body)?'<ul>'+CERT.lens.body.map(x=>'<li>'+md(x)+'</li>').join('')+'</ul>':(CERT.lens.body?'<p>'+md(CERT.lens.body)+'</p>':''))+(CERT.lens.prompts||[]).map(q=>'<q>'+esc(q)+'</q>').join("")+'</div>');
   if (parts.length) intro = '<div class="intro'+(parts.length===1?' single':'')+'">'+parts.join("")+'</div>';
   intro += '<p class="tier-note"><strong>'+esc(t[0])+':</strong> '+esc(t[1])+'</p>';
   intro += '<p class="review-cta">Hold this certification? <a href="'+reviewUrl()+'" target="_blank" rel="noopener">Peer-review this tracker</a></p>';
@@ -437,11 +480,11 @@ function renderSections(){
     if (sec.callout) h += '<div class="callout">'+md(sec.callout)+'</div>';
     sec.groups.forEach(g => {
       const vis = g.items.filter(i=>visible(i.id));
-      h += '<div class="group">'+(g.title?'<h4>'+esc(g.title)+'</h4>':'')+'<ul class="items">'+
+      h += '<div class="group">'+(g.title?'<h3>'+esc(g.title)+'</h3>':'')+'<ul class="items">'+
         (vis.length ? vis.map(itemHtml).join("") : '<li class="hidden-note">'+(filter==="done"?"Nothing ticked here yet.":"All done in this group.")+'</li>')+'</ul></div>';
     });
-    if (sec.skip) h += '<div class="skip"><h4>Skip or skim</h4><ul>'+sec.skip.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
-    if (sec.out_of_scope) h += '<div class="group"><h4>Out of scope · don\'t study these</h4><ul class="oos">'+sec.out_of_scope.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
+    if (sec.skip) h += '<div class="skip"><h3>Skip or skim</h3><ul>'+sec.skip.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
+    if (sec.out_of_scope) h += '<div class="group"><h3>Out of scope: don\'t study these</h3><ul class="oos">'+sec.out_of_scope.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
     h += '</section>';
   });
 

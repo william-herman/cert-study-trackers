@@ -25,7 +25,10 @@
   --accent: #1f6b57;
   --accent-soft: #d8ebe4;
   --accent-fg: #ffffff;
-  --amber: #a5620a;
+  --amber: #8a4f05;
+  --cat-project-management: #b8740f;
+  --cat-ai: #1f6b57;
+  --cat-cybersecurity: #2f5fb3;
   --amber-soft: #f6e7cf;
   --ex: #3d4fa3;
   --ex-soft: #e2e6f6;
@@ -40,6 +43,7 @@
     --bg: #111715; --surface: #18201d; --surface-2: #1d2623; --fg: #e4ebe8; --muted: #95a39e;
     --line: #2b3632; --accent: #5cc09f; --accent-soft: #1c3a31; --accent-fg: #0b1512;
     --amber: #e3a54d; --amber-soft: #3a2c16; --ex: #9fb0f5; --ex-soft: #232a4a; --done-fg: #66736e; --focus: #5cc09f;
+    --cat-project-management: #e3a54d; --cat-ai: #5cc09f; --cat-cybersecurity: #7fa6f0;
     color-scheme: dark;
   }
 }
@@ -61,7 +65,7 @@ code { font-family: var(--f-mono); font-size: .86em; background: var(--surface-2
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding-block: 12px; }
 .brand { display: flex; flex-direction: column; min-width: 0; }
-.brand .code { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+.brand .code { font-size: 13px; color: var(--muted); font-weight: 500; }
 .brand h1 { font-family: var(--f-display); font-weight: 700; font-size: 22px; line-height: 1.15; margin: 0; text-wrap: balance; }
 .overall { flex: 1 1 260px; display: flex; align-items: center; gap: 12px; min-width: 0; }
 .bar { flex: 1; height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
@@ -92,7 +96,7 @@ code { font-family: var(--f-mono); font-size: .86em; background: var(--surface-2
 .index nav a .k { font-family: var(--f-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .index nav a.full .k { color: var(--accent); }
 .filters { display: flex; flex-direction: column; gap: 8px; }
-.filters .lbl { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.filters .lbl { font-size: 13px; color: var(--muted); font-weight: 600; }
 .seg { display: inline-flex; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 2px; }
 .seg button { font: inherit; font-size: 13px; border: 0; background: transparent; color: var(--muted); padding: 4px 10px; border-radius: 6px; cursor: pointer; }
 .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); }
@@ -121,7 +125,7 @@ section.sec { scroll-margin-top: 96px; }
 .callout { background: var(--amber-soft); color: var(--fg); border-radius: 8px; padding: 10px 14px; font-size: 14px; margin-top: 10px; }
 
 .group { margin-top: 16px; }
-.group h4 { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; font-weight: 600; }
+.group h3 { font-family: var(--f-body); font-size: 14px; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
 .items { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
 .item { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; padding: 11px 14px; border-top: 1px solid var(--line); }
 .item:first-child { border-top: 0; }
@@ -143,7 +147,7 @@ section.sec { scroll-margin-top: 96px; }
 .hidden-note { font-size: 13px; color: var(--muted); padding: 10px 14px; }
 
 .skip { margin-top: 12px; background: var(--surface-2); border: 1px dashed var(--line); border-radius: 10px; padding: 12px 16px; font-size: 14px; }
-.skip h4 { margin: 0 0 6px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.skip h3 { font-family: var(--f-body); margin: 0 0 6px; font-size: 14px; font-weight: 600; color: var(--muted); }
 .skip ul { margin: 0; padding-left: 18px; color: var(--muted); }
 .oos { columns: 2 220px; column-gap: 24px; margin: 0; padding-left: 18px; font-size: 14px; color: var(--muted); }
 
@@ -181,7 +185,7 @@ body { margin: 0; }
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; padding-block: 20px 28px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px; color: inherit; text-decoration: none; }
 .card:hover { border-color: var(--accent); }
-.card .code { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+.card .issuer { font-size: 13px; font-weight: 500; color: var(--muted); }
 .card h2 { font-family: var(--f-display); font-size: 20px; margin: 0; line-height: 1.2; }
 .card p { margin: 0; font-size: 14px; color: var(--muted); }
 .card .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: auto; font-size: 12px; color: var(--muted); }
@@ -196,7 +200,7 @@ body { margin: 0; }
 .sec-head { margin-bottom: 12px; }
 .sec-note { margin-top: 10px; }
 .group { margin-top: 24px; }
-.group h4 { margin-bottom: 10px; }
+.group h3 { margin-bottom: 10px; }
 .cov { margin-top: 16px; }
 #sections section.sec + section.sec { margin-top: 48px; }
 .lens ul { margin: 0 0 10px; }
@@ -267,9 +271,47 @@ body { margin: 0; }
 .share-empty-big { font-family: var(--f-display); font-size: 22px; font-weight: 700; margin: 6px 0; }
 .share-start { display: inline-block; text-decoration: none; margin-top: 8px; }
 
+/* ---- Batch 3 design pass ---- */
+.intro h2 { margin: 0 0 6px; font-family: var(--f-display); font-size: 16px; font-weight: 700; }
+.item input { width: 22px; height: 22px; }
+.skip-link { position: absolute; left: 12px; top: -60px; z-index: 20; background: var(--accent); color: var(--accent-fg); padding: 10px 14px; border-radius: 8px; font-weight: 600; text-decoration: none; }
+.skip-link:focus { top: 12px; }
+.share-open { background: var(--accent); color: var(--accent-fg); }
+.share-open:hover { filter: brightness(1.08); }
+
+/* Category colour: a spine on cards, a rule under the tracker header */
+.card { position: relative; overflow: hidden; padding-left: 22px; }
+.card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--cat, var(--accent)); }
+.card[data-cat="project-management"] { --cat: var(--cat-project-management); }
+.card[data-cat="ai"] { --cat: var(--cat-ai); }
+.card[data-cat="cybersecurity"] { --cat: var(--cat-cybersecurity); }
+.card h2 { display: flex; flex-direction: column; gap: 2px; }
+.card h2 .ccode { font-size: 30px; line-height: 1; letter-spacing: -.01em; color: var(--cat, var(--fg)); }
+.card h2 .cname { font-family: var(--f-body); font-size: 15px; font-weight: 600; color: var(--fg); }
+.card .sum { font-size: 14px; color: var(--muted); }
+.card .meta-row { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: 12px; color: var(--muted); margin-top: auto; }
+.prog { display: flex; flex-direction: column; gap: 6px; }
+.prog .pbar { height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; }
+.prog .pbar i { display: block; height: 100%; width: 0; background: var(--cat, var(--accent)); border-radius: 99px; }
+.prog .ptxt { font-size: 13px; font-weight: 600; color: var(--fg); }
+.prog .ptxt.none { color: var(--muted); font-weight: 500; }
+body[data-cat="project-management"] .top { box-shadow: inset 0 -3px 0 var(--cat-project-management); }
+body[data-cat="ai"] .top { box-shadow: inset 0 -3px 0 var(--cat-ai); }
+body[data-cat="cybersecurity"] .top { box-shadow: inset 0 -3px 0 var(--cat-cybersecurity); }
+
+/* Continue strip */
+.resume { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 18px; padding: 14px 18px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
+.resume[hidden] { display: none; }
+.resume .rlbl { font-size: 14px; color: var(--muted); }
+.resume a { font-weight: 600; font-size: 15px; color: var(--fg); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.resume a:hover .rcode { text-decoration: underline; }
+.resume .rpct { font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 99px; }
+.tab[aria-pressed="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+
 </style>
 </head>
 <body>
+<a class="skip-link" href="#sections">Skip to checklist</a>
 <header class="top">
   <div class="wrap">
     <div class="brand">
@@ -300,7 +342,7 @@ body { margin: 0; }
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap" id="main">
   <div class="meta" id="meta"></div>
   <div id="stale"></div>
   <div class="meters" id="meters"></div>
@@ -309,8 +351,8 @@ body { margin: 0; }
     <aside class="index">
       <nav id="nav" aria-label="Sections"></nav>
       <div class="filters">
-        <span class="lbl">Show</span>
-        <div class="seg" role="group" aria-label="Filter items">
+        <span class="lbl" id="showLbl">Show</span>
+        <div class="seg" role="group" aria-labelledby="showLbl">
           <button type="button" data-f="all" aria-pressed="true">All</button>
           <button type="button" data-f="open" aria-pressed="false">To do</button>
           <button type="button" data-f="done" aria-pressed="false">Done</button>
@@ -319,13 +361,13 @@ body { margin: 0; }
       </div>
     </aside>
 
-    <main class="content" id="content">
+    <div class="content" id="content">
       <div id="intro"></div>
       <div id="sections"></div>
       <footer id="foot"></footer>
-    </main>
+    </div>
   </div>
-</div>
+</main>
 
 <script>
 const CERT = {"slug": "csm", "code": "CSM", "name": "Certified ScrumMaster", "issuer": "Scrum Alliance", "category": "project-management", "kind": "exam", "confidence": "field-validated", "blueprint": {"title": "CSM Learning Objectives", "version": "2022", "published": "updated Jan 2022, with the Scrum Foundations Learning Objectives"}, "last_checked": "2026-10-01", "summary": "Study plan for the CSM: the required course, all 28 CSM and 24 Scrum Foundations learning objectives the test is built on, the Scrum Guide and Agile Manifesto, and the test and renewal rules.", "domain_label": "Category", "lens": {"title": "The lens for every question", "body": ["Scrum Alliance's objectives start from one idea: every implementation of Scrum is different, but the fundamental framework always stays the same.", "The test is based on the CSM Learning Objectives and the Scrum Guide, so answer by the framework, not by local practice.", "Many objectives ask you to *discuss*, *explain* or *apply*, not just define. Be ready to reason about a situation, not only recall terms.", "From the author's experience: much of the material is covered hands-on in the course, but **review the content again after the course** to make sure you pass the test."], "prompts": ["What does the Scrum Guide actually say here?", "Which answer gives the agency to the team as a whole?", "Is this the Scrum Master's accountability, the Product Owner's, or the Developers'?"]}, "snapshot": {"title": "Test snapshot", "items": ["**Course required:** a 16-hour CSM course with a Certified Scrum Trainer, usually over 2–3 days", "From the author's experience: expect to keep your **camera on throughout** an online course", "50 multiple-choice questions in 60 minutes, online and **not proctored**", "**37 of 50 to pass (74%)**; you can bookmark questions but not pause", "2 free attempts within 90 days of the welcome email, then $25 per attempt", "Available in 13 languages", "Renew every **2 years** with 20 SEUs and a $100 fee (one SEU per hour of learning)"]}, "domains": [{"id": 4, "label": "Foundations", "name": "Scrum Foundations", "short": "Scrum Foundations"}, {"id": 1, "label": "CSM 1", "name": "Scrum", "short": "Scrum"}, {"id": 2, "label": "CSM 2", "name": "Scrum Master Core Competencies", "short": "Core Competencies"}, {"id": 3, "label": "CSM 3", "name": "Service to the Scrum Team, Product Owner, and Organization", "short": "Service to Team, PO & Org"}], "tag_legend": [{"tag": "practice", "style": "added", "meaning": "hands-on exercises beyond the learning objectives"}, {"tag": "optional", "style": "optional", "meaning": "not counted toward progress"}], "sections": [{"id": "s0", "no": "0", "title": "Before the course", "note": "The course is required; you can't take the test without it.", "groups": [{"items": [{"id": "c-find", "text": "Choose a CSM course taught by a Certified Scrum Trainer on Scrum Alliance's [course search](https://www.scrumalliance.org/courses-events/search?ctyp=Csm). The course fee includes two test attempts."}, {"id": "c-guide", "text": "Read the [Scrum Guide](https://scrumguides.org/scrum-guide.html) (2020) once before class, so the course is your second pass."}, {"id": "c-manifesto", "text": "Read the [Manifesto for Agile Software Development](https://agilemanifesto.org/): the four values and the [12 principles](https://agilemanifesto.org/principles.html)."}, {"id": "c-values", "text": "Read Scrum Alliance's page on the [Scrum values](https://www.scrumalliance.org/about-scrum/values)."}, {"id": "c-los", "text": "Skim the [CSM Learning Objectives](https://www.scrumalliance.org/media/certifications/los/csm_learning_objectives_2022.pdf) and [Scrum Foundations Learning Objectives](https://www.scrumalliance.org/media/certifications/los/scrum_foundations_learning_objectives_2022.pdf). They are the coverage grid at the bottom of this page."}]}]}, {"id": "s1", "no": "1", "title": "Scrum Foundations", "short": "Foundations", "domain": 4, "note": "Covered before or during every CSM course. Scrum theory, the team, events, and artifacts.", "groups": [{"title": "Scrum theory", "items": [{"id": "f-theory", "text": "Scrum, empiricism and its three pillars", "sub": ["Empiricism: knowledge comes from experience and deciding based on what is observed.", "Pillars: transparency, inspection, adaptation.", "The five Scrum values: commitment, focus, openness, respect, courage."]}, {"id": "f-iter", "text": "Iterative and incremental delivery", "sub": ["At least three benefits, e.g. earlier feedback, earlier value, lower risk.", "What goes wrong when Scrum is only partially implemented.", "How Scrum lines up with the Agile Manifesto's values and principles."]}]}, {"title": "Team, events and artifacts", "items": [{"id": "f-team", "text": "How the Product Owner, Developers and Scrum Master work together to deliver Increments within a Sprint, and why cross-functional, self-managing teams help."}, {"id": "f-events", "text": "Events, their purpose, participants, order and timeboxes", "sub": ["The Sprint is one month or less; how to choose a suitable length.", "For a one-month Sprint: Sprint Planning up to 8 hours, Daily Scrum 15 minutes, Sprint Review up to 4 hours, Sprint Retrospective up to 3 hours.", "Why timeboxes help.", "Product Backlog refinement is an ongoing activity, not an event. Know what happens in it and why teams make time for it."]}, {"id": "f-artifacts", "text": "Artifacts and their commitments", "sub": ["Product Backlog → Product Goal; Sprint Backlog → Sprint Goal; Increment → Definition of Done.", "The Product Backlog is emergent; know typical attributes of a Product Backlog item.", "The Sprint Backlog can change without endangering the Sprint Goal; the Sprint Goal itself doesn't change during the Sprint.", "Several Increments can be created within one Sprint.", "The Definition of Done evolves, and teams sharing a Product Backlog share one Definition of Done."]}]}]}, {"id": "s2", "no": "2", "title": "CSM category 1: Scrum", "short": "Scrum", "domain": 1, "note": "Accountabilities, events and the Definition of Done, at the depth of discussing and applying them.", "groups": [{"title": "Concepts to own", "items": [{"id": "s-acc", "text": "Accountabilities of the Scrum Team, Scrum Master, Developers and Product Owner", "sub": ["Why the Product Owner is one person, not a committee.", "How the Product Owner keeps authority over the Product Backlog while collaborating with Developers and stakeholders."]}, {"id": "s-events", "text": "Events as inspect-and-adapt points", "sub": ["At least one way each event can increase transparency.", "Effects of skipping the Sprint Retrospective.", "The Daily Scrum is run by and for the Developers; know how it differs from a status meeting and why its constraints exist.", "When a Sprint can be cancelled early (only the Product Owner can, when the Sprint Goal becomes obsolete)."]}, {"id": "s-dod", "text": "Definition of Done", "sub": ["Advantages of a strong Definition of Done.", "At least one way to create one."]}]}, {"title": "Apply", "items": [{"id": "s-run", "tag": "practice", "text": "Walk through a Sprint Planning, Sprint Review and Sprint Retrospective for a real or made-up team, as the course expects you to be able to run them. Note who does what in each."}]}]}, {"id": "s3", "no": "3", "title": "CSM category 2: Scrum Master core competencies", "short": "Core Competencies", "domain": 2, "note": "Facilitation, and how it differs from teaching, mentoring and coaching.", "groups": [{"title": "Concepts to own", "items": [{"id": "k-fac", "text": "Facilitation", "sub": ["Situations where the Scrum Master serves the team or organization by facilitating.", "At least three techniques for group decision making."]}, {"id": "k-stances", "text": "How facilitating, teaching, mentoring and coaching differ, and when each fits."}]}, {"title": "Apply", "items": [{"id": "k-try", "tag": "practice", "text": "Facilitate one real decision with your team using a technique you haven't used before, then note what changed about the conversation."}]}]}, {"id": "s4", "no": "4", "title": "CSM category 3: Service to the Scrum Team, Product Owner, and organization", "short": "Service to Team, PO & Org", "domain": 3, "note": "Leadership, technical quality, impediments and organizational change.", "groups": [{"title": "Concepts to own", "items": [{"id": "v-lead", "text": "The Scrum Master as a leader who serves, with concrete scenarios."}, {"id": "v-debt", "text": "Technical debt", "sub": ["The impact of letting it accumulate.", "Development practices that help deliver a high-quality Increment and reduce debt every Sprint."]}, {"id": "v-po", "text": "Ways the Scrum Master supports the Product Owner."}, {"id": "v-imp", "text": "Impediments", "sub": ["Organizational impediments that affect Scrum Teams.", "How the Scrum Master helps the team with impediments, and at least one technique for resolving one."]}, {"id": "v-org", "text": "Organizational change", "sub": ["At least one change to organizational design that adopting Scrum causes.", "Why Scrum has no project manager."]}]}, {"title": "Apply", "items": [{"id": "v-list", "tag": "practice", "text": "List three impediments your team faces today. For each, say whether the team can remove it or the Scrum Master needs to work with the organization, and what you'd try first."}]}]}, {"id": "s5", "no": "5", "title": "Readiness", "short": "Readiness", "groups": [{"items": [{"id": "r-reread", "text": "Re-read the Scrum Guide after the course. The test is based on it and on the learning objectives."}, {"id": "r-teach", "text": "Explain every objective in the coverage grid out loud in a sentence or two, without notes."}, {"id": "r-gate", "text": "**Test gate:** every coverage item ticked. Take the test while the course is fresh, within the 90-day free window."}]}]}, {"id": "s6", "no": "6", "title": "Test day and after", "short": "Test & renewal", "groups": [{"items": [{"id": "t-access", "text": "Activate your account from the Scrum Alliance welcome email, then start the test from your dashboard."}, {"id": "t-env", "text": "Use one computer and one browser (not Internet Explorer), turn off pop-up blockers, and don't use the browser's back or forward buttons during the test."}, {"id": "t-pace", "text": "Pace at about 1 minute 10 seconds per question. Bookmark hard ones and come back; you can't pause."}, {"id": "t-renew", "text": "After passing, plan [renewal](https://www.scrumalliance.org/get-certified/renewing-certifications): 20 [SEUs](https://www.scrumalliance.org/get-certified/scrum-education-units) and $100 every 2 years. Earning another Scrum Alliance certification renews the ones you already hold."}]}]}], "objectives": {"title": "Learning objective coverage", "short": "Coverage", "note": "Every CSM and Scrum Foundations learning objective, summarized. Tick one only when you can do what it asks (describe, discuss, explain or apply) without notes.", "items": [{"id": "SF1.1", "domain": 4, "name": "Define Scrum", "where": "Section 1"}, {"id": "SF1.2", "domain": 4, "name": "List the five Scrum values", "where": "Section 1"}, {"id": "SF1.3", "domain": 4, "name": "Define empiricism", "where": "Section 1"}, {"id": "SF1.4", "domain": 4, "name": "List the three pillars of empiricism", "where": "Section 1"}, {"id": "SF1.5", "domain": 4, "name": "Benefits of an iterative and incremental approach", "where": "Section 1"}, {"id": "SF1.6", "domain": 4, "name": "Disadvantages of partially implementing Scrum", "where": "Section 1"}, {"id": "SF1.7", "domain": 4, "name": "How Scrum aligns with the Agile Manifesto", "where": "Section 1"}, {"id": "SF2.1", "domain": 4, "name": "How PO", "Developers and Scrum Master interact to deliver Increments": null, "where": "Section 1"}, {"id": "SF2.2", "domain": 4, "name": "Benefits of a cross-functional", "self-managing team": null, "where": "Section 1"}, {"id": "SF3.1", "domain": 4, "name": "Benefits of timeboxing", "where": "Section 1"}, {"id": "SF3.2", "domain": 4, "name": "Purpose and maximum length of a Sprint", "where": "Section 1"}, {"id": "SF3.3", "domain": 4, "name": "Choosing a suitable Sprint length", "where": "Section 1"}, {"id": "SF3.4", "domain": 4, "name": "Each event: purpose, participants, sequence, timebox", "where": "Section 1"}, {"id": "SF3.5", "domain": 4, "name": "Activities in Product Backlog refinement", "where": "Section 1"}, {"id": "SF3.6", "domain": 4, "name": "Why teams dedicate time to refinement", "where": "Section 1"}, {"id": "SF4.1", "domain": 4, "name": "Purpose and attributes of each artifact", "where": "Section 1"}, {"id": "SF4.2", "domain": 4, "name": "Why the Product Backlog is emergent", "where": "Section 1"}, {"id": "SF4.3", "domain": 4, "name": "Attributes of a Product Backlog item", "where": "Section 1"}, {"id": "SF4.4", "domain": 4, "name": "Changing the Sprint Backlog without endangering the Sprint Goal", "where": "Section 1"}, {"id": "SF4.5", "domain": 4, "name": "Multiple Increments within a Sprint", "where": "Section 1"}, {"id": "SF4.6", "domain": 4, "name": "The three commitments and their artifacts", "where": "Section 1"}, {"id": "SF4.7", "domain": 4, "name": "Why the Sprint Goal doesn't change during a Sprint", "where": "Section 1"}, {"id": "SF4.8", "domain": 4, "name": "How the Definition of Done evolves", "where": "Section 1"}, {"id": "SF4.9", "domain": 4, "name": "Why multiple teams share one Definition of Done", "where": "Section 1"}, {"id": "1.1", "name": "Accountabilities of the Scrum Team", "where": "Section 2"}, {"id": "1.2", "name": "Accountabilities of the Scrum Master", "where": "Section 2"}, {"id": "1.3", "name": "Accountabilities of the Developers", "where": "Section 2"}, {"id": "1.4", "name": "Accountabilities of the Product Owner", "where": "Section 2"}, {"id": "1.5", "name": "Why the Product Owner is one person", "where": "Section 2"}, {"id": "1.6", "name": "PO authority over the Product Backlog while collaborating", "where": "Section 2"}, {"id": "1.7", "name": "Increasing transparency at each event", "where": "Section 2"}, {"id": "1.8", "name": "Run a Sprint Planning", "where": "Section 2"}, {"id": "1.9", "name": "Run a Sprint Review", "where": "Section 2"}, {"id": "1.10", "name": "Run a Sprint Retrospective", "where": "Section 2"}, {"id": "1.11", "name": "Effects of skipping the Retrospective", "where": "Section 2"}, {"id": "1.12", "name": "How Developers conduct the Daily Scrum", "where": "Section 2"}, {"id": "1.13", "name": "Daily Scrum vs. a status meeting", "where": "Section 2"}, {"id": "1.14", "name": "When a Sprint can be cancelled", "where": "Section 2"}, {"id": "1.15", "name": "Advantages of a strong Definition of Done", "where": "Section 2"}, {"id": "1.16", "name": "Creating a Definition of Done", "where": "Section 2"}, {"id": "2.1", "name": "When the Scrum Master serves through facilitation", "where": "Section 3"}, {"id": "2.2", "name": "Techniques for group decision making", "where": "Section 3"}, {"id": "2.3", "name": "Facilitating vs. teaching vs. mentoring vs. coaching", "where": "Section 3"}, {"id": "3.1", "name": "The Scrum Master as a leader", "where": "Section 4"}, {"id": "3.2", "name": "Impact of technical debt", "where": "Section 4"}, {"id": "3.3", "name": "Practices that improve quality and reduce debt", "where": "Section 4"}, {"id": "3.4", "name": "How the Scrum Master supports the Product Owner", "where": "Section 4"}, {"id": "3.5", "name": "Organizational impediments", "where": "Section 4"}, {"id": "3.6", "name": "Helping the team with impediments", "where": "Section 4"}, {"id": "3.7", "name": "A technique for resolving an impediment", "where": "Section 4"}, {"id": "3.8", "name": "An organizational change caused by Scrum", "where": "Section 4"}, {"id": "3.9", "name": "Why Scrum has no project manager", "where": "Section 4"}]}, "sources": [{"title": "Certified ScrumMaster certification page", "url": "https://www.scrumalliance.org/get-certified/scrum-master-track/certified-scrummaster", "note": "course, test format"}, {"title": "CSM Learning Objectives (2022)", "url": "https://www.scrumalliance.org/media/certifications/los/csm_learning_objectives_2022.pdf"}, {"title": "Scrum Foundations Learning Objectives (2022)", "url": "https://www.scrumalliance.org/media/certifications/los/scrum_foundations_learning_objectives_2022.pdf"}, {"title": "What to expect from the CSM test", "url": "https://support.scrumalliance.org/hc/en-us/articles/208753776-What-to-expect-from-the-Certified-ScrumMaster-CSM-test", "note": "passing score, attempts, languages"}, {"title": "How to take the CSM test", "url": "https://support.scrumalliance.org/hc/en-us/articles/360002112772-How-do-I-take-the-CSM-test"}, {"title": "Renewing certifications", "url": "https://www.scrumalliance.org/get-certified/renewing-certifications"}, {"title": "The Scrum Guide (2020)", "url": "https://scrumguides.org/scrum-guide.html"}, {"title": "Manifesto for Agile Software Development", "url": "https://agilemanifesto.org/"}]};
@@ -382,7 +424,8 @@ function save(){
 
 // ---------- Static parts ----------
 function renderStatic(){
-  document.getElementById("hdrCode").textContent = [CERT.issuer, CERT.code, /^\d+(\.\d+)+$/.test(String(CERT.blueprint.version)) ? "v"+CERT.blueprint.version : ""].filter(Boolean).join(" · ");
+  document.getElementById("hdrCode").textContent = CERT.issuer;
+  document.body.dataset.cat = CERT.category || "";
   document.getElementById("hdrTitle").textContent = CERT.code+" Study Tracker";
   document.getElementById("crumbCur").textContent = CERT.code;
 
@@ -398,8 +441,8 @@ function renderStatic(){
 
   let intro = "";
   const parts = [];
-  if (CERT.snapshot) parts.push('<div><h3>'+esc(CERT.snapshot.title||"Snapshot")+'</h3><ul>'+CERT.snapshot.items.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>');
-  if (CERT.lens) parts.push('<div class="lens"><h3>'+esc(CERT.lens.title)+'</h3>'+(CERT.lens.intro?'<p>'+md(CERT.lens.intro)+'</p>':'')+(Array.isArray(CERT.lens.body)?'<ul>'+CERT.lens.body.map(x=>'<li>'+md(x)+'</li>').join('')+'</ul>':(CERT.lens.body?'<p>'+md(CERT.lens.body)+'</p>':''))+(CERT.lens.prompts||[]).map(q=>'<q>'+esc(q)+'</q>').join("")+'</div>');
+  if (CERT.snapshot) parts.push('<div><h2>'+esc(CERT.snapshot.title||"Snapshot")+'</h2><ul>'+CERT.snapshot.items.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>');
+  if (CERT.lens) parts.push('<div class="lens"><h2>'+esc(CERT.lens.title)+'</h2>'+(CERT.lens.intro?'<p>'+md(CERT.lens.intro)+'</p>':'')+(Array.isArray(CERT.lens.body)?'<ul>'+CERT.lens.body.map(x=>'<li>'+md(x)+'</li>').join('')+'</ul>':(CERT.lens.body?'<p>'+md(CERT.lens.body)+'</p>':''))+(CERT.lens.prompts||[]).map(q=>'<q>'+esc(q)+'</q>').join("")+'</div>');
   if (parts.length) intro = '<div class="intro'+(parts.length===1?' single':'')+'">'+parts.join("")+'</div>';
   intro += '<p class="tier-note"><strong>'+esc(t[0])+':</strong> '+esc(t[1])+'</p>';
   intro += '<p class="review-cta">Hold this certification? <a href="'+reviewUrl()+'" target="_blank" rel="noopener">Peer-review this tracker</a></p>';
@@ -437,11 +480,11 @@ function renderSections(){
     if (sec.callout) h += '<div class="callout">'+md(sec.callout)+'</div>';
     sec.groups.forEach(g => {
       const vis = g.items.filter(i=>visible(i.id));
-      h += '<div class="group">'+(g.title?'<h4>'+esc(g.title)+'</h4>':'')+'<ul class="items">'+
+      h += '<div class="group">'+(g.title?'<h3>'+esc(g.title)+'</h3>':'')+'<ul class="items">'+
         (vis.length ? vis.map(itemHtml).join("") : '<li class="hidden-note">'+(filter==="done"?"Nothing ticked here yet.":"All done in this group.")+'</li>')+'</ul></div>';
     });
-    if (sec.skip) h += '<div class="skip"><h4>Skip or skim</h4><ul>'+sec.skip.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
-    if (sec.out_of_scope) h += '<div class="group"><h4>Out of scope · don\'t study these</h4><ul class="oos">'+sec.out_of_scope.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
+    if (sec.skip) h += '<div class="skip"><h3>Skip or skim</h3><ul>'+sec.skip.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
+    if (sec.out_of_scope) h += '<div class="group"><h3>Out of scope: don\'t study these</h3><ul class="oos">'+sec.out_of_scope.map(x=>"<li>"+md(x)+"</li>").join("")+'</ul></div>';
     h += '</section>';
   });
 
